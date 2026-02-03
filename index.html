@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edward Blake</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" media="(prefers-color-scheme: light)" href="images/favicon-light.ico">
+    <link rel="icon" type="image/x-icon" media="(prefers-color-scheme: dark)" href="images/favicon-dark.ico">
+
+    <!-- SEO Meta Tags -->
+    <link rel="canonical" href="https://www.edwardblake.net">
+    <meta property="og:site_name" content="Edward Blake">
+    <meta property="og:title" content="Edward Blake">
+    <meta property="og:url" content="https://www.edwardblake.net">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="Edward Blake">
+    <meta name="twitter:url" content="https://www.edwardblake.net">
+    <meta name="twitter:card" content="summary">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #fff;
+            --section-padding: 80px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: var(--bg-color);
+        }
+
+        /* Header */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer .site-title {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #000;
+        }
+
+        .hero-text {
+            padding: 40px 40px 60px;
+            padding-top: 100px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            line-height: 1.2;
+            color: #fff;
+            max-width: 900px;
+        }
+
+        .hero-image {
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 85%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 40px;
+            background: var(--bg-color);
+        }
+
+        .about-content {
+            max-width: 800px;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Institutions Section */
+        .institutions {
+            padding: var(--section-padding) 40px;
+            background: var(--bg-color);
+        }
+
+        .institutions-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .institutions h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .logo-grid img {
+            max-width: 100%;
+            height: auto;
+            max-height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .logo-grid img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 40px;
+            background: var(--bg-color);
+            border-top: 1px solid #eee;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            header {
+                padding: 20px;
+            }
+
+            .hero-text {
+                padding: 80px 20px 40px;
+            }
+
+            .hero-image img {
+                width: 100%;
+            }
+
+            .about {
+                padding: 60px 20px;
+            }
+
+            .logo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .institutions {
+                padding: 60px 20px;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.75rem;
+            }
+
+            .logo-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="site-title">Edward Blake</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <h1>I create imaginative new experiences for museums and cultural institutions worldwide.</h1>
+            </div>
+            <div class="hero-image">
+                <img src="images/ehb.jpg" alt="Edward Blake">
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="about-content">
+                <p>I work as a Design Director at Art Processors, crafting new and novel experiences for cultural institutions. I lead projects that focus on the power of storytelling, iterative prototyping, and the use of new technologies in ethical ways. I'm committed to the power of place as a means to provide wonderment.</p>
+            </div>
+        </section>
+
+        <section class="institutions">
+            <div class="institutions-content">
+                <h2>Institutions I've served</h2>
+                <div class="logo-grid">
+                    <img src="images/mona1.png" alt="MONA - Museum of Old and New Art">
+                    <img src="images/cma2.png" alt="Cleveland Museum of Art">
+                    <img src="images/WA-Museum2.png" alt="Western Australian Museum">
+                    <img src="images/amnh-logo.png" alt="American Museum of Natural History">
+                    <img src="images/nma3.png" alt="National Museum of Australia">
+                    <img src="images/aros2.png" alt="ARoS Aarhus Art Museum">
+                    <img src="images/smart2.png" alt="Smart Museum of Art">
+                    <img src="images/ngs.png" alt="National Galleries Scotland">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <span class="site-title">Edward Blake</span>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/eblake/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.artprocessors.net/" target="_blank" rel="noopener">Art Processors</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

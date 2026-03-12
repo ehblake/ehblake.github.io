@@ -587,6 +587,7 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
+const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 let allEvents = [];
 let currentEvent = null;
 let isEditing = false;
@@ -597,6 +598,17 @@ async function init() {
   allEvents.sort((a, b) => b.date.localeCompare(a.date));
   updateSubtitle();
   render(allEvents);
+
+  // Hide editing UI on live site
+  if (!isLocal) {
+    document.getElementById('add-btn').style.display = 'none';
+    document.getElementById('add-form-wrap').style.display = 'none';
+    document.getElementById('edit-btn').style.display = 'none';
+    document.getElementById('detail-thumb-row').style.display = 'none';
+    document.getElementById('photo-input-large').style.display = 'none';
+    document.getElementById('photo-input-thumb').style.display = 'none';
+    document.getElementById('detail-actions').style.display = 'none';
+  }
 }
 
 function updateSubtitle() {
@@ -922,6 +934,7 @@ document.getElementById('edit-save-btn').addEventListener('click', async () => {
 
 // Photo upload — large
 photoWrap.addEventListener('click', () => {
+  if (!isLocal) return;
   photoInputLarge.click();
 });
 

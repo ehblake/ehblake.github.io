@@ -317,9 +317,11 @@ body {
   background: none;
   border: none;
   color: #999;
-  font-size: 1.2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
   line-height: 1;
   transition: color 0.2s;
 }
@@ -484,7 +486,9 @@ body {
   .event-photo { width: 62px; height: 62px; }
   .detail-panel { width: 100vw; }
   .detail-body { padding: 1rem; }
+  .detail-back { font-size: 1.5rem; padding: 0.5rem; }
 }
+
 </style>
 </head>
 <body>
@@ -521,7 +525,7 @@ body {
 <div class="detail-overlay" id="detail-overlay"></div>
 <div class="detail-panel" id="detail-panel">
   <div class="detail-panel-header">
-    <button class="detail-back" id="detail-back">&larr;</button>
+    <button class="detail-back" id="detail-back">&larr; Back</button>
     <span class="spacer"></span>
     <button class="btn small" id="edit-btn">Edit</button>
   </div>

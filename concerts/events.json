@@ -480,7 +480,7 @@
     "year": 2005,
     "artist": "John Cale",
     "lineup": "Chris Connelly",
-    "venue": "Double Door",
+    "venue": "The Double Door",
     "city": "Chicago",
     "country": "United States",
     "attendance": 1,
@@ -539,7 +539,7 @@
     "year": 2006,
     "artist": "The National",
     "lineup": "",
-    "venue": "Double Door",
+    "venue": "The Double Door",
     "city": "Chicago",
     "country": "United States",
     "attendance": 1,
@@ -625,7 +625,8 @@
     "city": "Chicago",
     "country": "United States",
     "attendance": 1,
-    "url": "https://www.last.fm/event/1468809+Smog+at+Old+Town+School+of+Folk+Music+on+10+September+2006"
+    "url": "https://www.last.fm/event/1468809+Smog+at+Old+Town+School+of+Folk+Music+on+10+September+2006",
+    "photo": "loudon-wainwright-iii-2011-05-14"
   },
   {
     "date": "2006-10-03",
@@ -726,7 +727,7 @@
     "year": 2006,
     "artist": "The Lemonheads",
     "lineup": "Hymns, Vietnam",
-    "venue": "Double Door",
+    "venue": "The Double Door",
     "city": "Chicago",
     "country": "United States",
     "attendance": 4,
@@ -920,7 +921,8 @@
     "city": "Chicago",
     "country": "United States",
     "attendance": 2,
-    "url": "https://www.last.fm/event/246613+The+Flatlanders+at+Old+Town+School+of+Folk+Music+on+26+May+2007"
+    "url": "https://www.last.fm/event/246613+The+Flatlanders+at+Old+Town+School+of+Folk+Music+on+26+May+2007",
+    "photo": "loudon-wainwright-iii-2011-05-14"
   },
   {
     "date": "2007-06-01",
@@ -1188,7 +1190,7 @@
     "year": 2008,
     "artist": "Frightened Rabbit",
     "lineup": "French Kicks",
-    "venue": "Double Door",
+    "venue": "The Double Door",
     "city": "Chicago",
     "country": "United States",
     "attendance": 7,
@@ -1332,7 +1334,8 @@
     "city": "Chicago",
     "country": "United States",
     "attendance": 1,
-    "url": "https://www.last.fm/event/1467430+Jimmie+Dale+Gilmore+at+Old+Town+School+of+Folk+Music+on+11+October+2008"
+    "url": "https://www.last.fm/event/1467430+Jimmie+Dale+Gilmore+at+Old+Town+School+of+Folk+Music+on+11+October+2008",
+    "photo": "loudon-wainwright-iii-2011-05-14"
   },
   {
     "date": "2008-10-23",
@@ -1367,7 +1370,8 @@
     "city": "Chicago",
     "country": "United States",
     "attendance": 7,
-    "url": "https://www.last.fm/event/691449+Alex+Chilton+at+Old+Town+School+of+Folk+Music+on+06+December+2008"
+    "url": "https://www.last.fm/event/691449+Alex+Chilton+at+Old+Town+School+of+Folk+Music+on+06+December+2008",
+    "photo": "loudon-wainwright-iii-2011-05-14"
   },
   {
     "date": "2008-12-09",
@@ -1907,7 +1911,7 @@
     "year": 2010,
     "artist": "Kings Go Forth",
     "lineup": "Soul Summit DJs",
-    "venue": "Double Door",
+    "venue": "The Double Door",
     "city": "Chicago",
     "country": "United States",
     "attendance": 4,
@@ -1919,7 +1923,7 @@
     "year": 2010,
     "artist": "The Walkmen",
     "lineup": "Warpaint",
-    "venue": "Double Door",
+    "venue": "The Double Door",
     "city": "Chicago",
     "country": "United States",
     "attendance": 9,
@@ -2661,7 +2665,7 @@
   {
     "date": "2016-04-06",
     "year": 2016,
-    "artist": "Edward Sharpe and the Magnetic Zeroes at St. Ann & the Holy Trinity church in Brooklyn Heights, NYC",
+    "artist": "Edward Sharpe and the Magnetic Zeroes",
     "lineup": "Edward Sharpe & The Magnetic Zeros",
     "venue": "St. Ann and the Holy Trinity Church",
     "city": "Brooklyn",
@@ -2692,7 +2696,7 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/4253188+Bill+Callahan+at+Baby%27s+All+Right+on+26+June+2016",
-    "photo": "bill-callahan"
+    "photo": "bill-callahan-2016-06-26"
   },
   {
     "date": "2016-07-21",
@@ -2764,7 +2768,7 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595130+Bill+Callahan",
-    "photo": "bill-callahan"
+    "photo": "bill-callahan-2017-05-31"
   },
   {
     "date": "2018-03-01",
@@ -2843,7 +2847,7 @@
     "year": 2020,
     "artist": "Bill Callahan",
     "lineup": "Bill Callahan, Xylouris White",
-    "venue": "The Arts Centre",
+    "venue": "The Arts Centre Melbourne",
     "city": "Melbourne",
     "country": "Australia",
     "attendance": 1,

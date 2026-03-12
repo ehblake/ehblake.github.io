@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "concerts-server",
+      "runtimeExecutable": "/Users/blake/Documents/Personal/Projects/concerts/.venv/bin/python",
+      "runtimeArgs": ["server.py"],
+      "port": 8002
+    }
+  ]
+}

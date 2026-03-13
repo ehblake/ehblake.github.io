@@ -96,7 +96,8 @@
     "city": "Sioux Falls",
     "country": "United States",
     "attendance": 1,
-    "url": "https://www.last.fm/event/1472062+Bob+Dylan+at+Sioux+Falls+Arena+on+01+April+2000"
+    "url": "https://www.last.fm/event/1472062+Bob+Dylan+at+Sioux+Falls+Arena+on+01+April+2000",
+    "photo": "bob-dylan-2000-04-01"
   },
   {
     "date": "2000-08-25",
@@ -277,7 +278,7 @@
     "year": 2002,
     "artist": "Bob Dylan and His Band",
     "lineup": "Bob Dylan",
-    "venue": "RiverCentre",
+    "venue": "Excel Energy Center",
     "city": "St. Paul, MN",
     "country": "United States",
     "attendance": 3,
@@ -673,7 +674,8 @@
     "city": "Chicago",
     "country": "United States",
     "attendance": 1,
-    "url": "https://www.last.fm/event/1468887+Magnolia+Electric+Co.+at+The+Abbey+Pub+on+20+October+2006"
+    "url": "https://www.last.fm/event/1468887+Magnolia+Electric+Co.+at+The+Abbey+Pub+on+20+October+2006",
+    "photo": "magnolia-electric-co-2006-10-20"
   },
   {
     "date": "2006-10-26",
@@ -696,7 +698,8 @@
     "city": "Hoffman Estates",
     "country": "United States",
     "attendance": 7,
-    "url": "https://www.last.fm/event/152404+Bob+Dylan+at+Sears+Centre+Arena+on+27+October+2006"
+    "url": "https://www.last.fm/event/152404+Bob+Dylan+at+Sears+Centre+Arena+on+27+October+2006",
+    "photo": "bob-dylan-2006-10-27"
   },
   {
     "date": "2006-11-11",

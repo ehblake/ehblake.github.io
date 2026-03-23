@@ -8,7 +8,8 @@
     "city": "Champaign, IL",
     "country": "United States",
     "attendance": 1,
-    "url": "https://www.last.fm/event/1467320+Phish"
+    "url": "https://www.last.fm/event/1467320+Phish",
+    "photo": "phish-1995-10-22"
   },
   {
     "date": "1995-10-24",
@@ -19,18 +20,20 @@
     "city": "Madison, WI",
     "country": "United States",
     "attendance": 1,
-    "url": "https://www.last.fm/event/1467322+Phish"
+    "url": "https://www.last.fm/event/1467322+Phish",
+    "photo": "phish-1995-10-24"
   },
   {
     "date": "1997-08-08",
     "year": 1997,
     "artist": "Phish",
-    "lineup": "",
+    "lineup": "Sugar Blue joins Phish",
     "venue": "Hollywood Casino Amphitheatre",
     "city": "Tinley Park",
     "country": "United States",
     "attendance": 2,
-    "url": "https://www.last.fm/event/1472047+Phish+at+Hollywood+Casino+Amphitheatre+on+08+August+1997"
+    "url": "https://www.last.fm/event/1472047+Phish+at+Hollywood+Casino+Amphitheatre+on+08+August+1997",
+    "photo": "phish-1997-08-08"
   },
   {
     "date": "1997-08-09",
@@ -41,7 +44,8 @@
     "city": "East Troy, WI",
     "country": "United States",
     "attendance": 3,
-    "url": "https://www.last.fm/event/235355+Phish+at+Alpine+Valley+Music+Theatre+on+09+August+1997"
+    "url": "https://www.last.fm/event/235355+Phish+at+Alpine+Valley+Music+Theatre+on+09+August+1997",
+    "photo": "phish-1997-08-09"
   },
   {
     "date": "1997-08-16",
@@ -52,7 +56,8 @@
     "city": "Tinley Park",
     "country": "United States",
     "attendance": 1,
-    "url": "https://www.last.fm/event/1472044+The+Allman+Brothers+Band+at+Hollywood+Casino+Amphitheatre+on+16+August+1997"
+    "url": "https://www.last.fm/event/1472044+The+Allman+Brothers+Band+at+Hollywood+Casino+Amphitheatre+on+16+August+1997",
+    "photo": "the-allman-brothers-band-1997-08-16"
   },
   {
     "date": "1997-11-16",
@@ -63,7 +68,8 @@
     "city": "Denver, CO",
     "country": "United States",
     "attendance": 3,
-    "url": "https://www.last.fm/event/1468879+Phish+at+McNichols+Sports+Arena+on+16+November+1997"
+    "url": "https://www.last.fm/event/1468879+Phish+at+McNichols+Sports+Arena+on+16+November+1997",
+    "photo": "phish-1997-11-16"
   },
   {
     "date": "1997-11-17",
@@ -74,7 +80,8 @@
     "city": "Denver, Colorado",
     "country": "United States",
     "attendance": 2,
-    "url": "https://www.last.fm/event/1468881+Phish+at+McNichols+Arena+on+17+November+1997"
+    "url": "https://www.last.fm/event/1468881+Phish+at+McNichols+Arena+on+17+November+1997",
+    "photo": "phish-1997-11-17"
   },
   {
     "date": "1999-04-08",
@@ -85,7 +92,8 @@
     "city": "Missoula",
     "country": "United States",
     "attendance": 2,
-    "url": "https://www.last.fm/event/1472041+B%C3%A9la+Fleck+and+the+Flecktones+at+University+Theatre+on+08+April+1999"
+    "url": "https://www.last.fm/event/1472041+B%C3%A9la+Fleck+and+the+Flecktones+at+University+Theatre+on+08+April+1999",
+    "photo": "b\u00e9la-fleck-and-the-flecktones-1999-04-08"
   },
   {
     "date": "2000-04-01",
@@ -120,7 +128,8 @@
     "city": "Minneapolis",
     "country": "United States",
     "attendance": 3,
-    "url": "https://www.last.fm/event/1468882+Phish+at+Target+Center+on+24+September+2000"
+    "url": "https://www.last.fm/event/1468882+Phish+at+Target+Center+on+24+September+2000",
+    "photo": "phish-2000-09-24"
   },
   {
     "date": "2000-11-01",

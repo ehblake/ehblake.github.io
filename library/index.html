@@ -150,13 +150,8 @@
     margin-left: auto;
   }
 
-  .sim-group label {
-    font-size: 13px;
-    color: #888;
-  }
-
   .sim-group input {
-    width: 80px;
+    width: 140px;
     height: 32px;
     padding: 0 8px;
     border: 1px solid #ccc;
@@ -216,9 +211,8 @@
     <h1>Library Builder</h1>
     <span class="stats" id="stats"></span>
     <div class="sim-group">
-      <label>Simulate</label>
-      <input type="number" id="simCount" placeholder="1,243" min="1" max="30000" />
-      <button class="sim-btn" onclick="simulateBooks()">Fill shelves</button>
+      <input type="number" id="simCount" placeholder="Number of books" min="1" max="30000" />
+      <button class="sim-btn" onclick="simulateBooks()">Generate</button>
     </div>
   </div>
   <div class="filter-row" id="filterRow"></div>

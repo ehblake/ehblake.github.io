@@ -252,11 +252,6 @@ document.getElementById('loginUser').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') document.getElementById('loginPass').focus();
 });
 
-// Resume session
-if (sessionStorage.getItem('lb_auth') === '1') {
-  showApp();
-}
-
 // ── Config ──────────────────────────────────────────────────────────────
 const DATA_FILE = 'books.json';
 
@@ -615,6 +610,11 @@ function renderBooks(apiBooks) {
 function setStatus(msg) {
   document.getElementById('libraryContainer').innerHTML = `<div class="status-msg">${msg}</div>`;
   document.getElementById('stats').textContent = '';
+}
+
+// ── Init (resume session if already authenticated) ──────────────────────
+if (sessionStorage.getItem('lb_auth') === '1') {
+  showApp();
 }
 </script>
 

@@ -85,7 +85,7 @@
 
   .ground {
     background: #DDD;
-    height: 200px;
+    height: 120px;
     margin-top: 40px;
     margin-left: -32px;
     padding-left: 32px;
@@ -93,11 +93,36 @@
     width: calc(100% + 64px);
   }
 
+  .level-toggle {
+    display: flex;
+    margin-left: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .level-btn {
+    height: 32px;
+    padding: 0 14px;
+    background: #fff;
+    color: #555;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    border-right: 1px solid #ccc;
+  }
+
+  .level-btn:last-child { border-right: none; }
+  .level-btn:hover { opacity: 0.85; }
+  .level-btn.active-ground { background: #4E8800; color: #fff; border-color: #4E8800; }
+  .level-btn.active-mezzanine { background: #D63762; color: #fff; border-color: #D63762; }
+
   .sim-group {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-left: auto;
   }
 
   .sim-group input {
@@ -147,6 +172,10 @@
   <div class="header-row">
     <h1>Library Builder</h1>
     <span class="stats" id="stats"></span>
+    <div class="level-toggle">
+      <button class="level-btn active-ground" id="btnGround" onclick="setLevel('ground')">Ground</button>
+      <button class="level-btn" id="btnMezzanine" onclick="setLevel('mezzanine')">Mezzanine</button>
+    </div>
     <div class="sim-group">
       <input type="number" id="simCount" placeholder="Number of books" min="1" max="30000" />
       <button class="sim-btn" onclick="simulateBooks()">Generate</button>
@@ -164,25 +193,51 @@
 const DATA_FILE = 'books.json';
 
 // ── Bay & shelf geometry ────────────────────────────────────────────────
-const BAY = {
+const BAY_SHARED = {
   outerWidth: 230,
   innerWidth: 218,  // outerWidth - 2 * uprightWidth
-  height: 772,
   uprightWidth: 6,
   shelfThickness: 9,
   topPadding: 9,
   bottomPadding: 9,
-  frameStroke: 1,
-  shelvesUsable: 5,
   handGapRatio: 0.18,
 };
 
-const SHELF_BOARDS = [134, 260, 386, 512, 638];
-const BAY_FLOOR_Y = 764;
-
 // Real-world scaling: 2600mm bay height = 772 SVG units.
-// 6 equal zones, each ~433mm real / 126 SVG units (~403mm / 117 SVG usable clearance).
 const MM_TO_SVG = 772 / 2600;
+
+function buildLevelConfig(heightMm, totalShelves, shelvesUsable, showFileBoxes, colors) {
+  const height = Math.round(heightMm * MM_TO_SVG);
+  const floorY = height - BAY_SHARED.bottomPadding;
+  const internalSpan = floorY - BAY_SHARED.topPadding;
+  const zoneSize = internalSpan / totalShelves;
+  const shelfBoards = [];
+  for (let i = 1; i <= totalShelves - 1; i++) {
+    shelfBoards.push(Math.round(BAY_SHARED.topPadding + i * zoneSize));
+  }
+  return {
+    ...BAY_SHARED,
+    height,
+    floorY,
+    shelfBoards,
+    shelvesUsable,
+    showFileBoxes,
+    colors,
+  };
+}
+
+const LEVELS = {
+  ground: buildLevelConfig(2600, 6, 5, true, {
+    bayBack: '#4E8800',
+    shelfBoard: '#457700',
+  }),
+  mezzanine: buildLevelConfig(2120, 6, 6, false, {
+    bayBack: '#D63762',
+    shelfBoard: '#BE2C54',
+  }),
+};
+
+let activeLevel = 'ground';
 
 // ── Default dimension distribution (normalized to 100%) ─────────────────
 // [height_mm, thickness_mm, cumulative_weight]
@@ -326,6 +381,7 @@ function quickFilter(key, chipEl) {
   document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   if (chipEl) chipEl.classList.add('active');
 
+  lastFilterKey = key;
   filteredBooks = QUICK_FILTERS[key]();
   renderBooks(filteredBooks);
 }
@@ -335,6 +391,7 @@ function simulateBooks() {
   if (!n || n < 1) return;
 
   // Clear chip selection
+  lastFilterKey = null;
   document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
 
   // Generate n fake books using the weighted size distribution
@@ -384,7 +441,8 @@ function bookToShelfUnits(b) {
 // ── Shelf packing ───────────────────────────────────────────────────────
 
 function packBooksOntoShelves(books) {
-  const usableWidth = BAY.innerWidth * (1 - BAY.handGapRatio);
+  const lvl = LEVELS[activeLevel];
+  const usableWidth = lvl.innerWidth * (1 - lvl.handGapRatio);
   const bays = [];
   let currentBay = { shelves: [] };
   let currentShelf = { books: [], usedWidth: 0 };
@@ -395,7 +453,7 @@ function packBooksOntoShelves(books) {
       currentBay.shelves.push(currentShelf);
       shelfIndex++;
 
-      if (shelfIndex >= BAY.shelvesUsable) {
+      if (shelfIndex >= lvl.shelvesUsable) {
         bays.push(currentBay);
         currentBay = { shelves: [] };
         shelfIndex = 0;
@@ -421,97 +479,118 @@ function packBooksOntoShelves(books) {
 // ── SVG rendering ───────────────────────────────────────────────────────
 
 function renderLibrary(bays) {
+  const lvl = LEVELS[activeLevel];
   const baySpacing = 6;  // dark divider gap between bays
-  const totalWidth = bays.length * BAY.outerWidth + (bays.length - 1) * baySpacing;
+  const totalWidth = bays.length * lvl.outerWidth + (bays.length - 1) * baySpacing;
   const padding = 20;
-  const railingHeight = 42;          // railing strip above bays
+  const railingHeight = 42;
   const svgWidth = totalWidth + padding * 2;
   const topOffset = padding + railingHeight;
-  const svgHeight = topOffset + BAY.height + padding;
+  const svgHeight = topOffset + lvl.height + padding;
 
   let svg = `<svg class="library-svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">`;
   svg += `<defs><style>
-    .shelf-board { fill: #963B3F; }
-    .bay-back { fill: #A75356; }
+    .shelf-board { fill: ${lvl.colors.shelfBoard}; }
+    .bay-back { fill: ${lvl.colors.bayBack}; }
     .bay-frame { fill: #815C2B; }
     .upright { fill: #815C2B; }
     .file-box { fill: #373737; }
     .file-box-label { fill: #4F4F4F; }
   </style>
-  <pattern id="railPat" patternUnits="userSpaceOnUse" x="${padding}" y="${padding}" width="${BAY.outerWidth + baySpacing}" height="${railingHeight}">
-    <image href="railing.png" x="0" y="0" width="${BAY.outerWidth + baySpacing}" height="${railingHeight}" preserveAspectRatio="none" />
+  <pattern id="railPat" patternUnits="userSpaceOnUse" x="${padding}" y="${padding}" width="${lvl.outerWidth + baySpacing}" height="${railingHeight}">
+    <image href="railing.png" x="0" y="0" width="${lvl.outerWidth + baySpacing}" height="${railingHeight}" preserveAspectRatio="none" />
   </pattern>
   </defs>`;
 
-  // Railing: repeats per bay pitch, seamless
+  // Railing
   svg += `<rect fill="url(#railPat)" x="${padding}" y="${padding}" width="${totalWidth}" height="${railingHeight}" />`;
 
   bays.forEach((bay, i) => {
-    const bx = padding + i * (BAY.outerWidth + baySpacing);
+    const bx = padding + i * (lvl.outerWidth + baySpacing);
 
-    // Dark divider between bays
     if (i > 0) {
       const dx = bx - baySpacing;
-      svg += `<rect fill="#3C3C3C" x="${dx}" y="${topOffset}" width="${baySpacing}" height="${BAY.height}" />`;
+      svg += `<rect fill="#3C3C3C" x="${dx}" y="${topOffset}" width="${baySpacing}" height="${lvl.height}" />`;
     }
 
-    svg += renderBay(bay, bx, topOffset);
+    svg += renderBay(bay, bx, topOffset, lvl);
   });
 
   svg += `</svg>`;
   return svg;
 }
 
-function renderBay(bay, bx, by) {
+function renderBay(bay, bx, by, lvl) {
   let g = `<g>`;
 
   // Bay background + frame
-  g += `<rect class="bay-back" x="${bx + BAY.uprightWidth}" y="${by}" width="${BAY.innerWidth}" height="${BAY.height}" />`;
-  g += `<rect class="bay-frame" x="${bx}" y="${by}" width="${BAY.outerWidth}" height="${BAY.height}" />`;
-  g += `<rect class="bay-back" x="${bx + BAY.uprightWidth}" y="${by + BAY.topPadding}" width="${BAY.innerWidth}" height="${BAY.height - BAY.topPadding - BAY.bottomPadding}" />`;
+  g += `<rect class="bay-back" x="${bx + lvl.uprightWidth}" y="${by}" width="${lvl.innerWidth}" height="${lvl.height}" />`;
+  g += `<rect class="bay-frame" x="${bx}" y="${by}" width="${lvl.outerWidth}" height="${lvl.height}" />`;
+  g += `<rect class="bay-back" x="${bx + lvl.uprightWidth}" y="${by + lvl.topPadding}" width="${lvl.innerWidth}" height="${lvl.height - lvl.topPadding - lvl.bottomPadding}" />`;
 
   // Shelf boards
-  for (const sy of SHELF_BOARDS) {
-    g += `<rect class="shelf-board" x="${bx + BAY.uprightWidth + 1}" y="${by + sy}" width="${BAY.innerWidth - 2}" height="${BAY.shelfThickness}" />`;
+  for (const sy of lvl.shelfBoards) {
+    g += `<rect class="shelf-board" x="${bx + lvl.uprightWidth + 1}" y="${by + sy}" width="${lvl.innerWidth - 2}" height="${lvl.shelfThickness}" />`;
   }
 
-  // File boxes
-  const topShelfTop = by + BAY.topPadding;
-  const topShelfBottom = by + SHELF_BOARDS[0];
-  const boxZoneH = topShelfBottom - topShelfTop;
-  const boxGap = 3, boxMargin = 3;
-  const numBoxes = 6;
-  const boxW = Math.floor((BAY.innerWidth - boxMargin * 2 - boxGap * (numBoxes - 1)) / numBoxes);
-  for (let i = 0; i < numBoxes; i++) {
-    const fx = bx + BAY.uprightWidth + boxMargin + i * (boxW + boxGap);
-    const fy = topShelfTop + 4;
-    const fh = boxZoneH - 8;
-    g += `<rect class="file-box" x="${fx}" y="${fy}" width="${boxW}" height="${fh}" rx="1" />`;
-    g += `<rect class="file-box-label" x="${fx + 5}" y="${fy + fh - 18}" width="${boxW - 10}" height="14" rx="0.5" />`;
+  // File boxes (only on levels that have them)
+  if (lvl.showFileBoxes && lvl.shelfBoards.length > 0) {
+    const topShelfTop = by + lvl.topPadding;
+    const topShelfBottom = by + lvl.shelfBoards[0];
+    const boxZoneH = topShelfBottom - topShelfTop;
+    const boxGap = 3, boxMargin = 3;
+    const numBoxes = 6;
+    const boxW = Math.floor((lvl.innerWidth - boxMargin * 2 - boxGap * (numBoxes - 1)) / numBoxes);
+    for (let i = 0; i < numBoxes; i++) {
+      const fx = bx + lvl.uprightWidth + boxMargin + i * (boxW + boxGap);
+      const fy = topShelfTop + 4;
+      const fh = boxZoneH - 8;
+      g += `<rect class="file-box" x="${fx}" y="${fy}" width="${boxW}" height="${fh}" rx="1" />`;
+      g += `<rect class="file-box-label" x="${fx + 5}" y="${fy + fh - 18}" width="${boxW - 10}" height="14" rx="0.5" />`;
+    }
   }
 
   // Books
+  // For levels with file boxes, usable zones start after the first shelf board
+  // For levels without, all zones are usable starting from the top
+  const firstUsableBoard = lvl.showFileBoxes ? 0 : -1;
+
   for (let si = 0; si < bay.shelves.length; si++) {
     const shelf = bay.shelves[si];
-    const zoneIndex = BAY.shelvesUsable - 1 - si;
+    const zoneIndex = lvl.shelvesUsable - 1 - si;
 
-    const ceilingY = by + SHELF_BOARDS[zoneIndex] + BAY.shelfThickness;
-    const floorY = (zoneIndex + 1 < SHELF_BOARDS.length)
-      ? by + SHELF_BOARDS[zoneIndex + 1]
-      : by + BAY_FLOOR_Y;
+    let ceilingY, floorY;
+
+    if (lvl.showFileBoxes) {
+      // Usable zones are below the file box zone (after shelfBoards[0])
+      ceilingY = by + lvl.shelfBoards[zoneIndex] + lvl.shelfThickness;
+      floorY = (zoneIndex + 1 < lvl.shelfBoards.length)
+        ? by + lvl.shelfBoards[zoneIndex + 1]
+        : by + lvl.floorY;
+    } else {
+      // All zones usable — zone 0 starts at topPadding
+      if (zoneIndex === 0) {
+        ceilingY = by + lvl.topPadding;
+      } else {
+        ceilingY = by + lvl.shelfBoards[zoneIndex - 1] + lvl.shelfThickness;
+      }
+      floorY = (zoneIndex < lvl.shelfBoards.length)
+        ? by + lvl.shelfBoards[zoneIndex]
+        : by + lvl.floorY;
+    }
 
     const zoneHeight = floorY - ceilingY;
-    let cx = bx + BAY.uprightWidth + 3;
+    let cx = bx + lvl.uprightWidth + 3;
 
     for (const book of shelf.books) {
-      // Use the book's real height, clamped to zone height
       const bookHeight = Math.min(book.height, zoneHeight - 2);
       const bookY = floorY - bookHeight;
 
       if (book.spineImage) {
         g += `<image href="${book.spineImage}" x="${cx}" y="${bookY}" width="${book.width}" height="${bookHeight}" preserveAspectRatio="none" />`;
       } else {
-        g += `<rect x="${cx}" y="${bookY}" width="${book.width}" height="${bookHeight}" fill="#fff" rx="0.5" />`;
+        const opacity = 0.65 + Math.random() * 0.25;
+        g += `<rect x="${cx}" y="${bookY}" width="${book.width}" height="${bookHeight}" fill="#fff" fill-opacity="${opacity.toFixed(2)}" rx="0.5" />`;
       }
 
       cx += book.width;
@@ -519,8 +598,8 @@ function renderBay(bay, bx, by) {
   }
 
   // Uprights
-  g += `<rect class="upright" x="${bx}" y="${by}" width="${BAY.uprightWidth}" height="${BAY.height}" />`;
-  g += `<rect class="upright" x="${bx + BAY.outerWidth - BAY.uprightWidth}" y="${by}" width="${BAY.uprightWidth}" height="${BAY.height}" />`;
+  g += `<rect class="upright" x="${bx}" y="${by}" width="${lvl.uprightWidth}" height="${lvl.height}" />`;
+  g += `<rect class="upright" x="${bx + lvl.outerWidth - lvl.uprightWidth}" y="${by}" width="${lvl.uprightWidth}" height="${lvl.height}" />`;
 
   g += `</g>`;
   return g;
@@ -549,6 +628,25 @@ function setStatus(msg) {
   document.getElementById('stats').textContent = '';
 }
 
+// ── Level toggle ────────────────────────────────────────────────────────
+let lastFilterKey = null;
+
+function setLevel(level) {
+  activeLevel = level;
+  const btnG = document.getElementById('btnGround');
+  const btnM = document.getElementById('btnMezzanine');
+  btnG.className = 'level-btn' + (level === 'ground' ? ' active-ground' : '');
+  btnM.className = 'level-btn' + (level === 'mezzanine' ? ' active-mezzanine' : '');
+
+  // Re-render current view
+  const simVal = document.getElementById('simCount').value;
+  if (simVal && parseInt(simVal, 10) > 0 && !lastFilterKey) {
+    simulateBooks();
+  } else if (lastFilterKey) {
+    filteredBooks = QUICK_FILTERS[lastFilterKey]();
+    renderBooks(filteredBooks);
+  }
+}
 
 // ── Init ────────────────────────────────────────────────────────────────
 loadAllBooks();

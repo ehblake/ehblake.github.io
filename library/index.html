@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library Builder</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #f5f5f0;
+    color: #333;
+  }
+
+  /* ── Login gate ──────────────────────────────────────────────────────── */
+  .login-gate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .login-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 40px;
+    width: 320px;
+    text-align: center;
+  }
+
+  .login-box h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+
+  .login-box input {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    margin-bottom: 12px;
+  }
+
+  .login-box input:focus {
+    outline: none;
+    border-color: #888;
+  }
+
+  .login-box button {
+    width: 100%;
+    height: 38px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  .login-box button:hover { background: #555; }
+
+  .login-error {
+    color: #c00;
+    font-size: 13px;
+    margin-top: 12px;
+    display: none;
+  }
+
+  /* ── App ─────────────────────────────────────────────────────────────── */
+  .app { display: none; }
+
+  header {
+    padding: 16px 32px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+
+  .stats {
+    font-size: 13px;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .filter-chip {
+    padding: 4px 12px;
+    background: #eee;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .filter-chip:hover { background: #ddd; }
+  .filter-chip.active { background: #333; color: #fff; border-color: #333; }
+
+  .filter-label {
+    font-size: 12px;
+    color: #888;
+    margin-right: 2px;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+
+  .filter-label:first-child {
+    margin-left: 0;
+  }
+
+  .library-container {
+    padding: 32px;
+    overflow-x: auto;
+  }
+
+  .library-svg { display: block; }
+
+  .sim-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .sim-group label {
+    font-size: 13px;
+    color: #888;
+  }
+
+  .sim-group input {
+    width: 80px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    text-align: right;
+  }
+
+  .sim-group input:focus {
+    outline: none;
+    border-color: #888;
+  }
+
+  .sim-btn {
+    height: 32px;
+    padding: 0 14px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .sim-btn:hover { background: #555; }
+
+  .status-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: #aaa;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Login gate -->
+<div class="login-gate" id="loginGate">
+  <div class="login-box">
+    <h2>Library Builder</h2>
+    <input type="text" id="loginUser" placeholder="Username" autocomplete="off" />
+    <input type="password" id="loginPass" placeholder="Password" />
+    <button onclick="tryLogin()">Sign in</button>
+    <div class="login-error" id="loginError">Invalid username or password.</div>
+  </div>
+</div>
+
+<!-- App (hidden until authenticated) -->
+<div class="app" id="app">
+<header>
+  <div class="header-row">
+    <h1>Library Builder</h1>
+    <span class="stats" id="stats"></span>
+    <div class="sim-group">
+      <label>Simulate</label>
+      <input type="number" id="simCount" placeholder="1,243" min="1" max="30000" />
+      <button class="sim-btn" onclick="simulateBooks()">Fill shelves</button>
+    </div>
+  </div>
+  <div class="filter-row" id="filterRow"></div>
+</header>
+
+<div class="library-container" id="libraryContainer">
+  <div class="status-msg" id="statusMsg">Loading books...</div>
+</div>
+</div>
+
+<script>
+// ── Auth ──────────────────────────────────────────────────────────────
+const _k = [77,97,114,121];
+const _v = [80,104,114,111,110,116,105,115,116,101,114,105,111,110];
+
+function tryLogin() {
+  const u = document.getElementById('loginUser').value;
+  const p = document.getElementById('loginPass').value;
+  if (u === String.fromCharCode(..._k) && p === String.fromCharCode(..._v)) {
+    sessionStorage.setItem('lb_auth', '1');
+    showApp();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+
+function showApp() {
+  document.getElementById('loginGate').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadAllBooks();
+}
+
+document.getElementById('loginPass').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') tryLogin();
+});
+document.getElementById('loginUser').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') document.getElementById('loginPass').focus();
+});
+
+// Resume session
+if (sessionStorage.getItem('lb_auth') === '1') {
+  showApp();
+}
+
+// ── Config ──────────────────────────────────────────────────────────────
+const DATA_FILE = 'books.json';
+
+// ── Bay & shelf geometry ────────────────────────────────────────────────
+const BAY = {
+  outerWidth: 230,
+  innerWidth: 208,
+  height: 772,
+  uprightWidth: 5,
+  shelfThickness: 9,
+  topPadding: 8,
+  bottomPadding: 8,
+  frameStroke: 1,
+  shelvesUsable: 5,
+  handGapRatio: 0.18,
+};
+
+const SHELF_BOARDS = [134, 260, 386, 512, 638];
+const BAY_FLOOR_Y = 764;
+
+// Real-world scaling: 2600mm bay height = 772 SVG units.
+// 6 equal zones, each ~433mm real / 126 SVG units (~403mm / 117 SVG usable clearance).
+const MM_TO_SVG = 772 / 2600;
+
+// ── Default dimension distribution (normalized to 100%) ─────────────────
+// [height_mm, thickness_mm, cumulative_weight]
+const DEFAULT_SIZES = [
+  [180, 12, 0.024],
+  [180, 18, 0.056],
+  [180, 24, 0.080],
+  [200, 30, 0.144],
+  [200, 20, 0.160],
+  [200, 32, 0.176],
+  [240, 30, 0.576],
+  [240, 24, 0.696],
+  [240, 44, 0.720],
+  [290, 30, 0.920],
+  [290, 40, 1.000],
+];
+
+function seededRandom(seed) {
+  let h = seed ^ 0xDEADBEEF;
+  return function() {
+    h = Math.imul(h ^ (h >>> 16), 2246822507);
+    h = Math.imul(h ^ (h >>> 13), 3266489909);
+    return ((h ^= h >>> 16) >>> 0) / 4294967296;
+  };
+}
+
+function assignDefaultDims(book) {
+  const seed = Array.from(book.accession_number || book.title || '').reduce((s, c) => s * 31 + c.charCodeAt(0), 0);
+  const r = seededRandom(seed)();
+  for (const [h, t, cumW] of DEFAULT_SIZES) {
+    if (r < cumW) return { height_mm: h, thickness_mm: t };
+  }
+  return { height_mm: 240, thickness_mm: 30 };
+}
+
+// ── Data store ──────────────────────────────────────────────────────────
+let allBooks = [];
+let filteredBooks = [];
+
+// ── Data loading ────────────────────────────────────────────────────────
+
+async function loadAllBooks() {
+  setStatus('Loading books...');
+
+  try {
+    const res = await fetch(DATA_FILE);
+    if (!res.ok) throw new Error(`Failed to load ${DATA_FILE}: ${res.status}`);
+    const data = await res.json();
+
+    allBooks = data.map(b => {
+      const hasRealDims = b.height_mm && b.thickness_mm &&
+        b.height_mm >= 100 && b.height_mm <= 500 && b.thickness_mm >= 3 && b.thickness_mm <= 80;
+      b._hasRealDims = hasRealDims;
+      if (!hasRealDims) {
+        const defaults = assignDefaultDims(b);
+        b.height_mm = defaults.height_mm;
+        b.thickness_mm = defaults.thickness_mm;
+      }
+      return b;
+    });
+
+    buildFilterChips();
+
+    setStatus(`Loaded ${allBooks.length.toLocaleString()} Roundhouse books. Pick a filter to display.`);
+  } catch (e) {
+    console.error('Failed to load books:', e);
+    setStatus(`Error loading books: ${e.message}`);
+  }
+}
+
+// ── Filtering ───────────────────────────────────────────────────────────
+
+const titleMatch = (word) => (b) => (b.title || '').toLowerCase().includes(word.toLowerCase());
+const pubMatch = (word) => (b) => (b.publisher_name || '').toLowerCase().includes(word.toLowerCase());
+
+const FILTER_GROUPS = [
+  { label: 'Collection', filters: [
+    { key: 'withspine',  label: 'With spine',     fn: () => allBooks.filter(b => b.spine_image) },
+    { key: 'withdims',   label: 'With dimensions', fn: () => allBooks.filter(b => b._hasRealDims) },
+  ]},
+  { label: 'Subject', filters: [
+    { key: 't_art',          label: 'Art',           fn: () => allBooks.filter(titleMatch('art')) },
+    { key: 't_architecture', label: 'Architecture',  fn: () => allBooks.filter(titleMatch('architect')) },
+    { key: 't_history',      label: 'History',       fn: () => allBooks.filter(titleMatch('history')) },
+    { key: 't_design',       label: 'Design',        fn: () => allBooks.filter(titleMatch('design')) },
+    { key: 't_photography',  label: 'Photography',   fn: () => allBooks.filter(titleMatch('photo')) },
+    { key: 't_painting',     label: 'Painting',      fn: () => allBooks.filter(titleMatch('paint')) },
+    { key: 't_sculpture',    label: 'Sculpture',     fn: () => allBooks.filter(titleMatch('sculpt')) },
+    { key: 't_museum',       label: 'Museum',        fn: () => allBooks.filter(titleMatch('museum')) },
+    { key: 't_modern',       label: 'Modern',        fn: () => allBooks.filter(titleMatch('modern')) },
+    { key: 't_ancient',      label: 'Ancient',       fn: () => allBooks.filter(titleMatch('ancient')) },
+    { key: 't_war',          label: 'War',           fn: () => allBooks.filter(titleMatch('war')) },
+    { key: 't_world',        label: 'World',         fn: () => allBooks.filter(titleMatch('world')) },
+  ]},
+  { label: 'Publisher', filters: [
+    { key: 'princeton',  label: 'Princeton UP',    fn: () => allBooks.filter(pubMatch('Princeton')) },
+    { key: 'thames',     label: 'Thames & Hudson', fn: () => allBooks.filter(pubMatch('Thames')) },
+    { key: 'phaidon',    label: 'Phaidon',         fn: () => allBooks.filter(pubMatch('Phaidon')) },
+    { key: 'oxford',     label: 'Oxford UP',       fn: () => allBooks.filter(pubMatch('Oxford')) },
+    { key: 'mit',        label: 'MIT Press',       fn: () => allBooks.filter(pubMatch('MIT')) },
+    { key: 'cambridge',  label: 'Cambridge UP',    fn: () => allBooks.filter(pubMatch('Cambridge')) },
+    { key: 'yale',       label: 'Yale UP',         fn: () => allBooks.filter(pubMatch('Yale')) },
+    { key: 'penguin',    label: 'Penguin',          fn: () => allBooks.filter(pubMatch('penguin')) },
+    { key: 'hatje',      label: 'Hatje Cantz',     fn: () => allBooks.filter(pubMatch('Hatje')) },
+  ]},
+  { label: 'Size', filters: [
+    { key: 'large', label: 'Large (300mm+)',  fn: () => allBooks.filter(b => b.height_mm >= 300) },
+    { key: 'small', label: 'Pocket (≤200mm)', fn: () => allBooks.filter(b => b.height_mm <= 200) },
+  ]},
+];
+
+const QUICK_FILTERS = {};
+for (const g of FILTER_GROUPS) for (const d of g.filters) QUICK_FILTERS[d.key] = d.fn;
+
+function buildFilterChips() {
+  const row = document.getElementById('filterRow');
+  row.innerHTML = '';
+  for (const group of FILTER_GROUPS) {
+    const label = document.createElement('span');
+    label.className = 'filter-label';
+    label.textContent = group.label + ':';
+    row.appendChild(label);
+    for (const d of group.filters) {
+      const count = d.fn().length;
+      if (count === 0) continue;
+      const chip = document.createElement('span');
+      chip.className = 'filter-chip';
+      chip.textContent = `${d.label} (${count.toLocaleString()})`;
+      chip.onclick = function() { quickFilter(d.key, this); };
+      row.appendChild(chip);
+    }
+  }
+}
+
+function quickFilter(key, chipEl) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  if (chipEl) chipEl.classList.add('active');
+
+  filteredBooks = QUICK_FILTERS[key]();
+  renderBooks(filteredBooks);
+}
+
+function simulateBooks() {
+  const n = parseInt(document.getElementById('simCount').value, 10);
+  if (!n || n < 1) return;
+
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+
+  const fakeBooks = [];
+  const rng = seededRandom(42);
+  for (let i = 0; i < n; i++) {
+    const r = rng();
+    let h = 240, t = 30;
+    for (const [sh, st, cumW] of DEFAULT_SIZES) {
+      if (r < cumW) { h = sh; t = st; break; }
+    }
+    fakeBooks.push({
+      width: t * MM_TO_SVG,
+      height: h * MM_TO_SVG,
+      spineImage: null,
+      title: `Book ${i + 1}`,
+      author: '',
+      accession: '',
+    });
+  }
+
+  const bays = packBooksOntoShelves(fakeBooks);
+  const totalShelves = bays.reduce((s, b) => s + b.shelves.length, 0);
+  document.getElementById('stats').textContent =
+    `${n.toLocaleString()} simulated books \u00b7 ${totalShelves} shelves \u00b7 ${bays.length} bay${bays.length !== 1 ? 's' : ''}`;
+  document.getElementById('libraryContainer').innerHTML = renderLibrary(bays);
+}
+
+document.getElementById('simCount').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') simulateBooks();
+});
+
+// ── Book → SVG units ────────────────────────────────────────────────────
+
+function bookToShelfUnits(b) {
+  return {
+    title: b.title || 'Untitled',
+    author: b.author || '',
+    width: b.thickness_mm * MM_TO_SVG,
+    height: b.height_mm * MM_TO_SVG,
+    heightVariation: 0,
+    spineImage: b.spine_image,
+    accession: b.accession_number,
+  };
+}
+
+// ── Shelf packing ───────────────────────────────────────────────────────
+
+function packBooksOntoShelves(books) {
+  const usableWidth = BAY.innerWidth * (1 - BAY.handGapRatio);
+  const bays = [];
+  let currentBay = { shelves: [] };
+  let currentShelf = { books: [], usedWidth: 0 };
+  let shelfIndex = 0;
+
+  for (const book of books) {
+    if (currentShelf.usedWidth + book.width > usableWidth) {
+      currentBay.shelves.push(currentShelf);
+      shelfIndex++;
+
+      if (shelfIndex >= BAY.shelvesUsable) {
+        bays.push(currentBay);
+        currentBay = { shelves: [] };
+        shelfIndex = 0;
+      }
+
+      currentShelf = { books: [], usedWidth: 0 };
+    }
+
+    currentShelf.books.push(book);
+    currentShelf.usedWidth += book.width;
+  }
+
+  if (currentShelf.books.length > 0) {
+    currentBay.shelves.push(currentShelf);
+  }
+  if (currentBay.shelves.length > 0) {
+    bays.push(currentBay);
+  }
+
+  return bays;
+}
+
+// ── SVG rendering ───────────────────────────────────────────────────────
+
+function renderLibrary(bays) {
+  const baySpacing = 2;
+  const totalWidth = bays.length * (BAY.outerWidth + baySpacing) - baySpacing;
+  const padding = 20;
+  const svgWidth = totalWidth + padding * 2;
+  const svgHeight = BAY.height + padding * 2;
+
+  let svg = `<svg class="library-svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">`;
+  svg += `<defs><style>
+    .shelf-board { fill: #B6B6B6; }
+    .bay-back { fill: #DADADA; }
+    .bay-frame { fill: #D0D0D0; stroke: #A9A9A9; stroke-width: 1; }
+    .upright { fill: #B6B6B6; }
+    .file-box { fill: #373737; }
+    .file-box-label { fill: #4F4F4F; }
+  </style></defs>`;
+
+  bays.forEach((bay, i) => {
+    const bx = padding + i * (BAY.outerWidth + baySpacing);
+    svg += renderBay(bay, bx, padding);
+  });
+
+  svg += `</svg>`;
+  return svg;
+}
+
+function renderBay(bay, bx, by) {
+  let g = `<g>`;
+
+  g += `<rect class="bay-back" x="${bx + BAY.uprightWidth}" y="${by}" width="${BAY.innerWidth}" height="${BAY.height}" />`;
+  g += `<rect class="bay-frame" x="${bx}" y="${by}" width="${BAY.outerWidth}" height="${BAY.height}" />`;
+  g += `<rect class="bay-back" x="${bx + BAY.uprightWidth + BAY.frameStroke}" y="${by + BAY.topPadding}" width="${BAY.innerWidth - BAY.frameStroke * 2}" height="${BAY.height - BAY.topPadding - BAY.bottomPadding}" />`;
+
+  for (const sy of SHELF_BOARDS) {
+    g += `<rect class="shelf-board" x="${bx + BAY.uprightWidth + 1}" y="${by + sy}" width="${BAY.innerWidth - 2}" height="${BAY.shelfThickness}" />`;
+  }
+
+  const topShelfTop = by + BAY.topPadding;
+  const topShelfBottom = by + SHELF_BOARDS[0];
+  const boxZoneH = topShelfBottom - topShelfTop;
+  const boxGap = 3, boxMargin = 3;
+  const numBoxes = 6;
+  const boxW = Math.floor((BAY.innerWidth - boxMargin * 2 - boxGap * (numBoxes - 1)) / numBoxes);
+  for (let i = 0; i < numBoxes; i++) {
+    const fx = bx + BAY.uprightWidth + boxMargin + i * (boxW + boxGap);
+    const fy = topShelfTop + 4;
+    const fh = boxZoneH - 8;
+    g += `<rect class="file-box" x="${fx}" y="${fy}" width="${boxW}" height="${fh}" rx="1" />`;
+    g += `<rect class="file-box-label" x="${fx + 5}" y="${fy + fh - 18}" width="${boxW - 10}" height="14" rx="0.5" />`;
+  }
+
+  for (let si = 0; si < bay.shelves.length; si++) {
+    const shelf = bay.shelves[si];
+    const zoneIndex = BAY.shelvesUsable - 1 - si;
+
+    const ceilingY = by + SHELF_BOARDS[zoneIndex] + BAY.shelfThickness;
+    const floorY = (zoneIndex + 1 < SHELF_BOARDS.length)
+      ? by + SHELF_BOARDS[zoneIndex + 1]
+      : by + BAY_FLOOR_Y;
+
+    const zoneHeight = floorY - ceilingY;
+    let cx = bx + BAY.uprightWidth + 3;
+
+    for (const book of shelf.books) {
+      const bookHeight = Math.min(book.height, zoneHeight - 2);
+      const bookY = floorY - bookHeight;
+
+      if (book.spineImage) {
+        g += `<image href="${book.spineImage}" x="${cx}" y="${bookY}" width="${book.width}" height="${bookHeight}" preserveAspectRatio="none" />`;
+      } else {
+        g += `<rect x="${cx}" y="${bookY}" width="${book.width}" height="${bookHeight}" fill="#888" rx="0.5" />`;
+      }
+
+      cx += book.width;
+    }
+  }
+
+  g += `<rect class="upright" x="${bx}" y="${by}" width="${BAY.uprightWidth}" height="${BAY.height}" />`;
+  g += `<rect class="upright" x="${bx + BAY.outerWidth - BAY.uprightWidth}" y="${by}" width="${BAY.uprightWidth}" height="${BAY.height}" />`;
+
+  g += `</g>`;
+  return g;
+}
+
+// ── Main render ─────────────────────────────────────────────────────────
+
+function renderBooks(apiBooks) {
+  if (apiBooks.length === 0) {
+    setStatus('No books match the current filter.');
+    return;
+  }
+
+  const shelfBooks = apiBooks.map(bookToShelfUnits);
+  const bays = packBooksOntoShelves(shelfBooks);
+
+  const totalShelves = bays.reduce((s, b) => s + b.shelves.length, 0);
+  document.getElementById('stats').textContent =
+    `${apiBooks.length} books \u00b7 ${totalShelves} shelves \u00b7 ${bays.length} bay${bays.length !== 1 ? 's' : ''}`;
+
+  document.getElementById('libraryContainer').innerHTML = renderLibrary(bays);
+}
+
+function setStatus(msg) {
+  document.getElementById('libraryContainer').innerHTML = `<div class="status-msg">${msg}</div>`;
+  document.getElementById('stats').textContent = '';
+}
+</script>
+
+</body>
+</html>

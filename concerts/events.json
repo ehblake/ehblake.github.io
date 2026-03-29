@@ -9,7 +9,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467320+Phish",
-    "photo": "phish-1995-10-22"
+    "photo": "phish-1995-10-22",
+    "genre": "rock"
   },
   {
     "date": "1995-10-24",
@@ -21,7 +22,92 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467322+Phish",
-    "photo": "phish-1995-10-24"
+    "photo": "phish-1995-10-24",
+    "genre": "rock"
+  },
+  {
+    "date": "1996-06-29",
+    "year": 1996,
+    "artist": "Further Festival",
+    "lineup": "Rat Dog, Los Lobos, Hot Tuna",
+    "venue": "Alpine Valley",
+    "city": "East Troy, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1996-07-23",
+    "year": 1996,
+    "artist": "Dave Matthews Band",
+    "lineup": "Summerfest",
+    "venue": "Marcus Amphitheatre",
+    "city": "Milwaukee, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1996-09-18",
+    "year": 1996,
+    "artist": "Dave Matthews Band",
+    "lineup": "",
+    "venue": "Dane County Coliseum",
+    "city": "Madison, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1997-01-30",
+    "year": 1997,
+    "artist": "Leftover Salmon",
+    "lineup": "Leftover Salmon, Moe",
+    "venue": "Barrymore Theatre",
+    "city": "Madison, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1997-03-20",
+    "year": 1997,
+    "artist": "Moe",
+    "lineup": "Moe, Thadeus Brown",
+    "venue": "Barrymore Theatre",
+    "city": "Madison, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1997-06-26",
+    "year": 1997,
+    "artist": "Dave Matthews Band",
+    "lineup": "Summerfest",
+    "venue": "Marcus Amphitheatre",
+    "city": "Milwaukee, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1997-07-18",
+    "year": 1997,
+    "artist": "Further Festival",
+    "lineup": "Bob Weir & Ratdog, Mickey Hart & Planet Drum, Bruce Hornsby, The Black Crowes, and moe",
+    "venue": "Alpine Valley",
+    "city": "East Troy, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "1997-08-08",
@@ -33,7 +119,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/1472047+Phish+at+Hollywood+Casino+Amphitheatre+on+08+August+1997",
-    "photo": "phish-1997-08-08"
+    "photo": "phish-1997-08-08",
+    "genre": "rock"
   },
   {
     "date": "1997-08-09",
@@ -45,7 +132,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/235355+Phish+at+Alpine+Valley+Music+Theatre+on+09+August+1997",
-    "photo": "phish-1997-08-09"
+    "photo": "phish-1997-08-09",
+    "genre": "rock"
   },
   {
     "date": "1997-08-16",
@@ -57,7 +145,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1472044+The+Allman+Brothers+Band+at+Hollywood+Casino+Amphitheatre+on+16+August+1997",
-    "photo": "the-allman-brothers-band-1997-08-16"
+    "photo": "the-allman-brothers-band-1997-08-16",
+    "genre": "rock"
   },
   {
     "date": "1997-11-16",
@@ -69,7 +158,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/1468879+Phish+at+McNichols+Sports+Arena+on+16+November+1997",
-    "photo": "phish-1997-11-16"
+    "photo": "phish-1997-11-16",
+    "genre": "rock"
   },
   {
     "date": "1997-11-17",
@@ -81,7 +171,68 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/1468881+Phish+at+McNichols+Arena+on+17+November+1997",
-    "photo": "phish-1997-11-17"
+    "photo": "phish-1997-11-17",
+    "genre": "rock"
+  },
+  {
+    "date": "1998-08-25",
+    "year": 1998,
+    "artist": "Santana",
+    "lineup": "Santana, Los Lobos",
+    "venue": "Caras Park Pavilion",
+    "city": "Missoula, MT",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1998-09-16",
+    "year": 1998,
+    "artist": "Rat Dog",
+    "lineup": "",
+    "venue": "University Theatre",
+    "city": "Missoula, MT",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1998-09-25",
+    "year": 1998,
+    "artist": "James Cotton",
+    "lineup": "",
+    "venue": "University Theatre",
+    "city": "Missoula, MT",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "blues"
+  },
+  {
+    "date": "1998-10-16",
+    "year": 1998,
+    "artist": "Widespread Panic",
+    "lineup": "",
+    "venue": "Valley Ice Garden",
+    "city": "Bozeman, MT",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "1998-10-17",
+    "year": 1998,
+    "artist": "Widespread Panic",
+    "lineup": "",
+    "venue": "University Theatre",
+    "city": "Missoula, MT",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "1999-04-08",
@@ -93,7 +244,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/1472041+B%C3%A9la+Fleck+and+the+Flecktones+at+University+Theatre+on+08+April+1999",
-    "photo": "b\u00e9la-fleck-and-the-flecktones-1999-04-08"
+    "photo": "b\u00e9la-fleck-and-the-flecktones-1999-04-08",
+    "genre": "jazz"
   },
   {
     "date": "2000-04-01",
@@ -105,7 +257,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1472062+Bob+Dylan+at+Sioux+Falls+Arena+on+01+April+2000",
-    "photo": "bob-dylan-2000-04-01"
+    "photo": "bob-dylan-2000-04-01",
+    "genre": "rock"
   },
   {
     "date": "2000-08-25",
@@ -117,7 +270,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468883+Madison+Blues+Festival",
-    "photo": "madison-blues-festival-2000-08-25"
+    "photo": "madison-blues-festival-2000-08-25",
+    "genre": "blues"
   },
   {
     "date": "2000-09-24",
@@ -129,7 +283,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/1468882+Phish+at+Target+Center+on+24+September+2000",
-    "photo": "phish-2000-09-24"
+    "photo": "phish-2000-09-24",
+    "genre": "rock"
   },
   {
     "date": "2000-11-01",
@@ -141,7 +296,20 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1472043+Buddy+Guy+at+Fine+Line+Music+Cafe+on+01+November+2000",
-    "photo": "buddy-guy-2000-11-01"
+    "photo": "buddy-guy-2000-11-01",
+    "genre": "blues"
+  },
+  {
+    "date": "2001-03-24",
+    "year": 2001,
+    "artist": "Big Wu",
+    "lineup": "",
+    "venue": "First Avenue",
+    "city": "Minneapolis, MN",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2001-05-19",
@@ -153,7 +321,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/1471093+The+Black+Crowes+at+Xcel+Energy+Center+on+19+May+2001",
-    "photo": "the-black-crowes-2001-05-19"
+    "photo": "the-black-crowes-2001-05-19",
+    "genre": "rock"
   },
   {
     "date": "2001-06-14",
@@ -165,7 +334,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1471091+Medeski,+Martin+and+Wood+at+Walker+Art+Center+on+14+June+2001",
-    "photo": "medeski-martin-and-wood-2001-06-14"
+    "photo": "medeski-martin-and-wood-2001-06-14",
+    "genre": "jazz"
   },
   {
     "date": "2001-08-16",
@@ -177,7 +347,20 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1471085+Lloyd%27s+Blues+Music+Festival",
-    "photo": "buddy-guy-bb-king-2001-08-16"
+    "photo": "buddy-guy-bb-king-2001-08-16",
+    "genre": "blues"
+  },
+  {
+    "date": "2001-08-26",
+    "year": 2001,
+    "artist": "Madison Blues Festival",
+    "lineup": "",
+    "venue": "Olin Park",
+    "city": "Madison, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "blues"
   },
   {
     "date": "2001-10-07",
@@ -189,7 +372,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1471087+The+Black+Crowes+at+Orpheum+Theatre+on+07+October+2001",
-    "photo": "the-black-crowes-2001-10-07"
+    "photo": "the-black-crowes-2001-10-07",
+    "genre": "rock"
   },
   {
     "date": "2001-10-18",
@@ -201,7 +385,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1471075+Medeski,+Martin+and+Wood+at+The+O%27Shaughnessy+on+18+October+2001",
-    "photo": "medeski-martin-and-wood-2001-10-18"
+    "photo": "medeski-martin-and-wood-2001-10-18",
+    "genre": "jazz"
   },
   {
     "date": "2001-10-26",
@@ -213,7 +398,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1471066+The+Beta+Band+at+Fine+Line+Music+Cafe+on+26+October+2001",
-    "photo": "2001-10-26"
+    "photo": "2001-10-26",
+    "genre": "rock"
   },
   {
     "date": "2001-10-31",
@@ -225,7 +411,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470368+Bob+Dylan+at+Kohl+Center+on+31+October+2001",
-    "photo": "2001-10-31"
+    "photo": "2001-10-31",
+    "genre": "rock"
   },
   {
     "date": "2001-12-01",
@@ -237,7 +424,21 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470366+Karl+Denson%27s+Tiny+Universe+at+Fine+Line+Music+Cafe+on+01+December+2001",
-    "photo": "karl-densons-tiny-universe-2001-12-01"
+    "photo": "karl-densons-tiny-universe-2001-12-01",
+    "genre": "jazz"
+  },
+  {
+    "date": "2002-04-20",
+    "year": 2002,
+    "artist": "The Beta Band",
+    "lineup": "",
+    "venue": "The Quest",
+    "city": "Minneapolis",
+    "country": "United States",
+    "attendance": 1,
+    "url": "https://www.last.fm/event/1470365+The+Beta+Band+at+The+Quest+on+20+April+2002",
+    "photo": "2002-04-20",
+    "genre": "rock"
   },
   {
     "date": "2002-07-30",
@@ -249,10 +450,11 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470364+Wilco+at+Orpheum+Theatre+on+30+July+2002",
-    "photo": "wilco-2002-07-30"
+    "photo": "wilco-2002-07-30",
+    "genre": "rock"
   },
   {
-    "date": "2002-08-23",
+    "date": "2002-08-24",
     "year": 2002,
     "artist": "Buddy Guy",
     "lineup": "Madison Blues Fest: Buddy Guy",
@@ -261,19 +463,21 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "photo": "buddy-guy-2002-08-23"
+    "photo": "buddy-guy-2002-08-23",
+    "genre": "blues"
   },
   {
     "date": "2002-09-18",
     "year": 2002,
     "artist": "John Scofield",
-    "lineup": "",
+    "lineup": "Karl Denson's Tiny Universe",
     "venue": "First Avenue",
     "city": "Minneapolis",
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470362+Karl+Denson%27s+Tiny+Universe+at+First+Avenue+on+18+September+2002",
-    "photo": "2002-09-18"
+    "photo": "2002-09-18",
+    "genre": "jazz"
   },
   {
     "date": "2002-10-17",
@@ -285,7 +489,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/1470361+Beck+at+Orpheum+Theatre+on+17+October+2002",
-    "photo": "beck-2002-10-17"
+    "photo": "beck-2002-10-17",
+    "genre": "rock"
   },
   {
     "date": "2002-10-30",
@@ -297,7 +502,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/534573+Bob+Dylan+and+His+Band",
-    "photo": "2002-10-30"
+    "photo": "2002-10-30",
+    "genre": "rock"
   },
   {
     "date": "2002-11-10",
@@ -309,7 +515,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/476659+Wilco+at+IMU+Main+Lounge+on+10+November+2002",
-    "photo": "2002-11-10"
+    "photo": "2002-11-10",
+    "genre": "rock"
   },
   {
     "date": "2003-06-26",
@@ -321,7 +528,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470357+Wilco+at+Central+Park+on+26+June+2003",
-    "photo": "wilco-2003-06-26"
+    "photo": "wilco-2003-06-26",
+    "genre": "rock"
   },
   {
     "date": "2003-06-27",
@@ -333,7 +541,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/1470358+Wilco+at+Central+Park+on+27+June+2003",
-    "photo": "wilco-2003-06-27"
+    "photo": "wilco-2003-06-27",
+    "genre": "rock"
   },
   {
     "date": "2003-09-24",
@@ -345,7 +554,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467451+Ween+at+The+Wiltern+on+24+September+2003",
-    "photo": "ween-2003-09-24"
+    "photo": "ween-2003-09-24",
+    "genre": "rock"
   },
   {
     "date": "2003-09-25",
@@ -357,7 +567,8 @@
     "country": "United States",
     "attendance": 12,
     "url": "https://www.last.fm/event/80526+Radiohead+at+Hollywood+Bowl+on+25+September+2003",
-    "photo": "radiohead-2003-09-25"
+    "photo": "radiohead-2003-09-25",
+    "genre": "rock"
   },
   {
     "date": "2004-01-27",
@@ -369,19 +580,21 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470353+French+Kicks+at+Troubadour+on+27+January+2004",
-    "photo": "french-kicks-2004-01-27"
+    "photo": "french-kicks-2004-01-27",
+    "genre": "rock"
   },
   {
-    "date": "2004-02-02",
+    "date": "2004-02-21",
     "year": 2004,
     "artist": "The Walkmen",
     "lineup": "Weird War",
-    "venue": "The Music Box",
-    "city": "Hollywood",
+    "venue": "Henry Fonda Theatre",
+    "city": "Los Angeles, CA",
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467433+The+Walkmen+at+The+Music+Box+on+02+February+2004",
-    "photo": "the-walkmen-2004-02-02"
+    "photo": "the-walkmen-2004-02-21",
+    "genre": "rock"
   },
   {
     "date": "2004-03-24",
@@ -393,7 +606,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467434+Modest+Mouse+at+The+Music+Box+on+24+March+2004",
-    "photo": "modest-mouse-2004-03-24"
+    "photo": "modest-mouse-2004-03-24",
+    "genre": "rock"
   },
   {
     "date": "2004-04-11",
@@ -405,7 +619,33 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467435+Iron+&+Wine+at+Knitting+Factory+on+11+April+2004",
-    "photo": "iron-wine-2004-04-11"
+    "photo": "iron-wine-2004-04-11",
+    "genre": "rock"
+  },
+  {
+    "date": "2004-04-13",
+    "year": 2004,
+    "artist": "Joe Zawinul Syndicate",
+    "lineup": "",
+    "venue": "Catalina Bar & Grill",
+    "city": "Hollywood",
+    "country": "United States",
+    "attendance": 0,
+    "url": "",
+    "genre": "jazz",
+    "photo": "joe-zawinul-syndicate-2004-04-13"
+  },
+  {
+    "date": "2004-07-31",
+    "year": 2004,
+    "artist": "Ozzfest 2004",
+    "lineup": "Ozzy Osbourne",
+    "venue": "Hyundai Pavilion",
+    "city": "San Bernadino, CA",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2004-10-27",
@@ -417,7 +657,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/372532+Interpol+at+The+Wiltern+on+27+October+2004",
-    "photo": "interpol-2004-10-27"
+    "photo": "interpol-2004-10-27",
+    "genre": "rock"
   },
   {
     "date": "2005-03-24",
@@ -429,7 +670,8 @@
     "country": "United States",
     "attendance": 6,
     "url": "https://www.last.fm/event/66633+The+Decemberists+at+The+Music+Box+on+24+March+2005",
-    "photo": "the-decemberists-2005-03-24"
+    "photo": "the-decemberists-2005-03-24",
+    "genre": "rock"
   },
   {
     "date": "2005-04-29",
@@ -441,7 +683,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467437+Magnolia+Electric+Co.+at+The+Echo+on+29+April+2005",
-    "photo": "magnolia-electric-co-2005-04-29"
+    "photo": "magnolia-electric-co-2005-04-29",
+    "genre": "rock"
   },
   {
     "date": "2005-06-03",
@@ -453,7 +696,8 @@
     "country": "United States",
     "attendance": 7,
     "url": "https://www.last.fm/event/195624+Q101+Block+Party",
-    "photo": "q101-block-party-2005-06-03"
+    "photo": "q101-block-party-2005-06-03",
+    "genre": "rock"
   },
   {
     "date": "2005-06-11",
@@ -465,7 +709,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/1467344+The+National+at+Spaceland+on+11+June+2005",
-    "photo": "the-national-2005-06-11"
+    "photo": "the-national-2005-06-11",
+    "genre": "rock"
   },
   {
     "date": "2005-06-26",
@@ -477,7 +722,8 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/183237+David+Byrne+at+Hollywood+Bowl+on+26+June+2005",
-    "photo": "david-byrne-2005-06-26"
+    "photo": "david-byrne-2005-06-26",
+    "genre": "rock"
   },
   {
     "date": "2005-07-16",
@@ -489,7 +735,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467439+Sufjan+Stevens+at+El+Rey+Theatre+on+16+July+2005",
-    "photo": "sufjan-stevens-2005-07-16"
+    "photo": "sufjan-stevens-2005-07-16",
+    "genre": "rock"
   },
   {
     "date": "2005-10-15",
@@ -501,7 +748,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467440+Son+Volt+at+Vic+Theatre+on+15+October+2005",
-    "photo": "2005-10-15"
+    "photo": "2005-10-15",
+    "genre": "rock"
   },
   {
     "date": "2005-11-10",
@@ -513,7 +761,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467442+John+Cale+at+Double+Door+on+10+November+2005",
-    "photo": "2005-11-10"
+    "photo": "2005-11-10",
+    "genre": "rock"
   },
   {
     "date": "2005-12-11",
@@ -525,7 +774,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467443+Iron+&+Wine+and+Calexico+at+Congress+Theater+on+11+December+2005",
-    "photo": "iron-wine-and-calexico-2005-12-11"
+    "photo": "iron-wine-and-calexico-2005-12-11",
+    "genre": "rock"
   },
   {
     "date": "2006-01-14",
@@ -537,7 +787,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/640484+Tapes+%27n+Tapes+at+Schubas+Tavern+on+14+January+2006",
-    "photo": "2006-01-14"
+    "photo": "2006-01-14",
+    "genre": "rock"
   },
   {
     "date": "2006-02-20",
@@ -549,7 +800,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468892+Jason+Molina+at+Schubas+Tavern+on+20+February+2006",
-    "photo": "2006-02-20"
+    "photo": "2006-02-20",
+    "genre": "rock"
   },
   {
     "date": "2006-03-23",
@@ -561,7 +813,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467448+Magnolia+Electric+Co.+at+The+Abbey+Pub+on+23+March+2006",
-    "photo": "2006-03-23"
+    "photo": "2006-03-23",
+    "genre": "rock"
   },
   {
     "date": "2006-03-24",
@@ -573,7 +826,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467445+The+National+at+Double+Door+on+24+March+2006",
-    "photo": "2006-03-24"
+    "photo": "2006-03-24",
+    "genre": "rock"
   },
   {
     "date": "2006-04-28",
@@ -585,7 +839,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1472183+Tapes+%27n+Tapes+at+Subterranean+on+28+April+2006",
-    "photo": "tapes-n-tapes-2006-04-28"
+    "photo": "tapes-n-tapes-2006-04-28",
+    "genre": "rock"
   },
   {
     "date": "2006-06-01",
@@ -597,7 +852,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/190123+The+Walkmen+at+Metro+on+01+June+2006",
-    "photo": "2006-06-01"
+    "photo": "2006-06-01",
+    "genre": "rock"
   },
   {
     "date": "2006-06-06",
@@ -609,7 +865,20 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468811+Band+of+Horses+at+Schubas+Tavern+on+06+June+2006",
-    "photo": "2006-06-06"
+    "photo": "2006-06-06",
+    "genre": "rock"
+  },
+  {
+    "date": "2006-07-28",
+    "year": 2006,
+    "artist": "Sunset Rubdown",
+    "lineup": "Pitchfork Opening Night Party: Sunset Rubdown, Voxtrot",
+    "venue": "The Metro",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2006-07-29",
@@ -621,7 +890,20 @@
     "country": "United States",
     "attendance": 66,
     "url": "https://www.last.fm/festival/71021+Pitchfork+Festival",
-    "photo": "pitchfork-festival-2006-07-29"
+    "photo": "pitchfork-festival-2006-07-29",
+    "genre": "rock"
+  },
+  {
+    "date": "2006-07-30",
+    "year": 2006,
+    "artist": "Pitchfork Music Festival",
+    "lineup": "",
+    "venue": "Union Park",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2006-08-08",
@@ -633,7 +915,8 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/219237+Wolf+Parade",
-    "photo": "2006-08-08"
+    "photo": "2006-08-08",
+    "genre": "rock"
   },
   {
     "date": "2006-09-05",
@@ -645,7 +928,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470348+Band+of+Horses+at+Metro+on+05+September+2006",
-    "photo": "2006-09-05"
+    "photo": "2006-09-05",
+    "genre": "rock"
   },
   {
     "date": "2006-09-10",
@@ -657,7 +941,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468809+Smog+at+Old+Town+School+of+Folk+Music+on+10+September+2006",
-    "photo": "loudon-wainwright-iii-2011-05-14"
+    "photo": "loudon-wainwright-iii-2011-05-14",
+    "genre": "rock"
   },
   {
     "date": "2006-10-03",
@@ -669,7 +954,8 @@
     "country": "United States",
     "attendance": 5,
     "url": "https://www.last.fm/event/56950+Clap+Your+Hands+Say+Yeah+at+Vic+Theatre+on+03+October+2006",
-    "photo": "2006-10-03"
+    "photo": "2006-10-03",
+    "genre": "rock"
   },
   {
     "date": "2006-10-06",
@@ -681,7 +967,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/219236+Sunset+Rubdown",
-    "photo": "2006-10-06"
+    "photo": "2006-10-06",
+    "genre": "rock"
   },
   {
     "date": "2006-10-07",
@@ -693,7 +980,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468812+Okkervil+River+at+Schubas+Tavern+on+07+October+2006",
-    "photo": "2006-10-07"
+    "photo": "2006-10-07",
+    "genre": "rock"
   },
   {
     "date": "2006-10-20",
@@ -705,7 +993,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468887+Magnolia+Electric+Co.+at+The+Abbey+Pub+on+20+October+2006",
-    "photo": "magnolia-electric-co-2006-10-20"
+    "photo": "magnolia-electric-co-2006-10-20",
+    "genre": "rock"
   },
   {
     "date": "2006-10-26",
@@ -717,7 +1006,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/26999+Catfish+Haven+at+Metro+on+26+October+2006",
-    "photo": "2006-10-26"
+    "photo": "2006-10-26",
+    "genre": "rock"
   },
   {
     "date": "2006-10-27",
@@ -729,7 +1019,8 @@
     "country": "United States",
     "attendance": 7,
     "url": "https://www.last.fm/event/152404+Bob+Dylan+at+Sears+Centre+Arena+on+27+October+2006",
-    "photo": "bob-dylan-2006-10-27"
+    "photo": "bob-dylan-2006-10-27",
+    "genre": "rock"
   },
   {
     "date": "2006-11-11",
@@ -741,7 +1032,8 @@
     "country": "United States",
     "attendance": 50,
     "url": "https://www.last.fm/event/27211+Alasdair+Roberts+at+Riviera+Theater+on+11+November+2006",
-    "photo": "2006-11-11"
+    "photo": "2006-11-11",
+    "genre": "rock"
   },
   {
     "date": "2006-11-22",
@@ -753,7 +1045,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/59627+Wilco+at+Barrymore+Theatre+on+22+November+2006",
-    "photo": "2006-11-22"
+    "photo": "2006-11-22",
+    "genre": "rock"
   },
   {
     "date": "2006-12-07",
@@ -765,7 +1058,8 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/54940+The+Lemonheads+at+Double+Door+on+07+December+2006",
-    "photo": "2006-12-07"
+    "photo": "2006-12-07",
+    "genre": "rock"
   },
   {
     "date": "2006-12-09",
@@ -777,7 +1071,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/42968+Medeski,+Martin+and+Wood+at+Vic+Theatre+on+09+December+2006",
-    "photo": "2006-12-09"
+    "photo": "2006-12-09",
+    "genre": "jazz"
   },
   {
     "date": "2006-12-31",
@@ -789,7 +1084,20 @@
     "country": "United States",
     "attendance": 11,
     "url": "https://www.last.fm/event/80462+The+Hold+Steady+at+House+of+Blues+on+31+December+2006",
-    "photo": "the-hold-steady-2006-12-31"
+    "photo": "the-hold-steady-2006-12-31",
+    "genre": "rock"
+  },
+  {
+    "date": "2007-01-20",
+    "year": 2007,
+    "artist": "The Record Low",
+    "lineup": "",
+    "venue": "Abbey Pub",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2007-02-09",
@@ -801,7 +1109,8 @@
     "country": "United States",
     "attendance": 21,
     "url": "https://www.last.fm/event/79719+Grizzly+Bear+at+Subterranean+on+09+February+2007",
-    "photo": "2007-02-09"
+    "photo": "2007-02-09",
+    "genre": "rock"
   },
   {
     "date": "2007-03-11",
@@ -813,7 +1122,8 @@
     "country": "United States",
     "attendance": 15,
     "url": "https://www.last.fm/event/99643+The+Walkmen+at+Schubas+Tavern+on+11+March+2007",
-    "photo": "2007-03-11"
+    "photo": "2007-03-11",
+    "genre": "rock"
   },
   {
     "date": "2007-03-28",
@@ -825,7 +1135,8 @@
     "country": "United States",
     "attendance": 14,
     "url": "https://www.last.fm/event/150480+Neko+Case+at+Park+West+on+28+March+2007",
-    "photo": "neko-case-2007-03-28"
+    "photo": "neko-case-2007-03-28",
+    "genre": "rock"
   },
   {
     "date": "2007-04-06",
@@ -837,7 +1148,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/158427+Elvis+Perkins+at+Schubas+Tavern+on+06+April+2007",
-    "photo": "2007-04-06"
+    "photo": "2007-04-06",
+    "genre": "rock"
   },
   {
     "date": "2007-04-13",
@@ -849,7 +1161,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/138621+Satellite+66+at+Empty+Bottle+on+13+April+2007",
-    "photo": "the-record-low-2007-04-13"
+    "photo": "the-record-low-2007-04-13",
+    "genre": "rock"
   },
   {
     "date": "2007-04-20",
@@ -861,7 +1174,8 @@
     "country": "United States",
     "attendance": 68,
     "url": "https://www.last.fm/event/143739+Andrew+Bird+at+Riviera+Theater+on+20+April+2007",
-    "photo": "2007-04-20"
+    "photo": "2007-04-20",
+    "genre": "rock"
   },
   {
     "date": "2007-04-22",
@@ -873,7 +1187,8 @@
     "country": "United States",
     "attendance": 55,
     "url": "https://www.last.fm/event/180973+Modest+Mouse+at+Auditorium+Theatre+on+22+April+2007",
-    "photo": "2007-04-22"
+    "photo": "2007-04-22",
+    "genre": "rock"
   },
   {
     "date": "2007-04-24",
@@ -885,7 +1200,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/182340+All+Smiles+at+Schubas+Tavern+on+24+April+2007",
-    "photo": "2007-04-24"
+    "photo": "2007-04-24",
+    "genre": "rock"
   },
   {
     "date": "2007-04-30",
@@ -897,7 +1213,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468823+Deadstring+Brothers+at+Schubas+Tavern+on+30+April+2007",
-    "photo": "2007-04-30"
+    "photo": "2007-04-30",
+    "genre": "rock"
   },
   {
     "date": "2007-05-10",
@@ -909,7 +1226,8 @@
     "country": "United States",
     "attendance": 22,
     "url": "https://www.last.fm/event/171158+Daniel+Johnston+at+Lakeshore+Theater+on+10+May+2007",
-    "photo": "2007-05-10"
+    "photo": "2007-05-10",
+    "genre": "rock"
   },
   {
     "date": "2007-05-12",
@@ -921,7 +1239,8 @@
     "country": "United States",
     "attendance": 33,
     "url": "https://www.last.fm/event/126398+Tapes+%27n+Tapes+at+The+Abbey+Pub+on+12+May+2007",
-    "photo": "2007-05-12"
+    "photo": "2007-05-12",
+    "genre": "rock"
   },
   {
     "date": "2007-05-18",
@@ -933,7 +1252,8 @@
     "country": "United States",
     "attendance": 99,
     "url": "https://www.last.fm/event/141388+Arcade+Fire+at+Chicago+Theatre+on+18+May+2007",
-    "photo": "2007-05-18"
+    "photo": "2007-05-18",
+    "genre": "rock"
   },
   {
     "date": "2007-05-22",
@@ -945,7 +1265,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468844+Illinois+at+Schubas+Tavern+on+22+May+2007",
-    "photo": "2007-05-22"
+    "photo": "2007-05-22",
+    "genre": "rock"
   },
   {
     "date": "2007-05-26",
@@ -957,7 +1278,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/246613+The+Flatlanders+at+Old+Town+School+of+Folk+Music+on+26+May+2007",
-    "photo": "loudon-wainwright-iii-2011-05-14"
+    "photo": "loudon-wainwright-iii-2011-05-14",
+    "genre": "rock"
   },
   {
     "date": "2007-06-01",
@@ -969,7 +1291,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/243956+Loney,+dear+at+Lakeshore+Theater+on+01+June+2007",
-    "photo": "2007-06-01"
+    "photo": "2007-06-01",
+    "genre": "rock"
   },
   {
     "date": "2007-06-07",
@@ -981,7 +1304,8 @@
     "country": "United States",
     "attendance": 60,
     "url": "https://www.last.fm/event/165513+The+National+at+Metro+on+07+June+2007",
-    "photo": "2007-06-07"
+    "photo": "2007-06-07",
+    "genre": "rock"
   },
   {
     "date": "2007-06-09",
@@ -993,7 +1317,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1472778+Ribfest",
-    "photo": "2007-06-09"
+    "photo": "2007-06-09",
+    "genre": "rock"
   },
   {
     "date": "2007-06-15",
@@ -1005,7 +1330,8 @@
     "country": "United States",
     "attendance": 44,
     "url": "https://www.last.fm/festival/224742+Taste+of+Randolph",
-    "photo": "the-walkmen-2007-06-15"
+    "photo": "the-walkmen-2007-06-15",
+    "genre": "rock"
   },
   {
     "date": "2007-06-17",
@@ -1017,10 +1343,11 @@
     "country": "United States",
     "attendance": 6,
     "url": "https://www.last.fm/event/210249+The+Veils+at+Empty+Bottle+on+17+June+2007",
-    "photo": "2007-06-17"
+    "photo": "2007-06-17",
+    "genre": "rock"
   },
   {
-    "date": "2007-08-03",
+    "date": "2007-08-04",
     "year": 2007,
     "artist": "Lollapalooza 2007",
     "lineup": "!!!, Against Me!, Amy Winehouse, Annuals, Apostle of Hustle, Aqueduct, ARCKID, Back Door Slam, Bang Bang Bang",
@@ -1029,7 +1356,8 @@
     "country": "United States",
     "attendance": 1060,
     "url": "https://www.last.fm/festival/34715+Lollapalooza+2007",
-    "photo": "lollapalooza-2007-2007-08-03"
+    "photo": "lollapalooza-2007-2007-08-03",
+    "genre": "rock"
   },
   {
     "date": "2007-08-17",
@@ -1041,7 +1369,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470328+The+Record+Low+at+Metro+on+17+August+2007",
-    "photo": "2007-08-17"
+    "photo": "2007-08-17",
+    "genre": "rock"
   },
   {
     "date": "2007-08-24",
@@ -1053,7 +1382,8 @@
     "country": "United States",
     "attendance": 9,
     "url": "https://www.last.fm/event/305557+Magnolia+Electric+Co.+at+Empty+Bottle+on+24+August+2007",
-    "photo": "magnolia-electric-co-2007-08-24"
+    "photo": "magnolia-electric-co-2007-08-24",
+    "genre": "rock"
   },
   {
     "date": "2007-08-30",
@@ -1065,7 +1395,8 @@
     "country": "United States",
     "attendance": 9,
     "url": "https://www.last.fm/event/315913+Earlimart+at+Schubas+Tavern+on+30+August+2007",
-    "photo": "2007-08-30"
+    "photo": "2007-08-30",
+    "genre": "rock"
   },
   {
     "date": "2007-09-07",
@@ -1077,7 +1408,8 @@
     "country": "United States",
     "attendance": 137,
     "url": "https://www.last.fm/festival/213471+Hideout+Block+Party",
-    "photo": "andrew-bird-2007-09-07"
+    "photo": "andrew-bird-2007-09-07",
+    "genre": "rock"
   },
   {
     "date": "2007-09-14",
@@ -1089,7 +1421,8 @@
     "country": "United States",
     "attendance": 20,
     "url": "https://www.last.fm/event/258438+Bill+Callahan",
-    "photo": "2007-09-14"
+    "photo": "2007-09-14",
+    "genre": "rock"
   },
   {
     "date": "2007-09-18",
@@ -1101,7 +1434,8 @@
     "country": "United States",
     "attendance": 33,
     "url": "https://www.last.fm/event/268273+Devendra+Banhart+at+Portage+Theater+on+18+September+2007",
-    "photo": "2007-09-18"
+    "photo": "2007-09-18",
+    "genre": "rock"
   },
   {
     "date": "2007-10-12",
@@ -1113,7 +1447,8 @@
     "country": "United States",
     "attendance": 46,
     "url": "https://www.last.fm/event/316614+Spoon+at+Riviera+Theater+on+12+October+2007",
-    "photo": "2007-10-12"
+    "photo": "2007-10-12",
+    "genre": "rock"
   },
   {
     "date": "2007-10-19",
@@ -1125,7 +1460,8 @@
     "country": "United States",
     "attendance": 60,
     "url": "https://www.last.fm/event/329714+Bright+Eyes+at+Chicago+Theatre+on+19+October+2007",
-    "photo": "2007-10-19"
+    "photo": "2007-10-19",
+    "genre": "rock"
   },
   {
     "date": "2007-10-20",
@@ -1137,7 +1473,8 @@
     "country": "United States",
     "attendance": 17,
     "url": "https://www.last.fm/event/317723+Ween+at+The+Aragon+Ballroom+on+20+October+2007",
-    "photo": "2007-10-20"
+    "photo": "2007-10-20",
+    "genre": "rock"
   },
   {
     "date": "2007-10-24",
@@ -1149,7 +1486,44 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/327842+Figurines+at+Schubas+Tavern+on+24+October+2007",
-    "photo": "2007-10-24"
+    "photo": "2007-10-24",
+    "genre": "rock"
+  },
+  {
+    "date": "2007-11-11",
+    "year": 2007,
+    "artist": "Band of Horses",
+    "lineup": "",
+    "venue": "The Metro",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "2007-11-18",
+    "year": 2007,
+    "artist": "John McEuen",
+    "lineup": "John McEuen, Jason Ringenberg",
+    "venue": "Old Town School of Folk Music",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "2007-12-02",
+    "year": 2007,
+    "artist": "Modest Mouse",
+    "lineup": "",
+    "venue": "Congress Theatre",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2008-01-20",
@@ -1161,7 +1535,8 @@
     "country": "United States",
     "attendance": 20,
     "url": "https://www.last.fm/event/419309++Tomorrow+Never+Knows+2008",
-    "photo": "2008-01-20"
+    "photo": "the-walkmen-2008-01-20",
+    "genre": "rock"
   },
   {
     "date": "2008-02-02",
@@ -1173,7 +1548,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468810+John+Hammond+at+Schubas+Tavern+on+02+February+2008",
-    "photo": "2008-02-02"
+    "photo": "2008-02-02",
+    "genre": "folk"
   },
   {
     "date": "2008-03-06",
@@ -1185,7 +1561,8 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/483404+The+Pogues+at+Riviera+Theater+on+06+March+2008",
-    "photo": "2008-03-06"
+    "photo": "2008-03-06",
+    "genre": "rock"
   },
   {
     "date": "2008-03-28",
@@ -1197,7 +1574,8 @@
     "country": "United States",
     "attendance": 11,
     "url": "https://www.last.fm/event/476558+Le+Loup+at+Schubas+Tavern+on+28+March+2008",
-    "photo": "2008-03-28"
+    "photo": "2008-03-28",
+    "genre": "rock"
   },
   {
     "date": "2008-04-04",
@@ -1209,7 +1587,8 @@
     "country": "United States",
     "attendance": 35,
     "url": "https://www.last.fm/event/519296+Spoon+at+Vic+Theatre+on+04+April+2008",
-    "photo": "2008-04-04"
+    "photo": "2008-04-04",
+    "genre": "rock"
   },
   {
     "date": "2008-04-10",
@@ -1221,19 +1600,21 @@
     "country": "United States",
     "attendance": 29,
     "url": "https://www.last.fm/event/505773+Bon+Iver+at+Lakeshore+Theater+on+10+April+2008",
-    "photo": "2008-04-10"
+    "photo": "2008-04-10",
+    "genre": "rock"
   },
   {
     "date": "2008-05-29",
     "year": 2008,
-    "artist": "Frightened Rabbit",
-    "lineup": "French Kicks",
+    "artist": "French Kicks",
+    "lineup": "French Kicks, Frightened Rabbit",
     "venue": "The Double Door",
     "city": "Chicago",
     "country": "United States",
     "attendance": 7,
     "url": "https://www.last.fm/event/596294+Frightened+Rabbit+at+Double+Door+on+29+May+2008",
-    "photo": "2008-05-29"
+    "photo": "2008-05-29",
+    "genre": "rock"
   },
   {
     "date": "2008-06-24",
@@ -1245,7 +1626,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/597639+Eef+Barzelay+at+Schubas+Tavern+on+24+June+2008",
-    "photo": "2008-06-24"
+    "photo": "2008-06-24",
+    "genre": "rock"
   },
   {
     "date": "2008-07-08",
@@ -1257,7 +1639,8 @@
     "country": "United States",
     "attendance": 76,
     "url": "https://www.last.fm/event/600682+Wolf+Parade+at+House+of+Blues+on+08+July+2008",
-    "photo": "wolf-parade-2008-07-08"
+    "photo": "wolf-parade-2008-07-08",
+    "genre": "rock"
   },
   {
     "date": "2008-07-17",
@@ -1269,10 +1652,11 @@
     "country": "United States",
     "attendance": 56,
     "url": "https://www.last.fm/event/655899+Fleet+Foxes+at+Jay+Pritzker+Pavilion+-+Millennium+Park+on+17+July+2008",
-    "photo": "fleet-foxes-2008-07-17"
+    "photo": "fleet-foxes-2008-07-17",
+    "genre": "rock"
   },
   {
-    "date": "2008-07-18",
+    "date": "2008-07-19",
     "year": 2008,
     "artist": "Pitchfork Music Festival 2008",
     "lineup": "Public Enemy, !!!, A Hawk and a Hacksaw, Animal Collective, Atlas Sound, Boban i Marko Markovic Orkestar, Bon Iver, Boris, Caribou",
@@ -1281,7 +1665,20 @@
     "country": "United States",
     "attendance": 1013,
     "url": "https://www.last.fm/festival/544125+Pitchfork+Music+Festival+2008",
-    "photo": "pitchfork-music-festival-2008-2008-07-18"
+    "photo": "pitchfork-music-festival-2008-2008-07-18",
+    "genre": "rock"
+  },
+  {
+    "date": "2008-07-20",
+    "year": 2008,
+    "artist": "Pitchfork Music Festival",
+    "lineup": "",
+    "venue": "Union Park",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2008-08-02",
@@ -1293,7 +1690,8 @@
     "country": "United States",
     "attendance": 62,
     "url": "https://www.last.fm/event/662238+Broken+Social+Scene+at+Metro+on+02+August+2008",
-    "photo": "2008-08-02"
+    "photo": "2008-08-02",
+    "genre": "rock"
   },
   {
     "date": "2008-09-03",
@@ -1305,7 +1703,8 @@
     "country": "United States",
     "attendance": 204,
     "url": "https://www.last.fm/event/591039+Andrew+Bird+at+Jay+Pritzker+Pavilion+-+Millennium+Park+on+03+September+2008",
-    "photo": "andrew-bird-2008-09-03"
+    "photo": "andrew-bird-2008-09-03",
+    "genre": "rock"
   },
   {
     "date": "2008-09-12",
@@ -1317,7 +1716,8 @@
     "country": "United States",
     "attendance": 18,
     "url": "https://www.last.fm/event/687621+The+Walkmen+at+Metro+on+12+September+2008",
-    "photo": "2008-09-12"
+    "photo": "2008-09-12",
+    "genre": "rock"
   },
   {
     "date": "2008-09-20",
@@ -1329,7 +1729,8 @@
     "country": "United States",
     "attendance": 115,
     "url": "https://www.last.fm/festival/669989+Hideout+Block+Party",
-    "photo": "neko-case-2008-09-20"
+    "photo": "neko-case-2008-09-20",
+    "genre": "rock"
   },
   {
     "date": "2008-09-25",
@@ -1341,7 +1742,8 @@
     "country": "United States",
     "attendance": 45,
     "url": "https://www.last.fm/event/656529+Calexico+at+Jay+Pritzker+Pavilion+-+Millennium+Park+on+25+September+2008",
-    "photo": "2008-09-25"
+    "photo": "calexico-2008-09-25",
+    "genre": "rock"
   },
   {
     "date": "2008-09-25",
@@ -1353,7 +1755,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/683419+Damien+Jurado+at+Schubas+Tavern+on+25+September+2008",
-    "photo": "2008-09-25"
+    "photo": "2008-09-25",
+    "genre": "rock"
   },
   {
     "date": "2008-09-27",
@@ -1365,7 +1768,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1471837+Ron+Sexsmith+at+Schubas+Tavern+on+27+September+2008",
-    "photo": "2008-09-27"
+    "photo": "2008-09-27",
+    "genre": "rock"
   },
   {
     "date": "2008-10-11",
@@ -1377,7 +1781,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1467430+Jimmie+Dale+Gilmore+at+Old+Town+School+of+Folk+Music+on+11+October+2008",
-    "photo": "loudon-wainwright-iii-2011-05-14"
+    "photo": "loudon-wainwright-iii-2011-05-14",
+    "genre": "rock"
   },
   {
     "date": "2008-10-23",
@@ -1389,7 +1794,8 @@
     "country": "United States",
     "attendance": 11,
     "url": "https://www.last.fm/event/717894+Frightened+Rabbit+at+Metro+on+23+October+2008",
-    "photo": "2008-10-23"
+    "photo": "2008-10-23",
+    "genre": "rock"
   },
   {
     "date": "2008-10-26",
@@ -1401,7 +1807,20 @@
     "country": "United States",
     "attendance": 25,
     "url": "https://www.last.fm/event/716130+Songs+of+David+Byrne+&+Brian+Eno",
-    "photo": "2008-10-26"
+    "photo": "2008-10-26",
+    "genre": "rock"
+  },
+  {
+    "date": "2008-11-22",
+    "year": 2008,
+    "artist": "Avett Brothers",
+    "lineup": "Chicago Blues & Bluegrass Festival: Avett Brothers, David Grisman",
+    "venue": "Congress Theater",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2008-12-06",
@@ -1413,7 +1832,8 @@
     "country": "United States",
     "attendance": 7,
     "url": "https://www.last.fm/event/691449+Alex+Chilton+at+Old+Town+School+of+Folk+Music+on+06+December+2008",
-    "photo": "loudon-wainwright-iii-2011-05-14"
+    "photo": "loudon-wainwright-iii-2011-05-14",
+    "genre": "rock"
   },
   {
     "date": "2008-12-09",
@@ -1425,7 +1845,8 @@
     "country": "United States",
     "attendance": 17,
     "url": "https://www.last.fm/event/733182+Neil+Young+at+Allstate+Arena+on+09+December+2008",
-    "photo": "2008-12-09"
+    "photo": "2008-12-09",
+    "genre": "rock"
   },
   {
     "date": "2008-12-18",
@@ -1437,7 +1858,8 @@
     "country": "United States",
     "attendance": 58,
     "url": "https://www.last.fm/event/804660+Bon+Iver+at+Vic+Theatre+on+18+December+2008",
-    "photo": "2008-12-18"
+    "photo": "2008-12-18",
+    "genre": "rock"
   },
   {
     "date": "2009-02-19",
@@ -1449,7 +1871,8 @@
     "country": "United States",
     "attendance": 15,
     "url": "https://www.last.fm/event/869581+Blitzen+Trapper+at+Empty+Bottle+on+19+February+2009",
-    "photo": "blitzen-trapper-2009-02-19"
+    "photo": "blitzen-trapper-2009-02-19",
+    "genre": "rock"
   },
   {
     "date": "2009-03-14",
@@ -1461,7 +1884,8 @@
     "country": "United States",
     "attendance": 32,
     "url": "https://www.last.fm/event/895222+Bonnie+%27Prince%27+Billy+at+Vic+Theatre+on+14+March+2009",
-    "photo": "2009-03-14"
+    "photo": "2009-03-14",
+    "genre": "rock"
   },
   {
     "date": "2009-03-16",
@@ -1473,7 +1897,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/897102+Langhorne+Slim+at+Schubas+Tavern+on+16+March+2009",
-    "photo": "2009-03-16"
+    "photo": "2009-03-16",
+    "genre": "rock"
   },
   {
     "date": "2009-03-25",
@@ -1485,7 +1910,8 @@
     "country": "United States",
     "attendance": 10,
     "url": "https://www.last.fm/event/862290+A.C.+Newman+at+Logan+Square+Auditorium+on+25+March+2009",
-    "photo": "2009-03-25"
+    "photo": "2009-03-25",
+    "genre": "rock"
   },
   {
     "date": "2009-04-03",
@@ -1497,7 +1923,8 @@
     "country": "United States",
     "attendance": 6,
     "url": "https://www.last.fm/event/961334+Blind+Pilot+at+Schubas+Tavern+on+03+April+2009",
-    "photo": "blind-pilot-2009-04-03"
+    "photo": "blind-pilot-2009-04-03",
+    "genre": "rock"
   },
   {
     "date": "2009-04-10",
@@ -1509,7 +1936,8 @@
     "country": "United States",
     "attendance": 86,
     "url": "https://www.last.fm/event/863061+Andrew+Bird+at+Civic+Opera+House+on+10+April+2009",
-    "photo": "2009-04-10"
+    "photo": "2009-04-10",
+    "genre": "rock"
   },
   {
     "date": "2009-05-12",
@@ -1521,7 +1949,8 @@
     "country": "United States",
     "attendance": 16,
     "url": "https://www.last.fm/event/945976+Vetiver",
-    "photo": "2009-05-12"
+    "photo": "2009-05-12",
+    "genre": "rock"
   },
   {
     "date": "2009-05-30",
@@ -1533,7 +1962,8 @@
     "country": "United States",
     "attendance": 98,
     "url": "https://www.last.fm/festival/1016597+Do+Division+Street+Festival",
-    "photo": "menomena-2009-05-30"
+    "photo": "menomena-2009-05-30",
+    "genre": "rock"
   },
   {
     "date": "2009-06-13",
@@ -1545,7 +1975,8 @@
     "country": "United States",
     "attendance": 36,
     "url": "https://www.last.fm/event/1030231+Phoenix+at+Park+West+on+13+June+2009",
-    "photo": "phoenix-2009-06-13"
+    "photo": "phoenix-2009-06-13",
+    "genre": "rock"
   },
   {
     "date": "2009-06-19",
@@ -1557,7 +1988,8 @@
     "country": "United States",
     "attendance": 15,
     "url": "https://www.last.fm/event/1019357+Bill+Callahan+at+Bottom+Lounge+on+19+June+2009",
-    "photo": "2009-06-19"
+    "photo": "2009-06-19",
+    "genre": "rock"
   },
   {
     "date": "2009-07-17",
@@ -1569,7 +2001,8 @@
     "country": "United States",
     "attendance": 35,
     "url": "https://www.last.fm/event/992712+The+National+at+Pabst+Theater+on+17+July+2009",
-    "photo": "the-national-2009-07-17"
+    "photo": "the-national-2009-07-17",
+    "genre": "rock"
   },
   {
     "date": "2009-07-25",
@@ -1581,7 +2014,8 @@
     "country": "United States",
     "attendance": 6,
     "url": "https://www.last.fm/event/1052930+Elvis+Perkins+in+Dearland+at+Subterranean+on+25+July+2009",
-    "photo": "elvis-perkins-in-dearland-2009-07-25"
+    "photo": "elvis-perkins-in-dearland-2009-07-25",
+    "genre": "rock"
   },
   {
     "date": "2009-08-07",
@@ -1593,7 +2027,8 @@
     "country": "United States",
     "attendance": 26,
     "url": "https://www.last.fm/event/1121263+Band+of+Horses+at+House+of+Blues+on+07+August+2009",
-    "photo": "band-of-horses-2009-08-07"
+    "photo": "band-of-horses-2009-08-07",
+    "genre": "rock"
   },
   {
     "date": "2009-08-15",
@@ -1605,7 +2040,8 @@
     "country": "United States",
     "attendance": 38,
     "url": "https://www.last.fm/festival/1098538+Green+Music+Fest+%2709",
-    "photo": "catfish-haven-2009-08-15"
+    "photo": "catfish-haven-2009-08-15",
+    "genre": "rock"
   },
   {
     "date": "2009-09-25",
@@ -1617,7 +2053,8 @@
     "country": "United States",
     "attendance": 17,
     "url": "https://www.last.fm/event/1152647+Chairlift+at+Schubas+Tavern+on+25+September+2009",
-    "photo": "chairlift-2009-09-25"
+    "photo": "chairlift-2009-09-25",
+    "genre": "rock"
   },
   {
     "date": "2009-09-27",
@@ -1629,7 +2066,8 @@
     "country": "United States",
     "attendance": 79,
     "url": "https://www.last.fm/event/1139247+Grizzly+Bear+at+Metro+on+27+September+2009",
-    "photo": "grizzly-bear-2009-09-27"
+    "photo": "grizzly-bear-2009-09-27",
+    "genre": "rock"
   },
   {
     "date": "2009-10-23",
@@ -1641,7 +2079,8 @@
     "country": "United States",
     "attendance": 7,
     "url": "https://www.last.fm/event/1254195+Langhorne+Slim+at+Lincoln+Hall+on+23+October+2009",
-    "photo": "2009-10-23"
+    "photo": "2009-10-23",
+    "genre": "rock"
   },
   {
     "date": "2009-10-29",
@@ -1653,7 +2092,8 @@
     "country": "United States",
     "attendance": 5,
     "url": "https://www.last.fm/event/1140664+Loudon+Wainwright+III+at+Vic+Theatre+on+29+October+2009",
-    "photo": "2009-10-29"
+    "photo": "2009-10-29",
+    "genre": "folk"
   },
   {
     "date": "2009-11-09",
@@ -1665,7 +2105,8 @@
     "country": "United States",
     "attendance": 9,
     "url": "https://www.last.fm/event/1275370+Fanfarlo+at+Schubas+Tavern+on+09+November+2009",
-    "photo": "2009-11-09"
+    "photo": "2009-11-09",
+    "genre": "rock"
   },
   {
     "date": "2009-11-11",
@@ -1677,7 +2118,8 @@
     "country": "United States",
     "attendance": 15,
     "url": "https://www.last.fm/event/1227480+The+Walkmen+at+Schubas+Tavern+on+11+November+2009",
-    "photo": "2009-11-11"
+    "photo": "2009-11-11",
+    "genre": "rock"
   },
   {
     "date": "2009-11-12",
@@ -1689,7 +2131,8 @@
     "country": "United States",
     "attendance": 15,
     "url": "https://www.last.fm/event/1251978+The+Walkmen+at+Lincoln+Hall+on+12+November+2009",
-    "photo": "2009-11-12"
+    "photo": "2009-11-12",
+    "genre": "rock"
   },
   {
     "date": "2009-11-21",
@@ -1701,7 +2144,8 @@
     "country": "United States",
     "attendance": 13,
     "url": "https://www.last.fm/event/1233621+A.A.+Bondy+at+Lincoln+Hall+on+21+November+2009",
-    "photo": "2009-11-21"
+    "photo": "2009-11-21",
+    "genre": "rock"
   },
   {
     "date": "2009-12-12",
@@ -1713,7 +2157,8 @@
     "country": "United States",
     "attendance": 19,
     "url": "https://www.last.fm/festival/1237036+Chicago+Bluegrass+and+Blues+Festival",
-    "photo": "2009-12-12"
+    "photo": "2009-12-12",
+    "genre": "rock"
   },
   {
     "date": "2009-12-16",
@@ -1725,7 +2170,8 @@
     "country": "United States",
     "attendance": 12,
     "url": "https://www.last.fm/event/1274190+Andrew+Bird+at+Fourth+Presbyterian+Church+on+16+December+2009",
-    "photo": "2009-12-16"
+    "photo": "2009-12-16",
+    "genre": "rock"
   },
   {
     "date": "2009-12-27",
@@ -1737,7 +2183,8 @@
     "country": "United States",
     "attendance": 21,
     "url": "https://www.last.fm/event/1307903+Jeff+Tweedy+at+Orpheum+Theatre+on+27+December+2009",
-    "photo": "jeff-tweedy-2009-12-27"
+    "photo": "jeff-tweedy-2009-12-27",
+    "genre": "rock"
   },
   {
     "date": "2010-01-15",
@@ -1749,7 +2196,8 @@
     "country": "United States",
     "attendance": 46,
     "url": "https://www.last.fm/event/1306097+Atlas+Sound+at+Lincoln+Hall+on+15+January+2010",
-    "photo": "2010-01-15"
+    "photo": "2010-01-15",
+    "genre": "rock"
   },
   {
     "date": "2010-01-16",
@@ -1761,7 +2209,8 @@
     "country": "United States",
     "attendance": 23,
     "url": "https://www.last.fm/event/1293909+Tomorrow+Never+Knows+2010",
-    "photo": "2010-01-16"
+    "photo": "2010-01-16",
+    "genre": "rock"
   },
   {
     "date": "2010-02-13",
@@ -1773,7 +2222,8 @@
     "country": "United States",
     "attendance": 9,
     "url": "https://www.last.fm/event/1319918+Gene+Ween",
-    "photo": "gene-ween-2010-02-13"
+    "photo": "gene-ween-2010-02-13",
+    "genre": "rock"
   },
   {
     "date": "2010-03-10",
@@ -1785,7 +2235,8 @@
     "country": "United States",
     "attendance": 14,
     "url": "https://www.last.fm/event/1368332+Vetiver+at+Empty+Bottle+on+10+March+2010",
-    "photo": "2010-03-10"
+    "photo": "2010-03-10",
+    "genre": "rock"
   },
   {
     "date": "2010-03-13",
@@ -1797,7 +2248,8 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/1390614+Ray+Davies",
-    "photo": "ray-davies-2010-03-13"
+    "photo": "ray-davies-2010-03-13",
+    "genre": "rock"
   },
   {
     "date": "2010-03-17",
@@ -1809,7 +2261,8 @@
     "country": "United States",
     "attendance": 25,
     "url": "https://www.last.fm/event/1337765+The+Clientele+at+Lincoln+Hall+on+17+March+2010",
-    "photo": "2010-03-17"
+    "photo": "2010-03-17",
+    "genre": "rock"
   },
   {
     "date": "2010-04-01",
@@ -1821,7 +2274,8 @@
     "country": "United States",
     "attendance": 100,
     "url": "https://www.last.fm/event/1365663+Spoon+at+The+Aragon+Ballroom+on+01+April+2010",
-    "photo": "spoon-2010-04-01"
+    "photo": "spoon-2010-04-01",
+    "genre": "rock"
   },
   {
     "date": "2010-04-02",
@@ -1833,7 +2287,8 @@
     "country": "United States",
     "attendance": 109,
     "url": "https://www.last.fm/event/1365506+Beach+House+at+Metro+on+02+April+2010",
-    "photo": "beach-house-2010-04-02"
+    "photo": "beach-house-2010-04-02",
+    "genre": "rock"
   },
   {
     "date": "2010-04-08",
@@ -1845,7 +2300,8 @@
     "country": "United States",
     "attendance": 69,
     "url": "https://www.last.fm/event/1326619+The+xx+at+Lincoln+Hall+on+08+April+2010",
-    "photo": "2010-04-08"
+    "photo": "2010-04-08",
+    "genre": "rock"
   },
   {
     "date": "2010-04-10",
@@ -1857,7 +2313,8 @@
     "country": "United States",
     "attendance": 116,
     "url": "https://www.last.fm/event/1431310+Thom+Yorke%27s:+Atoms+for+Peace",
-    "photo": "thom-yorkes-atoms-for-peace-2010-04-10"
+    "photo": "thom-yorkes-atoms-for-peace-2010-04-10",
+    "genre": "rock"
   },
   {
     "date": "2010-04-16",
@@ -1869,7 +2326,8 @@
     "country": "United States",
     "attendance": 35,
     "url": "https://www.last.fm/event/1367501+Dr.+Dog+at+Metro+on+16+April+2010",
-    "photo": "dr-dog-2010-04-16"
+    "photo": "dr-dog-2010-04-16",
+    "genre": "rock"
   },
   {
     "date": "2010-04-17",
@@ -1881,7 +2339,8 @@
     "country": "United States",
     "attendance": 15,
     "url": "https://www.last.fm/event/1339348+Rogue+Wave+at+Lincoln+Hall+on+17+April+2010",
-    "photo": "rogue-wave-2010-04-17"
+    "photo": "rogue-wave-2010-04-17",
+    "genre": "rock"
   },
   {
     "date": "2010-04-29",
@@ -1893,7 +2352,8 @@
     "country": "United States",
     "attendance": 83,
     "url": "https://www.last.fm/event/1336185+Yeasayer+at+Metro+on+29+April+2010",
-    "photo": "yeasayer-2010-04-29"
+    "photo": "yeasayer-2010-04-29",
+    "genre": "rock"
   },
   {
     "date": "2010-05-11",
@@ -1905,7 +2365,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1532909+Ferraby+Lionheart+at+Schubas+Tavern+on+11+May+2010",
-    "photo": "2010-05-11"
+    "photo": "2010-05-11",
+    "genre": "rock"
   },
   {
     "date": "2010-05-14",
@@ -1917,7 +2378,8 @@
     "country": "United States",
     "attendance": 33,
     "url": "https://www.last.fm/event/1419019+Local+Natives+at+Schubas+Tavern+on+14+May+2010",
-    "photo": "local-natives-2010-05-14"
+    "photo": "local-natives-2010-05-14",
+    "genre": "rock"
   },
   {
     "date": "2010-05-21",
@@ -1929,7 +2391,8 @@
     "country": "United States",
     "attendance": 14,
     "url": "https://www.last.fm/event/1418024+Sharon+Jones+and+the+Dap-Kings+at+Vic+Theatre+on+21+May+2010",
-    "photo": "sharon-jones-and-the-dap-kings-2010-05-21"
+    "photo": "sharon-jones-and-the-dap-kings-2010-05-21",
+    "genre": "soul"
   },
   {
     "date": "2010-05-28",
@@ -1941,7 +2404,8 @@
     "country": "United States",
     "attendance": 45,
     "url": "https://www.last.fm/event/1411621+The+Tallest+Man+on+Earth+at+Lincoln+Hall+on+28+May+2010",
-    "photo": "the-tallest-man-on-earth-2010-05-28"
+    "photo": "the-tallest-man-on-earth-2010-05-28",
+    "genre": "rock"
   },
   {
     "date": "2010-06-10",
@@ -1953,7 +2417,8 @@
     "country": "United States",
     "attendance": 58,
     "url": "https://www.last.fm/event/1359827+Kings+of+Convenience+at+Metro+on+10+June+2010",
-    "photo": "kings-of-convenience-2010-06-10"
+    "photo": "kings-of-convenience-2010-06-10",
+    "genre": "rock"
   },
   {
     "date": "2010-06-18",
@@ -1965,7 +2430,20 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/1538685+Kings+Go+Forth+at+Double+Door+on+18+June+2010",
-    "photo": "kings-go-forth-2010-06-18"
+    "photo": "kings-go-forth-2010-06-18",
+    "genre": "soul"
+  },
+  {
+    "date": "2010-07-09",
+    "year": 2010,
+    "artist": "Steve Winwood",
+    "lineup": "Steve Winwood, Santana",
+    "venue": "First Midwest Bank Amphitheatre",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2010-08-06",
@@ -1977,7 +2455,44 @@
     "country": "United States",
     "attendance": 9,
     "url": "https://www.last.fm/event/1579420+The+Walkmen+at+Double+Door+on+06+August+2010",
-    "photo": "the-walkmen-2010-08-06"
+    "photo": "the-walkmen-2010-08-06",
+    "genre": "rock"
+  },
+  {
+    "date": "2010-09-17",
+    "year": 2010,
+    "artist": "John Prine",
+    "lineup": "",
+    "venue": "Overture Hall",
+    "city": "Madison, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "folk"
+  },
+  {
+    "date": "2010-09-25",
+    "year": 2010,
+    "artist": "Of Montreal",
+    "lineup": "",
+    "venue": "Riviera Theatre",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "2010-09-30",
+    "year": 2010,
+    "artist": "Gayngs",
+    "lineup": "",
+    "venue": "The Metro",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2010-10-13",
@@ -1989,7 +2504,8 @@
     "country": "United States",
     "attendance": 28,
     "url": "https://www.last.fm/event/1631357+The+Walkmen+at+Metro+on+13+October+2010",
-    "photo": "the-walkmen-2010-10-13"
+    "photo": "the-walkmen-2010-10-13",
+    "genre": "rock"
   },
   {
     "date": "2010-10-15",
@@ -2001,7 +2517,32 @@
     "country": "United States",
     "attendance": 12,
     "url": "https://www.last.fm/event/1616852+The+Felice+Brothers+at+Empty+Bottle+on+15+October+2010",
-    "photo": "the-felice-brothers-2010-10-15"
+    "photo": "the-felice-brothers-2010-10-15",
+    "genre": "rock"
+  },
+  {
+    "date": "2010-10-19",
+    "year": 2010,
+    "artist": "Band of Horses",
+    "lineup": "",
+    "venue": "Riviera Theatre",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
+  },
+  {
+    "date": "2010-11-13",
+    "year": 2010,
+    "artist": "The Flatlanders",
+    "lineup": "The Flatlanders, The Wiyos",
+    "venue": "Old Town School of Folk Music",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2010-12-09",
@@ -2013,10 +2554,11 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/3932260+The+Greatest+Bandit:+Music+of+Kurt+Weill",
-    "photo": "daniel-knox-2010-12-09"
+    "photo": "daniel-knox-2010-12-09",
+    "genre": "rock"
   },
   {
-    "date": "2010-12-15",
+    "date": "2010-12-16",
     "year": 2010,
     "artist": "Andrew Bird",
     "lineup": "",
@@ -2025,7 +2567,8 @@
     "country": "United States",
     "attendance": 26,
     "url": "https://www.last.fm/event/1712165+Andrew+Bird+at+Fourth+Presbyterian+Church+on+15+December+2010",
-    "photo": "andrew-bird-2010-12-15"
+    "photo": "andrew-bird-2010-12-15",
+    "genre": "rock"
   },
   {
     "date": "2011-01-12",
@@ -2037,7 +2580,20 @@
     "country": "United States",
     "attendance": 12,
     "url": "https://www.last.fm/event/1778251+Houses+(Chicago)%2FSun+Airway%2FThe+Helio+Sequence",
-    "photo": "the-helio-sequence-2011-01-12"
+    "photo": "the-helio-sequence-2011-01-12",
+    "genre": "rock"
+  },
+  {
+    "date": "2011-02-05",
+    "year": 2011,
+    "artist": "Fitz and the Tantrums",
+    "lineup": "",
+    "venue": "The Metro",
+    "city": "Chicago",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2011-02-12",
@@ -2049,7 +2605,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/2034327+James+Hunter+at+SPACE+on+12+February+2011",
-    "photo": "james-hunter-2011-02-12"
+    "photo": "james-hunter-2011-02-12",
+    "genre": "soul"
   },
   {
     "date": "2011-03-03",
@@ -2061,7 +2618,8 @@
     "country": "United States",
     "attendance": 42,
     "url": "https://www.last.fm/event/1748979+The+Pogues+at+Congress+Theater+on+03+March+2011",
-    "photo": "the-pogues-2011-03-03"
+    "photo": "the-pogues-2011-03-03",
+    "genre": "rock"
   },
   {
     "date": "2011-03-12",
@@ -2073,7 +2631,8 @@
     "country": "United States",
     "attendance": 23,
     "url": "https://www.last.fm/event/1800169+Middle+Brother+at+Metro+on+12+March+2011",
-    "photo": "middle-brother-2011-03-12"
+    "photo": "middle-brother-2011-03-12",
+    "genre": "rock"
   },
   {
     "date": "2011-03-23",
@@ -2085,19 +2644,21 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/1873483+Papercuts+at+Schubas+Tavern+on+23+March+2011",
-    "photo": "2011-03-23"
+    "photo": "2011-03-23",
+    "genre": "rock"
   },
   {
-    "date": "2011-05-14",
+    "date": "2011-05-15",
     "year": 2011,
     "artist": "Loudon Wainwright III",
-    "lineup": "",
+    "lineup": "Loudon Wainwright III, Kim Richey",
     "venue": "Old Town School of Folk Music",
     "city": "Chicago",
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/2034325+Loudon+Wainwright+III+at+Old+Town+School+of+Folk+Music+on+14+May+2011",
-    "photo": "loudon-wainwright-iii-2011-05-14"
+    "photo": "loudon-wainwright-iii-2011-05-14",
+    "genre": "folk"
   },
   {
     "date": "2011-05-26",
@@ -2109,7 +2670,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/2034322+Daniel+Knox+at+The+Hideout+on+26+May+2011",
-    "photo": "daniel-knox-2011-05-26"
+    "photo": "daniel-knox-2011-05-26",
+    "genre": "rock"
   },
   {
     "date": "2011-07-29",
@@ -2121,7 +2683,8 @@
     "country": "United States",
     "attendance": 23,
     "url": "https://www.last.fm/event/1966466+Woods",
-    "photo": "woods-2011-07-29"
+    "photo": "woods-2011-07-29",
+    "genre": "rock"
   },
   {
     "date": "2011-08-12",
@@ -2133,7 +2696,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/2016745+Vetiver+at+Rickshaw+Stop+on+12+August+2011",
-    "photo": "vetiver-2011-08-12"
+    "photo": "vetiver-2011-08-12",
+    "genre": "rock"
   },
   {
     "date": "2011-08-27",
@@ -2145,7 +2709,8 @@
     "country": "United States",
     "attendance": 12,
     "url": "https://www.last.fm/event/2011605+The+Dodos+at+The+Autry+in+Griffith+Park+on+27+August+2011",
-    "photo": "2011-08-27"
+    "photo": "2011-08-27",
+    "genre": "rock"
   },
   {
     "date": "2011-09-10",
@@ -2157,7 +2722,8 @@
     "country": "United States",
     "attendance": 80,
     "url": "https://www.last.fm/event/1962875+Fleet+Foxes+at+Greek+Theatre+-+U.C.+Berkeley+on+10+September+2011",
-    "photo": "2011-09-10"
+    "photo": "2011-09-10",
+    "genre": "rock"
   },
   {
     "date": "2011-09-23",
@@ -2169,7 +2735,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/2061010+James+Vincent+McMorrow+at+Slim%27s+on+23+September+2011",
-    "photo": "james-vincent-mcmorrow-2011-09-23"
+    "photo": "james-vincent-mcmorrow-2011-09-23",
+    "genre": "rock"
   },
   {
     "date": "2011-10-11",
@@ -2181,7 +2748,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/2084448+Chad+VanGaalen+at+Caf%C3%A9+du+Nord+on+11+October+2011",
-    "photo": "2011-10-11"
+    "photo": "2011-10-11",
+    "genre": "rock"
   },
   {
     "date": "2011-10-14",
@@ -2193,7 +2761,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/2042285+%22How+Do+You+Do%22+Album+Release+Party!",
-    "photo": "mayer-hawthorne-the-county-2011-10-14"
+    "photo": "mayer-hawthorne-the-county-2011-10-14",
+    "genre": "soul"
   },
   {
     "date": "2011-11-23",
@@ -2205,7 +2774,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/2027270+Crooked+Fingers+at+Bottom+of+the+Hill+on+23+November+2011",
-    "photo": "2011-11-23"
+    "photo": "2011-11-23",
+    "genre": "rock"
   },
   {
     "date": "2011-12-03",
@@ -2217,7 +2787,8 @@
     "country": "United States",
     "attendance": 106,
     "url": "https://www.last.fm/event/2054879+The+National+at+Bill+Graham+Civic+Auditorium+on+03+December+2011",
-    "photo": "the-national-2011-12-03"
+    "photo": "the-national-2011-12-03",
+    "genre": "rock"
   },
   {
     "date": "2012-01-20",
@@ -2229,7 +2800,20 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/3175390+The+Walkmen+at+The+Independent+on+20+January+2012",
-    "photo": "2012-01-20"
+    "photo": "2012-01-20",
+    "genre": "rock"
+  },
+  {
+    "date": "2012-04-21",
+    "year": 2012,
+    "artist": "Bill Frisell",
+    "lineup": "",
+    "venue": "Herbst Theatre",
+    "city": "San Francisco",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "jazz"
   },
   {
     "date": "2012-05-18",
@@ -2241,7 +2825,8 @@
     "country": "United States",
     "attendance": 5,
     "url": "https://www.last.fm/event/3202694+Lee+Fields+&+The+Expressions+at+Brick+&+Mortar+Music+Hall+on+18+May+2012",
-    "photo": "lee-fields-the-expressions-2012-05-18"
+    "photo": "lee-fields-the-expressions-2012-05-18",
+    "genre": "soul"
   },
   {
     "date": "2012-08-09",
@@ -2253,7 +2838,8 @@
     "country": "United States",
     "attendance": 8,
     "url": "https://www.last.fm/event/3336109+Outside+Lands+Night+Show+-+Andrew+Bird",
-    "photo": "2012-08-09"
+    "photo": "2012-08-09",
+    "genre": "rock"
   },
   {
     "date": "2012-08-10",
@@ -2265,7 +2851,8 @@
     "country": "United States",
     "attendance": 485,
     "url": "https://www.last.fm/festival/3230923+Outside+Lands+Music+&+Arts+Festival+2012",
-    "photo": "2012-08-10"
+    "photo": "2012-08-10",
+    "genre": "rock"
   },
   {
     "date": "2012-08-10",
@@ -2277,7 +2864,8 @@
     "country": "United States",
     "attendance": 9,
     "url": "https://www.last.fm/event/3345509+Sharon+Van+Etten",
-    "photo": "2012-08-10"
+    "photo": "2012-08-10",
+    "genre": "rock"
   },
   {
     "date": "2012-08-19",
@@ -2289,7 +2877,8 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/3256629+Phish+at+Bill+Graham+Civic+Auditorium+on+19+August+2012",
-    "photo": "2012-08-19"
+    "photo": "2012-08-19",
+    "genre": "rock"
   },
   {
     "date": "2012-09-22",
@@ -2301,7 +2890,8 @@
     "country": "United States",
     "attendance": 21,
     "url": "https://www.last.fm/event/3290991+Wilco+at+Greek+Theatre+-+U.C.+Berkeley+on+22+September+2012",
-    "photo": "wilco-2012-09-22"
+    "photo": "wilco-2012-09-22",
+    "genre": "rock"
   },
   {
     "date": "2012-10-07",
@@ -2313,7 +2903,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/3336986+Michael+Kiwanuka+at+The+Independent+on+07+October+2012",
-    "photo": "2012-10-07"
+    "photo": "2012-10-07",
+    "genre": "rock"
   },
   {
     "date": "2013-01-25",
@@ -2325,7 +2916,20 @@
     "country": "United States",
     "attendance": 14,
     "url": "https://www.last.fm/event/3479794+The+Walkmen",
-    "photo": "2013-01-25"
+    "photo": "2013-01-25",
+    "genre": "rock"
+  },
+  {
+    "date": "2013-02-08",
+    "year": 2013,
+    "artist": "Ellie Goulding",
+    "lineup": "",
+    "venue": "Fox Theater",
+    "city": "Oakland, CA",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2013-03-09",
@@ -2337,19 +2941,21 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/3461306+James+Hunter+at+Bimbo%27s+365+Club+on+09+March+2013",
-    "photo": "2013-03-09"
+    "photo": "2013-03-09",
+    "genre": "soul"
   },
   {
     "date": "2013-04-21",
     "year": 2013,
     "artist": "Bill Frisell + Tim Robbins",
-    "lineup": "Bill Frisell",
+    "lineup": "Hunter S. Thompson's The Kentucky Derby",
     "venue": "SFJAZZ",
     "city": "San Francisco, CA",
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "photo": "bill-frisell-tim-robbins-2013-04-21"
+    "photo": "bill-frisell-tim-robbins-2013-04-21",
+    "genre": "jazz"
   },
   {
     "date": "2013-04-28",
@@ -2361,7 +2967,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "photo": "paul-kelly"
+    "photo": "paul-kelly",
+    "genre": "rock"
   },
   {
     "date": "2013-05-21",
@@ -2373,7 +2980,8 @@
     "country": "United States",
     "attendance": 15,
     "url": "https://www.last.fm/event/3544650+Devendra+Banhart+at+The+Regency+Ballroom+on+21+May+2013",
-    "photo": "2013-05-21"
+    "photo": "2013-05-21",
+    "genre": "rock"
   },
   {
     "date": "2013-06-08",
@@ -2385,7 +2993,8 @@
     "country": "United States",
     "attendance": 34,
     "url": "https://www.last.fm/festival/3582417+Chipotle+Cultivate",
-    "photo": "2013-06-08"
+    "photo": "2013-06-08",
+    "genre": "rock"
   },
   {
     "date": "2014-01-26",
@@ -2397,7 +3006,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/3932264+The+Gene+Clark:+No+Other+Tour",
-    "photo": "2014-01-26"
+    "photo": "2014-01-26",
+    "genre": "rock"
   },
   {
     "date": "2014-03-21",
@@ -2409,7 +3019,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/3932261+Bill+Frisell%27s+Beautiful+Dreamers",
-    "photo": "bill-frisells-beautiful-dreamers-2014-03-21"
+    "photo": "bill-frisells-beautiful-dreamers-2014-03-21",
+    "genre": "jazz"
   },
   {
     "date": "2014-04-09",
@@ -2421,7 +3032,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/3809745+James+Vincent+McMorrow+at+Bowery+Ballroom+on+09+April+2014",
-    "photo": "2014-04-09"
+    "photo": "2014-04-09",
+    "genre": "rock"
   },
   {
     "date": "2014-04-11",
@@ -2433,7 +3045,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/3932262+Wheat",
-    "photo": "2014-04-11"
+    "photo": "2014-04-11",
+    "genre": "rock"
   },
   {
     "date": "2014-04-15",
@@ -2445,7 +3058,8 @@
     "country": "United States",
     "attendance": 20,
     "url": "https://www.last.fm/event/3752713+Daniel+Rossen+at+Music+Hall+of+Williamsburg+on+15+April+2014",
-    "photo": "2014-04-15"
+    "photo": "2014-04-15",
+    "genre": "rock"
   },
   {
     "date": "2014-04-16",
@@ -2457,7 +3071,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/3932263+Hamilton+Leithauser",
-    "photo": "2014-04-16"
+    "photo": "2014-04-16",
+    "genre": "rock"
   },
   {
     "date": "2014-06-06",
@@ -2469,7 +3084,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/3932265+Hamilton+Leithauser",
-    "photo": "2014-06-06"
+    "photo": "2014-06-06",
+    "genre": "rock"
   },
   {
     "date": "2014-06-07",
@@ -2481,7 +3097,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/3878650+Hamilton+Leithauser+at+Brooklyn+Academy+of+Music+on+07+June+2014",
-    "photo": "2014-06-07"
+    "photo": "2014-06-07",
+    "genre": "rock"
   },
   {
     "date": "2014-07-10",
@@ -2493,7 +3110,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "photo": "the-wailers"
+    "photo": "the-wailers",
+    "genre": "rock"
   },
   {
     "date": "2014-08-29",
@@ -2505,7 +3123,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/3881692+The+Handsome+Family+at+Rough+Trade+NYC+on+29+August+2014",
-    "photo": "the-handsome-family"
+    "photo": "the-handsome-family",
+    "genre": "rock"
   },
   {
     "date": "2014-09-26",
@@ -2517,7 +3136,8 @@
     "country": "United States",
     "attendance": 18,
     "url": "https://www.last.fm/event/3904217+Broken+Bells+at+Central+Park+on+26+September+2014",
-    "photo": "broken-bells"
+    "photo": "broken-bells",
+    "genre": "rock"
   },
   {
     "date": "2014-10-01",
@@ -2529,7 +3149,8 @@
     "country": "United States",
     "attendance": 4,
     "url": "https://www.last.fm/event/3960361+Delta+Spirit+at+Bowery+Ballroom+on+01+October+2014",
-    "photo": "2014-10-01"
+    "photo": "2014-10-01",
+    "genre": "rock"
   },
   {
     "date": "2014-11-10",
@@ -2541,7 +3162,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595101+Howe+Gelb+and+Grant-Lee+Philips",
-    "photo": "2014-11-10"
+    "photo": "2014-11-10",
+    "genre": "rock"
   },
   {
     "date": "2014-12-04",
@@ -2553,7 +3175,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4011416+Sophia+Knapp+at+Baby%27s+All+Right+on+04+December+2014",
-    "photo": "2014-12-04"
+    "photo": "2014-12-04",
+    "genre": "rock"
   },
   {
     "date": "2014-12-11",
@@ -2565,7 +3188,20 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/3975078+Hamilton+Leithauser+at+Bowery+Ballroom+on+11+December+2014",
-    "photo": "hamilton-leithauser-2014-12-11"
+    "photo": "hamilton-leithauser-2014-12-11",
+    "genre": "rock"
+  },
+  {
+    "date": "2015-01-23",
+    "year": 2015,
+    "artist": "Sufjan Stevens",
+    "lineup": "Yarn/Wire",
+    "venue": "BAM Harvey Theater",
+    "city": "Brooklyn",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2015-01-30",
@@ -2577,7 +3213,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/4011418+Hamilton+Leithauser+at+Bowery+Ballroom+on+30+January+2015",
-    "photo": "2015-01-30"
+    "photo": "2015-01-30",
+    "genre": "rock"
   },
   {
     "date": "2015-02-27",
@@ -2589,7 +3226,20 @@
     "country": "United States",
     "attendance": 7,
     "url": "https://www.last.fm/event/3999346+The+Dodos+at+Music+Hall+of+Williamsburg+on+27+February+2015",
-    "photo": "2015-02-27"
+    "photo": "2015-02-27",
+    "genre": "rock"
+  },
+  {
+    "date": "2015-03-05",
+    "year": 2015,
+    "artist": "Bill Frisell",
+    "lineup": "Up & Down The Mississippi Traveling Highway 61",
+    "venue": "Lincoln Center",
+    "city": "New York City",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "jazz"
   },
   {
     "date": "2015-04-12",
@@ -2601,7 +3251,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4122655+Daniel+Knox+at+Rockwood+Music+Hall+on+12+April+2015",
-    "photo": "2015-04-12"
+    "photo": "2015-04-12",
+    "genre": "rock"
   },
   {
     "date": "2015-04-30",
@@ -2613,7 +3264,8 @@
     "country": "United States",
     "attendance": 5,
     "url": "https://www.last.fm/event/4055340+Lord+Huron+at+Terminal+5+on+30+April+2015",
-    "photo": "2015-04-30"
+    "photo": "2015-04-30",
+    "genre": "rock"
   },
   {
     "date": "2015-05-01",
@@ -2625,7 +3277,8 @@
     "country": "United States",
     "attendance": 26,
     "url": "https://www.last.fm/event/4041710+Sufjan+Stevens+at+Kings+Theatre+on+01+May+2015",
-    "photo": "2015-05-01"
+    "photo": "2015-05-01",
+    "genre": "rock"
   },
   {
     "date": "2015-05-02",
@@ -2637,7 +3290,8 @@
     "country": "United States",
     "attendance": 16,
     "url": "https://www.last.fm/event/4050225+Sufjan+Stevens+at+Kings+Theatre+on+02+May+2015",
-    "photo": "sufjan-stevens"
+    "photo": "sufjan-stevens",
+    "genre": "rock"
   },
   {
     "date": "2015-06-07",
@@ -2649,19 +3303,21 @@
     "country": "United States",
     "attendance": 7,
     "url": "https://www.last.fm/event/4053201+Calexico+at+Bowery+Ballroom+on+07+June+2015",
-    "photo": "2015-06-07"
+    "photo": "2015-06-07",
+    "genre": "rock"
   },
   {
     "date": "2015-08-04",
     "year": 2015,
     "artist": "Edward Sharpe & The Magnetic Zeros",
-    "lineup": "Preservation Hall Jazz Band",
+    "lineup": "Celebrate Brooklyn: Preservation Hall Jazz Band",
     "venue": "Prospect Park Bandshell",
     "city": "Brooklyn, New York",
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/4079741+Edward+Sharpe+&+The+Magnetic+Zeros+at+Prospect+Park+Bandshell+on+04+August+2015",
-    "photo": "2015-08-04"
+    "photo": "2015-08-04",
+    "genre": "rock"
   },
   {
     "date": "2015-10-09",
@@ -2673,7 +3329,8 @@
     "country": "United States",
     "attendance": 14,
     "url": "https://www.last.fm/event/4074563+Sun+Kil+Moon+at+Town+Hall+on+09+October+2015",
-    "photo": "sun-kil-moon"
+    "photo": "sun-kil-moon",
+    "genre": "rock"
   },
   {
     "date": "2015-11-01",
@@ -2685,7 +3342,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595140+Gregg+Allman",
-    "photo": "gregg-allman"
+    "photo": "gregg-allman",
+    "genre": "rock"
   },
   {
     "date": "2015-12-11",
@@ -2697,7 +3355,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595139+Hamilton+Leithauser",
-    "photo": "hamilton-leithauser-2015-12-11"
+    "photo": "hamilton-leithauser-2015-12-11",
+    "genre": "rock"
   },
   {
     "date": "2016-04-03",
@@ -2709,7 +3368,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595137+Michael+Kiwanuka",
-    "photo": "michael-kiwanuka"
+    "photo": "michael-kiwanuka",
+    "genre": "rock"
   },
   {
     "date": "2016-04-06",
@@ -2721,7 +3381,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595135+Edward+Sharpe+and+the+Magnetic+Zeroes+at+St.+Ann+&+the+Holy+Trinity+church+in+Brooklyn+Heights,+NYC",
-    "photo": "edward-sharpe-and-the-magnetic-zeroes-at-st-ann-the-holy-trinity-church-in-brooklyn-heights-nyc"
+    "photo": "edward-sharpe-and-the-magnetic-zeroes-at-st-ann-the-holy-trinity-church-in-brooklyn-heights-nyc",
+    "genre": "rock"
   },
   {
     "date": "2016-06-02",
@@ -2733,7 +3394,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595134+Hamilton+Leithauser+and+Paul+Maroon",
-    "photo": "hamilton-leithauser-and-paul-maroon"
+    "photo": "hamilton-leithauser-and-paul-maroon",
+    "genre": "rock"
   },
   {
     "date": "2016-06-26",
@@ -2745,7 +3407,8 @@
     "country": "United States",
     "attendance": 3,
     "url": "https://www.last.fm/event/4253188+Bill+Callahan+at+Baby%27s+All+Right+on+26+June+2016",
-    "photo": "bill-callahan-2016-06-26"
+    "photo": "bill-callahan-2016-06-26",
+    "genre": "rock"
   },
   {
     "date": "2016-07-21",
@@ -2757,7 +3420,8 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595133+Rayland+Baxter",
-    "photo": "rayland-baxter"
+    "photo": "rayland-baxter",
+    "genre": "rock"
   },
   {
     "date": "2016-08-19",
@@ -2769,7 +3433,8 @@
     "country": "United States",
     "attendance": 2,
     "url": "https://www.last.fm/event/4296421+Wilco",
-    "photo": "wilco-2016-08-19"
+    "photo": "wilco-2016-08-19",
+    "genre": "rock"
   },
   {
     "date": "2016-12-01",
@@ -2781,7 +3446,8 @@
     "country": "Australia",
     "attendance": 2,
     "url": "https://www.last.fm/event/4279902+The+Tallest+Man+on+Earth+at+Melbourne+Recital+Centre+on+01+December+2016",
-    "photo": "the-tallest-man-on-earth"
+    "photo": "the-tallest-man-on-earth",
+    "genre": "rock"
   },
   {
     "date": "2017-01-18",
@@ -2793,7 +3459,8 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595132+Moses+Sumney",
-    "photo": "moses-sumney"
+    "photo": "moses-sumney",
+    "genre": "rock"
   },
   {
     "date": "2017-04-18",
@@ -2805,7 +3472,8 @@
     "country": "Australia",
     "attendance": 2,
     "url": "https://www.last.fm/event/4304911+Andrew+Bird+at+Melbourne+Recital+Centre+on+18+April+2017",
-    "photo": "andrew-bird-2017-04-18"
+    "photo": "andrew-bird-2017-04-18",
+    "genre": "rock"
   },
   {
     "date": "2017-05-31",
@@ -2817,7 +3485,20 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595130+Bill+Callahan",
-    "photo": "bill-callahan-2017-05-31"
+    "photo": "bill-callahan-2017-05-31",
+    "genre": "rock"
+  },
+  {
+    "date": "2018-02-13",
+    "year": 2018,
+    "artist": "War on Drugs",
+    "lineup": "",
+    "venue": "The Forum",
+    "city": "Melbourne",
+    "country": "Australia",
+    "attendance": 0,
+    "url": "",
+    "genre": "rock"
   },
   {
     "date": "2018-03-01",
@@ -2829,7 +3510,8 @@
     "country": "Australia",
     "attendance": 19,
     "url": "https://www.last.fm/event/4354739+The+National+at+Sidney+Myer+Music+Bowl+on+01+March+2018",
-    "photo": "the-national-2018-03-01"
+    "photo": "the-national-2018-03-01",
+    "genre": "rock"
   },
   {
     "date": "2019-02-12",
@@ -2841,7 +3523,8 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595498+Charlie+Whitten",
-    "photo": "charlie-whitten"
+    "photo": "charlie-whitten",
+    "genre": "rock"
   },
   {
     "date": "2019-03-08",
@@ -2853,7 +3536,8 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595124+Gregory+Alan+Isakov",
-    "photo": "gregory-alan-isakov"
+    "photo": "gregory-alan-isakov",
+    "genre": "rock"
   },
   {
     "date": "2019-05-25",
@@ -2865,7 +3549,8 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595126+Jeff+Tweedy",
-    "photo": "jeff-tweedy"
+    "photo": "jeff-tweedy",
+    "genre": "rock"
   },
   {
     "date": "2019-10-11",
@@ -2877,7 +3562,8 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595129+Felice+Brothers",
-    "photo": "felice-brothers"
+    "photo": "felice-brothers",
+    "genre": "rock"
   },
   {
     "date": "2019-10-13",
@@ -2889,7 +3575,8 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595128+Sui+Zhen",
-    "photo": "sui-zhen"
+    "photo": "sui-zhen",
+    "genre": "rock"
   },
   {
     "date": "2020-03-04",
@@ -2901,7 +3588,8 @@
     "country": "Australia",
     "attendance": 1,
     "url": "https://www.last.fm/event/4595131+Bill+Callahan",
-    "photo": "bill-callahan"
+    "photo": "bill-callahan",
+    "genre": "rock"
   },
   {
     "date": "2022-02-15",
@@ -2913,7 +3601,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "icehouse"
+    "photo": "icehouse",
+    "genre": "rock"
   },
   {
     "date": "2023-03-09",
@@ -2925,7 +3614,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "andrew-bird-2023-03-09"
+    "photo": "andrew-bird-2023-03-09",
+    "genre": "rock"
   },
   {
     "date": "2023-03-21",
@@ -2937,7 +3627,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "bon-iver-2023-03-21"
+    "photo": "bon-iver-2023-03-21",
+    "genre": "rock"
   },
   {
     "date": "2023-03-24",
@@ -2949,7 +3640,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "bon-iver-2023-03-24"
+    "photo": "bon-iver-2023-03-24",
+    "genre": "rock"
   },
   {
     "date": "2023-04-11",
@@ -2961,7 +3653,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "nathaniel-rateliff-the-night-sweats"
+    "photo": "nathaniel-rateliff-the-night-sweats",
+    "genre": "rock"
   },
   {
     "date": "2023-10-25",
@@ -2973,7 +3666,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "makaya-mccraven"
+    "photo": "makaya-mccraven",
+    "genre": "jazz"
   },
   {
     "date": "2023-12-08",
@@ -2985,7 +3679,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "tallest-man-on-earth"
+    "photo": "tallest-man-on-earth",
+    "genre": "rock"
   },
   {
     "date": "2024-01-27",
@@ -2997,7 +3692,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "lord-huron"
+    "photo": "lord-huron",
+    "genre": "rock"
   },
   {
     "date": "2024-02-15",
@@ -3009,7 +3705,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "calexico"
+    "photo": "calexico",
+    "genre": "rock"
   },
   {
     "date": "2024-03-06",
@@ -3021,7 +3718,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "the-national-2024-03-06"
+    "photo": "the-national-2024-03-06",
+    "genre": "rock"
   },
   {
     "date": "2024-03-17",
@@ -3033,7 +3731,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "wilco-2024-03-17"
+    "photo": "wilco-2024-03-17",
+    "genre": "rock"
   },
   {
     "date": "2024-11-22",
@@ -3045,7 +3744,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "the-original-wailers"
+    "photo": "the-original-wailers",
+    "genre": "rock"
   },
   {
     "date": "2024-12-04",
@@ -3057,7 +3757,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "waxahatchee"
+    "photo": "waxahatchee",
+    "genre": "rock"
   },
   {
     "date": "2025-03-05",
@@ -3069,7 +3770,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "bonny-light-horseman"
+    "photo": "bonny-light-horseman",
+    "genre": "rock"
   },
   {
     "date": "2025-03-21",
@@ -3081,7 +3783,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "mj-lenderman"
+    "photo": "mj-lenderman",
+    "genre": "rock"
   },
   {
     "date": "2025-05-20",
@@ -3093,7 +3796,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "sigur-r\u00f3s"
+    "photo": "sigur-r\u00f3s",
+    "genre": "rock"
   },
   {
     "date": "2025-10-17",
@@ -3105,7 +3809,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "whitney"
+    "photo": "whitney",
+    "genre": "rock"
   },
   {
     "date": "2026-03-04",
@@ -3117,7 +3822,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "willie-watson"
+    "photo": "willie-watson",
+    "genre": "rock"
   },
   {
     "date": "2026-03-10",
@@ -3129,6 +3835,7 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "photo": "iron-wine"
+    "photo": "iron-wine",
+    "genre": "rock"
   }
 ]

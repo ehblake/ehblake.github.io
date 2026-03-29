@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shows</title>
+<title>Concert Timeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,1007 +16,384 @@ body {
   color: #111;
   line-height: 1.6;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-/* Header */
 .header {
-  padding: 2.5rem 2rem 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 2.5rem 0 1rem;
 }
 .header h1 {
   font-family: 'DM Sans', sans-serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #111;
   letter-spacing: -0.02em;
 }
-.header .subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+.header .back-link {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: #666;
-  margin-top: 0.25rem;
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
+.header .back-link:hover { color: #666; }
 
-/* Controls bar */
+/* Legend */
 .controls {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem 1.5rem;
+  padding: 0 0 0.75rem;
   display: flex;
-  gap: 0.75rem;
+  gap: 1.5rem;
   align-items: center;
   flex-wrap: wrap;
 }
-.search-input {
-  flex: 1;
-  min-width: 200px;
-  padding: 0.5rem 0.75rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: #111;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.search-input:focus { border-color: #FF0064; }
-.search-input::placeholder { color: #999; }
-
-.btn {
-  padding: 8px 16px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: #111;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-.btn:hover { border-color: #FF0064; color: #FF0064; }
-.btn.active { background: #FF0064; color: #fff; border-color: #FF0064; font-weight: 500; }
-.btn.small { padding: 6px 12px; font-size: 0.7rem; }
-
-/* Add form */
-.add-form-wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s ease, padding-bottom 0.3s ease;
-}
-.add-form-wrap.open {
-  max-height: 400px;
-  padding-bottom: 1.5rem;
-}
-.add-form {
-  background: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1.25rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-.add-form label {
+.legend {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #666;
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  gap: 1rem;
+  align-items: center;
 }
-.add-form input {
-  padding: 0.45rem 0.6rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: #111;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  outline: none;
-}
-.add-form input:focus { border-color: #FF0064; }
-.add-form .form-actions {
-  grid-column: 1 / -1;
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-end;
-  margin-top: 0.25rem;
-}
-
-/* Events list */
-.events-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem 3rem;
-}
-
-.year-group {
-  margin-bottom: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 1.5rem;
-}
-.year-header {
-  grid-column: 1 / -1;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #FF0064;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.75rem;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 10;
-  padding-top: 0.5rem;
-}
-.year-header .count { color: #999; font-weight: 400; font-size: 0.875rem; }
-
-/* Event row */
-.event-row {
-  display: grid;
-  grid-template-columns: 78px 1fr;
-  gap: 0.75rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid #eee;
-  transition: background 0.15s;
-  text-decoration: none;
-  color: inherit;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.event-row:hover { background: #f8f8f8; }
-
-/* Photo placeholder */
-.event-photo {
-  width: 78px;
-  height: 78px;
-  border-radius: 4px;
-  background: #f0f0f0;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.event-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.event-photo .placeholder {
-  width: 100%;
-  height: 100%;
+.legend-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #ccc;
-  font-size: 1.2rem;
-}
-
-/* Event details */
-.event-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-}
-.event-artist {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  color: #111;
-  font-size: 0.95rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.event-meta {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  color: #666;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.event-lineup {
-  font-size: 0.8rem;
-  color: #888;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.venue-name { color: #FF0064; }
-
-/* Empty state */
-.empty-state {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: #999;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-}
-
-/* Toast notification */
-.toast {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: #FF0064;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  opacity: 0;
-  transition: transform 0.3s, opacity 0.3s;
-  z-index: 200;
-}
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-
-/* Detail panel overlay */
-.detail-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.3);
-  z-index: 50;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-.detail-overlay.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Detail panel */
-.detail-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: min(480px, 100vw);
-  background: #fff;
-  z-index: 60;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  border-left: 1px solid #ddd;
-}
-.detail-panel.open { transform: translateX(0); }
-
-.detail-panel-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid #ddd;
-  flex-shrink: 0;
-}
-.detail-back {
-  background: none;
-  border: none;
-  color: #999;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  line-height: 1;
-  transition: color 0.2s;
-}
-.detail-back:hover { color: #111; }
-.detail-panel-header .spacer { flex: 1; }
-
-/* Detail photo */
-.detail-photo-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/10;
-  background: #f0f0f0;
-  cursor: pointer;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.detail-photo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.detail-photo-wrap .placeholder-large {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #ccc;
-  gap: 0.5rem;
-}
-.detail-photo-wrap .placeholder-large .icon { font-size: 2.5rem; }
-.detail-photo-wrap .placeholder-large .label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #999;
-}
-.detail-photo-wrap:hover .placeholder-large .label { color: #666; }
-
-/* Detail thumbnail row */
-.detail-thumb-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background: #f8f8f8;
-  cursor: pointer;
-  border-top: 1px solid #eee;
-}
-.detail-thumb-row:hover { background: #f0f0f0; }
-.detail-thumb-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 4px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: #e8e8e8;
-}
-.detail-thumb-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.detail-thumb-img .placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ccc;
-  font-size: 1.2rem;
-}
-.detail-thumb-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #999;
-}
-.detail-thumb-row:hover .detail-thumb-label { color: #666; }
-
-/* Detail body */
-.detail-body {
-  padding: 1.5rem;
-  flex: 1;
-}
-
-.detail-field {
-  margin-bottom: 1rem;
-}
-.detail-field-label {
-  font-family: 'Inter', sans-serif;
+  gap: 5px;
   font-size: 0.7rem;
   font-weight: 500;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.2rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-transform: lowercase;
 }
-.detail-field-value {
-  font-size: 0.95rem;
-  color: #111;
+.legend-item:hover { opacity: 0.7; }
+.legend-item.dimmed { opacity: 0.3; }
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
-.detail-field-value.artist-name {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #111;
-}
-.detail-field-value.venue-val { color: #FF0064; }
 
-/* Edit mode inputs */
-.detail-field input {
+/* Chart area */
+.chart-wrap {
+  padding: 0;
+  position: relative;
+}
+#chart {
   width: 100%;
-  padding: 0.4rem 0.6rem;
+  overflow: visible;
+  display: block;
+}
+
+/* Year labels */
+.year-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  fill: #bbb;
+  text-anchor: middle;
+}
+.year-label-major {
+  fill: #888;
+  font-weight: 400;
+}
+
+/* Tooltip */
+.tooltip {
+  position: fixed;
+  pointer-events: none;
   background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: #111;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  outline: none;
-  display: none;
-}
-.detail-field input:focus { border-color: #FF0064; }
-.detail-panel.editing .detail-field input { display: block; }
-.detail-panel.editing .detail-field-value { display: none; }
-
-.detail-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ddd;
-}
-.detail-actions .spacer { flex: 1; }
-
-/* Map */
-.detail-map {
-  width: 100%;
-  height: 200px;
-  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  z-index: 1000;
+  width: 240px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
   overflow: hidden;
-  margin-top: 1rem;
-  background: #f0f0f0;
-  border: 1px solid #ddd;
 }
-.detail-map iframe {
+.tooltip.visible { opacity: 1; }
+.tooltip .tt-photo {
   width: 100%;
-  height: 100%;
-  border: 0;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: #f5f5f5;
+}
+.tooltip .tt-body {
+  padding: 10px 14px 12px;
+}
+.tooltip .tt-artist {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 1px;
+  color: #111;
+}
+.tooltip .tt-date {
+  color: #888;
+  font-size: 0.7rem;
+  font-family: 'DM Mono', monospace;
+}
+.tooltip .tt-venue {
+  color: #555;
+  font-size: 0.75rem;
+  margin-top: 4px;
 }
 
-
-@media (max-width: 600px) {
-  .header, .controls, .events-container, .add-form-wrap { padding-left: 1rem; padding-right: 1rem; }
-  .add-form { grid-template-columns: 1fr; }
-  .year-group { grid-template-columns: 1fr; }
-  .event-row { grid-template-columns: 62px 1fr; gap: 0.5rem; }
-  .event-photo { width: 62px; height: 62px; }
-  .detail-panel { width: 100vw; }
-  .detail-body { padding: 1rem; }
-  .detail-back { font-size: 1.5rem; padding: 0.5rem; }
+/* Responsive */
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 0 0.75rem; }
+  .header h1 { font-size: 1.75rem; }
 }
-
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>Past concerts</h1>
-  <div class="subtitle" id="subtitle"></div>
-  <a href="map.html" style="display:inline-block;margin-top:0.5rem;font-family:Inter,sans-serif;font-size:0.8rem;font-weight:500;color:#111;text-decoration:underline;text-underline-offset:3px;">View map →</a>
+<div class="header" id="header">
+  <h1>Concert timeline</h1>
 </div>
 
-<div class="controls">
-  <input type="text" class="search-input" id="search" placeholder="Search artist, venue, city...">
-  <span style="flex:1"></span>
-  <button class="btn" id="add-btn">+ Add Show</button>
+<div class="controls" id="controls">
+  <div class="legend" id="legend"></div>
 </div>
 
-<div class="add-form-wrap" id="add-form-wrap">
-  <form class="add-form" id="add-form">
-    <label>date <input type="date" name="date" required></label>
-    <label>artist <input type="text" name="artist" required></label>
-    <label>lineup <input type="text" name="lineup" placeholder="support acts (optional)"></label>
-    <label>venue <input type="text" name="venue" required></label>
-    <label>city <input type="text" name="city" required></label>
-    <label>country <input type="text" name="country" required></label>
-    <div class="form-actions">
-      <button type="button" class="btn" id="cancel-btn">Cancel</button>
-      <button type="submit" class="btn active">Save</button>
-    </div>
-  </form>
+<div class="chart-wrap">
+  <svg id="chart"></svg>
 </div>
 
-<div class="events-container" id="events-container"></div>
-
-<!-- Detail panel -->
-<div class="detail-overlay" id="detail-overlay"></div>
-<div class="detail-panel" id="detail-panel">
-  <div class="detail-panel-header">
-    <button class="detail-back" id="detail-back">&larr; Back</button>
-    <span class="spacer"></span>
-    <button class="btn small" id="edit-btn">Edit</button>
-  </div>
-
-  <div class="detail-photo-wrap" id="detail-photo-wrap">
-    <!-- filled by JS -->
-  </div>
-  <input type="file" id="photo-input-large" accept="image/*" style="display:none">
-  <div class="detail-thumb-row" id="detail-thumb-row">
-    <div class="detail-thumb-img" id="detail-thumb-img">
-      <!-- filled by JS -->
-    </div>
-    <div class="detail-thumb-label" id="detail-thumb-label">click to set thumbnail</div>
-  </div>
-  <input type="file" id="photo-input-thumb" accept="image/*" style="display:none">
-
-  <div class="detail-body">
-    <div class="detail-field">
-      <div class="detail-field-label">Artist</div>
-      <div class="detail-field-value artist-name" id="d-artist"></div>
-      <input type="text" id="d-artist-input" data-field="artist">
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Date</div>
-      <div class="detail-field-value" id="d-date"></div>
-      <input type="date" id="d-date-input" data-field="date">
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Lineup</div>
-      <div class="detail-field-value" id="d-lineup"></div>
-      <input type="text" id="d-lineup-input" data-field="lineup">
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Venue</div>
-      <div class="detail-field-value venue-val" id="d-venue"></div>
-      <input type="text" id="d-venue-input" data-field="venue">
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">City</div>
-      <div class="detail-field-value" id="d-city"></div>
-      <input type="text" id="d-city-input" data-field="city">
-    </div>
-    <div class="detail-field">
-      <div class="detail-field-label">Country</div>
-      <div class="detail-field-value" id="d-country"></div>
-      <input type="text" id="d-country-input" data-field="country">
-    </div>
-
-    <div class="detail-map" id="detail-map"></div>
-
-    <div class="detail-actions" id="detail-actions" style="display:none">
-      <div class="spacer"></div>
-      <button class="btn small" id="edit-cancel-btn">Cancel</button>
-      <button class="btn small active" id="edit-save-btn">Save</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
+<div class="tooltip" id="tooltip"></div>
 
 <script>
-const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-let allEvents = [];
-let currentEvent = null;
-let isEditing = false;
+(function() {
 
-async function init() {
-  const resp = await fetch('events.json');
-  allEvents = await resp.json();
-  allEvents.sort((a, b) => b.date.localeCompare(a.date));
-  updateSubtitle();
-  render(allEvents);
-
-  // Hide editing UI on live site
-  if (!isLocal) {
-    document.getElementById('add-btn').style.display = 'none';
-    document.getElementById('add-form-wrap').style.display = 'none';
-    document.getElementById('edit-btn').style.display = 'none';
-    document.getElementById('detail-thumb-row').style.display = 'none';
-    document.getElementById('photo-input-large').style.display = 'none';
-    document.getElementById('photo-input-thumb').style.display = 'none';
-    document.getElementById('detail-actions').style.display = 'none';
-  }
-}
-
-function updateSubtitle() {
-  const years = new Set(allEvents.map(e => e.year));
-  const minYear = Math.min(...years);
-  const maxYear = Math.max(...years);
-  document.getElementById('subtitle').textContent =
-    `${allEvents.length} shows \u00b7 ${minYear}\u2013${maxYear}`;
-}
-
-function photoThumb(event) {
-  if (event.photo) return `photos/${event.photo}-thumb.jpg`;
-  return `photos/${event.date}.jpg`;
-}
-
-function photoLarge(event) {
-  if (event.photo) return `photos/${event.photo}-large.jpg`;
-  return `photos/${event.date}-large.jpg`;
-}
-
-function render(events) {
-  const container = document.getElementById('events-container');
-
-  if (events.length === 0) {
-    container.innerHTML = '<div class="empty-state">No matching shows</div>';
-    return;
-  }
-
-  const groups = {};
-  for (const event of events) {
-    const y = event.year;
-    if (!groups[y]) groups[y] = [];
-    groups[y].push(event);
-  }
-
-  const years = Object.keys(groups).sort((a, b) => b - a);
-  let html = '';
-
-  for (const year of years) {
-    const items = groups[year];
-    html += `<div class="year-group">`;
-    html += `<div class="year-header"><span>${year}</span><span class="count">${items.length}</span></div>`;
-
-    for (const e of items) {
-      const photoFile = photoThumb(e);
-      const lineup = e.lineup && e.lineup !== e.artist
-        ? `<div class="event-lineup">${esc(e.lineup)}</div>` : '';
-      const dateStr = formatDate(e.date);
-
-      html += `<div class="event-row" data-date="${esc(e.date)}">
-        <div class="event-photo">
-          <img src="${photoFile}" alt="" loading="lazy"
-               onerror="this.parentElement.innerHTML='<div class=placeholder>\u266B</div>'">
-        </div>
-        <div class="event-details">
-          <div class="event-artist">${esc(e.artist)}</div>
-          ${lineup}
-          <div class="event-meta">${dateStr} \u00b7 <span class="venue-name">${esc(e.venue)}</span>, ${esc(e.city)}</div>
-        </div>
-      </div>`;
-    }
-
-    html += '</div>';
-  }
-
-  container.innerHTML = html;
-
-  // Attach click handlers
-  container.querySelectorAll('.event-row').forEach(row => {
-    row.addEventListener('click', () => {
-      const date = row.dataset.date;
-      const event = allEvents.find(e => e.date === date);
-      if (event) openDetail(event);
-    });
-  });
-}
-
-function formatDate(dateStr) {
-  const [y, m, d] = dateStr.split('-').map(Number);
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${months[m - 1]} ${d}`;
-}
-
-function formatDateLong(dateStr) {
-  const [y, m, d] = dateStr.split('-').map(Number);
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  return `${months[m - 1]} ${d}, ${y}`;
-}
-
-function esc(str) {
-  const el = document.createElement('span');
-  el.textContent = str || '';
-  return el.innerHTML;
-}
-
-// ── Map geocoding ──
-const geoCache = {}; // cache geocode results by query string
-
-async function loadMap(event) {
-  const mapEl = document.getElementById('detail-map');
-  mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-family:Inter,sans-serif;font-size:0.8rem">Loading map...</div>';
-
-  const query = `${event.venue}, ${event.city}, ${event.country}`;
-
-  let coords = geoCache[query];
-  if (!coords) {
-    try {
-      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`;
-      const resp = await fetch(url, { headers: { 'User-Agent': 'LastfmEventsViewer/1.0' } });
-      const results = await resp.json();
-
-      if (results.length > 0) {
-        coords = { lat: parseFloat(results[0].lat), lon: parseFloat(results[0].lon) };
-      } else {
-        // Fallback: try just city + country
-        const fallbackUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(event.city + ', ' + event.country)}&format=json&limit=1`;
-        const fallbackResp = await fetch(fallbackUrl, { headers: { 'User-Agent': 'LastfmEventsViewer/1.0' } });
-        const fallbackResults = await fallbackResp.json();
-        if (fallbackResults.length > 0) {
-          coords = { lat: parseFloat(fallbackResults[0].lat), lon: parseFloat(fallbackResults[0].lon) };
-        }
-      }
-      if (coords) geoCache[query] = coords;
-    } catch (e) {
-      // Geocoding failed, show fallback
-    }
-  }
-
-  if (coords) {
-    // Build bbox: ~0.01 degrees around the point (~1km)
-    const d = 0.008;
-    const bbox = `${coords.lon - d},${coords.lat - d},${coords.lon + d},${coords.lat + d}`;
-    mapEl.innerHTML =
-      `<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${coords.lat},${coords.lon}"
-        loading="lazy" referrerpolicy="no-referrer"></iframe>`;
-  } else {
-    mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-family:Inter,sans-serif;font-size:0.8rem">Could not locate venue</div>';
-  }
-}
-
-// ── Search ──
-document.getElementById('search').addEventListener('input', (e) => {
-  const q = e.target.value.toLowerCase().trim();
-  if (!q) { render(allEvents); return; }
-  const filtered = allEvents.filter(ev =>
-    ev.artist.toLowerCase().includes(q) ||
-    ev.venue.toLowerCase().includes(q) ||
-    ev.city.toLowerCase().includes(q) ||
-    (ev.lineup || '').toLowerCase().includes(q)
-  );
-  render(filtered);
-});
-
-// ── Add form ──
-const addBtn = document.getElementById('add-btn');
-const formWrap = document.getElementById('add-form-wrap');
-const cancelBtn = document.getElementById('cancel-btn');
-
-addBtn.addEventListener('click', () => {
-  const open = formWrap.classList.toggle('open');
-  addBtn.classList.toggle('active', open);
-});
-cancelBtn.addEventListener('click', () => {
-  formWrap.classList.remove('open');
-  addBtn.classList.remove('active');
-});
-
-document.getElementById('add-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const event = Object.fromEntries(fd);
-
-  const resp = await fetch('/api/events', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(event),
-  });
-
-  if (resp.ok) {
-    const saved = await resp.json();
-    allEvents.push(saved);
-    allEvents.sort((a, b) => b.date.localeCompare(a.date));
-    updateSubtitle();
-    render(allEvents);
-    e.target.reset();
-    formWrap.classList.remove('open');
-    addBtn.classList.remove('active');
-    toast(`Added ${saved.artist}`);
-  } else {
-    toast('Error saving event');
-  }
-});
-
-// ── Detail panel ──
-const panel = document.getElementById('detail-panel');
-const overlay = document.getElementById('detail-overlay');
-const editBtn = document.getElementById('edit-btn');
-const editActions = document.getElementById('detail-actions');
-const photoWrap = document.getElementById('detail-photo-wrap');
-const photoInputLarge = document.getElementById('photo-input-large');
-const photoInputThumb = document.getElementById('photo-input-thumb');
-const thumbRow = document.getElementById('detail-thumb-row');
-const thumbImg = document.getElementById('detail-thumb-img');
-const thumbLabel = document.getElementById('detail-thumb-label');
-
-function openDetail(event) {
-  currentEvent = event;
-  isEditing = false;
-  panel.classList.remove('editing');
-  editActions.style.display = 'none';
-  editBtn.textContent = 'Edit';
-
-  // Populate fields
-  document.getElementById('d-artist').textContent = event.artist;
-  document.getElementById('d-date').textContent = formatDateLong(event.date);
-  document.getElementById('d-lineup').textContent = event.lineup || '\u2014';
-  document.getElementById('d-venue').textContent = event.venue;
-  document.getElementById('d-city').textContent = event.city;
-  document.getElementById('d-country').textContent = event.country;
-
-  // Populate edit inputs
-  document.getElementById('d-artist-input').value = event.artist;
-  document.getElementById('d-date-input').value = event.date;
-  document.getElementById('d-lineup-input').value = event.lineup || '';
-  document.getElementById('d-venue-input').value = event.venue;
-  document.getElementById('d-city-input').value = event.city;
-  document.getElementById('d-country-input').value = event.country;
-
-  // Large photo
-  const lgSrc = photoLarge(event);
-  photoWrap.innerHTML = `<img src="${lgSrc}" alt=""
-    onerror="this.parentElement.innerHTML='<div class=placeholder-large><div class=icon>\u266B</div><div class=label>click to add photo</div></div>'">`;
-
-  // Thumbnail preview
-  const thSrc = photoThumb(event);
-  thumbImg.innerHTML = `<img src="${thSrc}" alt=""
-    onerror="this.parentElement.innerHTML='<div class=placeholder>\u266B</div>'">`;
-  thumbLabel.textContent = 'click to set thumbnail';
-
-  // Map — geocode venue then show with marker
-  loadMap(event);
-
-
-  // Open
-  panel.classList.add('open');
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeDetail() {
-  panel.classList.remove('open', 'editing');
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-  isEditing = false;
-}
-
-document.getElementById('detail-back').addEventListener('click', closeDetail);
-overlay.addEventListener('click', closeDetail);
-
-// Edit toggle
-editBtn.addEventListener('click', () => {
-  if (!isEditing) {
-    isEditing = true;
-    panel.classList.add('editing');
-    editActions.style.display = 'flex';
-    editBtn.textContent = 'Editing';
-  } else {
-    isEditing = false;
-    panel.classList.remove('editing');
-    editActions.style.display = 'none';
-    editBtn.textContent = 'Edit';
-  }
-});
-
-document.getElementById('edit-cancel-btn').addEventListener('click', () => {
-  isEditing = false;
-  panel.classList.remove('editing');
-  editActions.style.display = 'none';
-  editBtn.textContent = 'Edit';
-  // Reset inputs to current values
-  if (currentEvent) {
-    document.getElementById('d-artist-input').value = currentEvent.artist;
-    document.getElementById('d-date-input').value = currentEvent.date;
-    document.getElementById('d-lineup-input').value = currentEvent.lineup || '';
-    document.getElementById('d-venue-input').value = currentEvent.venue;
-    document.getElementById('d-city-input').value = currentEvent.city;
-    document.getElementById('d-country-input').value = currentEvent.country;
-  }
-});
-
-document.getElementById('edit-save-btn').addEventListener('click', async () => {
-  if (!currentEvent) return;
-
-  const updates = {
-    artist: document.getElementById('d-artist-input').value,
-    date: document.getElementById('d-date-input').value,
-    lineup: document.getElementById('d-lineup-input').value,
-    venue: document.getElementById('d-venue-input').value,
-    city: document.getElementById('d-city-input').value,
-    country: document.getElementById('d-country-input').value,
+  const GENRE_COLORS = {
+    rock:    '#ff0064',
+    blues:   '#0b1d3a',
+    jazz:    '#6a00f4',
+    soul:    '#1B998B',
+    folk:    '#4BB3FD',
   };
+  const UNKNOWN_COLOR = '#d1d4db';
 
-  const resp = await fetch(`/api/events/${currentEvent.date}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(updates),
-  });
+  const RADIUS = 14;
+  const COLLISION_PADDING = 4;
+  const LEFT_PADDING = 60;  // px from left edge of page to first bubble area
 
-  if (resp.ok) {
-    const updated = await resp.json();
-    // Update in-memory
-    const idx = allEvents.findIndex(e => e.date === currentEvent.date);
-    if (idx !== -1) allEvents[idx] = updated;
-    allEvents.sort((a, b) => b.date.localeCompare(a.date));
-    updateSubtitle();
-    render(allEvents);
-    openDetail(updated); // Refresh detail panel
-    toast(`Updated ${updated.artist}`);
-  } else {
-    toast('Error saving changes');
+  const tooltip = document.getElementById('tooltip');
+  const svg = d3.select('#chart');
+
+  let allEvents = [];
+  let activeGenres = new Set();
+  let simulation;
+
+  function formatDate(dateStr) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return `${months[m - 1]} ${d}, ${y}`;
   }
-});
 
-// Photo upload — large
-photoWrap.addEventListener('click', () => {
-  if (!isLocal) return;
-  photoInputLarge.click();
-});
-
-photoInputLarge.addEventListener('change', async () => {
-  if (!currentEvent || !photoInputLarge.files[0]) return;
-
-  const fd = new FormData();
-  fd.append('file', photoInputLarge.files[0]);
-
-  const resp = await fetch(`/api/photos/${currentEvent.date}?size=large`, {
-    method: 'POST',
-    body: fd,
-  });
-
-  if (resp.ok) {
-    const result = await resp.json();
-    currentEvent.photo = result.photo;
-    const idx = allEvents.findIndex(e => e.date === currentEvent.date);
-    if (idx !== -1) allEvents[idx].photo = result.photo;
-
-    const lgSrc = photoLarge(currentEvent) + '?t=' + Date.now();
-    photoWrap.innerHTML = `<img src="${lgSrc}" alt="">`;
-
-    render(allEvents);
-    toast('Large photo uploaded');
-  } else {
-    toast('Error uploading photo');
+  function photoThumb(d) {
+    if (d.photo) return `photos/${d.photo}-thumb.jpg`;
+    return null;
   }
-  photoInputLarge.value = '';
-});
 
-// Photo upload — thumbnail
-thumbRow.addEventListener('click', () => {
-  photoInputThumb.click();
-});
+  async function init() {
+    const resp = await fetch('events.json');
+    allEvents = await resp.json();
 
-photoInputThumb.addEventListener('change', async () => {
-  if (!currentEvent || !photoInputThumb.files[0]) return;
+    allEvents.forEach(d => {
+      d.parsedDate = new Date(d.date + 'T12:00:00');
+    });
 
-  const fd = new FormData();
-  fd.append('file', photoInputThumb.files[0]);
+    const genreOrder = ['rock', 'blues', 'jazz', 'folk', 'soul'];
+    const genresInData = new Set(allEvents.map(d => d.genre).filter(Boolean));
+    const genres = genreOrder.filter(g => genresInData.has(g));
+    activeGenres = new Set(genres);
+    buildLegend(genres);
 
-  const resp = await fetch(`/api/photos/${currentEvent.date}?size=thumb`, {
-    method: 'POST',
-    body: fd,
-  });
-
-  if (resp.ok) {
-    const result = await resp.json();
-    currentEvent.photo = result.photo;
-    const idx = allEvents.findIndex(e => e.date === currentEvent.date);
-    if (idx !== -1) allEvents[idx].photo = result.photo;
-
-    const thSrc = photoThumb(currentEvent) + '?t=' + Date.now();
-    thumbImg.innerHTML = `<img src="${thSrc}" alt="">`;
-    thumbLabel.textContent = 'thumbnail';
-
-    render(allEvents);
-    toast('Thumbnail uploaded');
-  } else {
-    toast('Error uploading photo');
+    render();
+    window.addEventListener('resize', debounce(render, 200));
   }
-  photoInputThumb.value = '';
-});
 
-// Keyboard: Escape to close
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && panel.classList.contains('open')) {
-    closeDetail();
+  function buildLegend(genres) {
+    const container = document.getElementById('legend');
+    genres.forEach(g => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.dataset.genre = g;
+      item.innerHTML = `<span class="legend-dot" style="background:${GENRE_COLORS[g] || UNKNOWN_COLOR}"></span>${g}`;
+      item.addEventListener('click', () => toggleGenre(g, item));
+      container.appendChild(item);
+    });
   }
-});
 
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2500);
-}
+  function toggleGenre(genre, el) {
+    if (activeGenres.has(genre)) {
+      activeGenres.delete(genre);
+      el.classList.add('dimmed');
+    } else {
+      activeGenres.add(genre);
+      el.classList.remove('dimmed');
+    }
+    updateVisibility();
+  }
 
-init();
+  function updateVisibility() {
+    svg.selectAll('.bee-node')
+      .transition().duration(300)
+      .style('opacity', d => activeGenres.has(d.genre) ? 1 : 0.08);
+  }
+
+  function render() {
+    const viewportWidth = window.innerWidth;
+    const width = Math.max(viewportWidth * 2.5, 2800);
+    const height = Math.max(500, Math.min(700, window.innerHeight * 0.6));
+    const margin = { top: 40, right: 60, bottom: 40, left: LEFT_PADDING };
+
+    // Align header and controls with the left margin
+    document.getElementById('header').style.paddingLeft = margin.left + 'px';
+    document.getElementById('controls').style.paddingLeft = margin.left + 'px';
+
+    svg.attr('width', width).attr('height', height);
+    document.querySelector('.chart-wrap').style.minWidth = width + 'px';
+    svg.selectAll('*').remove();
+
+    // Time scale
+    const dateExtent = d3.extent(allEvents, d => d.parsedDate);
+    const xScale = d3.scaleTime()
+      .domain([
+        d3.timeMonth.offset(dateExtent[0], -6),
+        d3.timeMonth.offset(dateExtent[1], 6)
+      ])
+      .range([margin.left, width - margin.right]);
+
+    // Generate year ticks
+    const startYear = dateExtent[0].getFullYear();
+    const endYear = dateExtent[1].getFullYear() + 1;
+    const yearDates = [];
+    for (let y = startYear; y <= endYear; y++) {
+      yearDates.push(new Date(y, 0, 1));
+    }
+
+    // Draw vertical year lines
+    const linesGroup = svg.append('g');
+
+    yearDates.forEach(d => {
+      const x = xScale(d);
+      const year = d.getFullYear();
+      const isMajor = year % 5 === 0;
+
+      linesGroup.append('line')
+        .attr('x1', x)
+        .attr('x2', x)
+        .attr('y1', margin.top - 10)
+        .attr('y2', height - margin.bottom + 10)
+        .attr('stroke', isMajor ? '#ddd' : '#f0f0f0')
+        .attr('stroke-width', isMajor ? 1 : 0.5);
+
+      // Year labels at bottom
+      if (isMajor || (endYear - startYear) < 20) {
+        linesGroup.append('text')
+          .attr('x', x)
+          .attr('y', height - margin.bottom + 28)
+          .attr('class', `year-label ${isMajor ? 'year-label-major' : ''}`)
+          .text(year);
+      }
+    });
+
+    // Initialize node positions
+    const nodes = allEvents.map((d, i) => ({
+      ...d,
+      index: i,
+      x: xScale(d.parsedDate),
+      y: height / 2,
+      targetX: xScale(d.parsedDate)
+    }));
+
+    // Create node groups
+    const nodeGroups = svg.append('g')
+      .selectAll('g')
+      .data(nodes)
+      .enter().append('g')
+      .attr('class', 'bee-node')
+      .style('cursor', 'pointer');
+
+    // Solid colored circles
+    nodeGroups.append('circle')
+      .attr('r', RADIUS)
+      .attr('fill', d => GENRE_COLORS[d.genre] || UNKNOWN_COLOR)
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 1.5)
+      .attr('opacity', 0.88);
+
+    // Hover interactions
+    nodeGroups
+      .on('mouseenter', function(event, d) {
+        d3.select(this).select('circle')
+          .transition().duration(150)
+          .attr('r', RADIUS + 3)
+          .attr('stroke-width', 2.5)
+          .attr('opacity', 1);
+
+        d3.select(this).raise();
+
+        const photoSrc = photoThumb(d);
+        const photoHtml = photoSrc
+          ? `<img class="tt-photo" src="${photoSrc}" alt="" onerror="this.style.display='none'">`
+          : '';
+
+        tooltip.innerHTML = `
+          ${photoHtml}
+          <div class="tt-body">
+            <div class="tt-artist">${d.artist}</div>
+            <div class="tt-date">${formatDate(d.date)}</div>
+            <div class="tt-venue">${d.venue}, ${d.city}</div>
+          </div>
+        `;
+        tooltip.classList.add('visible');
+      })
+      .on('mousemove', function(event) {
+        let tx = event.clientX + 16;
+        let ty = event.clientY - 16;
+        // Keep tooltip on screen
+        const rect = tooltip.getBoundingClientRect();
+        if (tx + 240 > window.innerWidth) tx = event.clientX - 256;
+        if (ty + rect.height > window.innerHeight) ty = event.clientY - rect.height - 8;
+        if (ty < 8) ty = 8;
+        tooltip.style.left = tx + 'px';
+        tooltip.style.top = ty + 'px';
+      })
+      .on('mouseleave', function() {
+        d3.select(this).select('circle')
+          .transition().duration(150)
+          .attr('r', RADIUS)
+          .attr('stroke-width', 1.5)
+          .attr('opacity', 0.88);
+        tooltip.classList.remove('visible');
+      });
+
+    // Force simulation
+    const centerY = margin.top + (height - margin.top - margin.bottom) / 2;
+
+    simulation = d3.forceSimulation(nodes)
+      .force('x', d3.forceX(d => d.targetX).strength(1))
+      .force('y', d3.forceY(centerY).strength(0.07))
+      .force('collide', d3.forceCollide(RADIUS + COLLISION_PADDING).strength(0.8))
+      .alphaDecay(0.02)
+      .on('tick', () => {
+        nodeGroups.attr('transform', d => {
+          d.y = Math.max(margin.top + RADIUS, Math.min(height - margin.bottom - RADIUS, d.y));
+          return `translate(${d.x}, ${d.y})`;
+        });
+      });
+  }
+
+  function debounce(fn, ms) {
+    let t;
+    return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
+  }
+
+  init();
+
+})();
 </script>
 </body>
 </html>

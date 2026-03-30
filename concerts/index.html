@@ -56,7 +56,7 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -128,14 +128,14 @@ body {
   color: #111;
 }
 .tooltip .tt-date {
-  color: #888;
+  color: #666;
   font-size: 0.7rem;
   font-family: 'DM Mono', monospace;
 }
 .tooltip .tt-venue {
-  color: #555;
+  color: #111;
   font-size: 0.75rem;
-  margin-top: 4px;
+  margin-top: -1px;
 }
 
 /* Responsive */
@@ -255,20 +255,19 @@ body {
     document.querySelector('.chart-wrap').style.minWidth = width + 'px';
     svg.selectAll('*').remove();
 
-    // Time scale
+    // Time scale — align first year line with left margin
     const dateExtent = d3.extent(allEvents, d => d.parsedDate);
+    const startYear = new Date(dateExtent[0].getFullYear(), 0, 1);
+    const endDate = d3.timeMonth.offset(dateExtent[1], 6);
     const xScale = d3.scaleTime()
-      .domain([
-        d3.timeMonth.offset(dateExtent[0], -6),
-        d3.timeMonth.offset(dateExtent[1], 6)
-      ])
+      .domain([startYear, endDate])
       .range([margin.left, width - margin.right]);
 
     // Generate year ticks
-    const startYear = dateExtent[0].getFullYear();
+    const firstYear = startYear.getFullYear();
     const endYear = dateExtent[1].getFullYear() + 1;
     const yearDates = [];
-    for (let y = startYear; y <= endYear; y++) {
+    for (let y = firstYear; y <= endYear; y++) {
       yearDates.push(new Date(y, 0, 1));
     }
 
@@ -343,8 +342,8 @@ body {
           ${photoHtml}
           <div class="tt-body">
             <div class="tt-artist">${d.artist}</div>
-            <div class="tt-date">${formatDate(d.date)}</div>
             <div class="tt-venue">${d.venue}, ${d.city}</div>
+            <div class="tt-date">${formatDate(d.date)}</div>
           </div>
         `;
         tooltip.classList.add('visible');

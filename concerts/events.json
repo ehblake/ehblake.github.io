@@ -286,6 +286,19 @@
     "genre": "blues"
   },
   {
+    "date": "2000-08-26",
+    "year": 2000,
+    "artist": "Madison Blues Festival",
+    "lineup": "",
+    "venue": "Olin Park",
+    "city": "Madison, WI",
+    "country": "USA",
+    "attendance": 0,
+    "url": "",
+    "genre": "blues",
+    "photo": "madison-blues-festival-2000-08-26"
+  },
+  {
     "date": "2000-09-24",
     "year": 2000,
     "artist": "Phish",
@@ -361,18 +374,6 @@
     "attendance": 1,
     "url": "https://www.last.fm/event/1471085+Lloyd%27s+Blues+Music+Festival",
     "photo": "buddy-guy-bb-king-2001-08-16",
-    "genre": "blues"
-  },
-  {
-    "date": "2001-08-26",
-    "year": 2001,
-    "artist": "Madison Blues Festival",
-    "lineup": "",
-    "venue": "Olin Park",
-    "city": "Madison, WI",
-    "country": "USA",
-    "attendance": 0,
-    "url": "",
     "genre": "blues"
   },
   {
@@ -489,7 +490,7 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1470362+Karl+Denson%27s+Tiny+Universe+at+First+Avenue+on+18+September+2002",
-    "photo": "2002-09-18",
+    "photo": "john-scofield-2002-09-18",
     "genre": "jazz"
   },
   {
@@ -892,7 +893,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "sunset-rubdown-2006-07-28"
   },
   {
     "date": "2006-07-29",
@@ -917,7 +919,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "pitchfork-music-festival-2006-07-30"
   },
   {
     "date": "2006-08-08",
@@ -1111,7 +1114,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "the-record-low-2007-01-20"
   },
   {
     "date": "2007-02-09",
@@ -3224,7 +3228,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "sufjan-stevens-2015-01-23"
   },
   {
     "date": "2015-01-30",
@@ -3262,7 +3267,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "jazz"
+    "genre": "jazz",
+    "photo": "bill-frisell-2015-03-05"
   },
   {
     "date": "2015-04-12",

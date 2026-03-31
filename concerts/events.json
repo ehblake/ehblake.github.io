@@ -204,7 +204,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "rat-dog-1998-09-16"
   },
   {
     "date": "1998-09-25",
@@ -216,7 +217,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "blues"
+    "genre": "blues",
+    "photo": "james-cotton-1998-09-25"
   },
   {
     "date": "1998-10-16",
@@ -228,7 +230,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "widespread-panic-1998-10-16"
   },
   {
     "date": "1998-10-17",
@@ -318,7 +321,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "big-wu-2001-03-24"
   },
   {
     "date": "2001-05-19",
@@ -1561,7 +1565,7 @@
     "country": "United States",
     "attendance": 1,
     "url": "https://www.last.fm/event/1468810+John+Hammond+at+Schubas+Tavern+on+02+February+2008",
-    "photo": "2008-02-02",
+    "photo": "john-hammond-2008-02-02",
     "genre": "folk"
   },
   {
@@ -1678,20 +1682,21 @@
     "country": "United States",
     "attendance": 1013,
     "url": "https://www.last.fm/festival/544125+Pitchfork+Music+Festival+2008",
-    "photo": "pitchfork-music-festival-2008-2008-07-18",
+    "photo": "pitchfork-music-festival-2008-2008-07-19",
     "genre": "rock"
   },
   {
     "date": "2008-07-20",
     "year": 2008,
-    "artist": "Pitchfork Music Festival",
+    "artist": "Pitchfork Music Festival 2008",
     "lineup": "",
     "venue": "Union Park",
     "city": "Chicago, IL",
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "pitchfork-music-festival-2008-07-20"
   },
   {
     "date": "2008-08-02",
@@ -2457,7 +2462,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "steve-winwood-2010-07-09"
   },
   {
     "date": "2010-08-06",
@@ -2482,7 +2488,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "folk"
+    "genre": "folk",
+    "photo": "john-prine-2010-09-17"
   },
   {
     "date": "2010-09-25",
@@ -2506,7 +2513,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "gayngs-2010-09-30"
   },
   {
     "date": "2010-10-13",
@@ -2556,7 +2564,8 @@
     "country": "USA",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "the-flatlanders-2010-11-13"
   },
   {
     "date": "2010-12-09",
@@ -3512,7 +3521,8 @@
     "country": "Australia",
     "attendance": 0,
     "url": "",
-    "genre": "rock"
+    "genre": "rock",
+    "photo": "war-on-drugs-2018-02-13"
   },
   {
     "date": "2018-03-01",

@@ -267,7 +267,8 @@ body {
 
   const isMobile = window.innerWidth <= 768;
   const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
-  const isTouchDevice = isMobile || isTablet;
+  const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const isTouchDevice = hasTouch || isMobile || isTablet;
 
   const RADIUS = isMobile ? 11 : (isTablet ? 12 : 14);
   const COLLISION_PADDING = isMobile ? 3 : 4;

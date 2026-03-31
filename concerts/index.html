@@ -18,6 +18,14 @@ body {
   min-height: 100vh;
 }
 
+.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  z-index: 100;
+}
 .header {
   padding: 2.5rem 0 1rem;
 }
@@ -245,13 +253,18 @@ body {
 </head>
 <body>
 
-<div class="header" id="header">
-  <h1>Concert timeline</h1>
+<div class="fixed-top" id="fixed-top">
+  <div class="header" id="header">
+    <h1>Concert timeline</h1>
+    <a href="index.html" class="back-link">← Back to list</a>
+  </div>
+
+  <div class="controls" id="controls">
+    <div class="legend" id="legend"></div>
+  </div>
 </div>
 
-<div class="controls" id="controls">
-  <div class="legend" id="legend"></div>
-</div>
+<div id="top-spacer" style="height: 160px;"></div>
 
 <div class="chart-wrap" id="chart-wrap">
   <svg id="chart"></svg>
@@ -378,6 +391,7 @@ body {
     // Align header and controls with the left margin
     document.getElementById('header').style.paddingLeft = margin.left + 'px';
     document.getElementById('controls').style.paddingLeft = margin.left + 'px';
+
 
     svg.attr('width', width).attr('height', height);
     document.querySelector('.chart-wrap').style.minWidth = width + 'px';

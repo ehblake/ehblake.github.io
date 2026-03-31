@@ -94,6 +94,13 @@ body {
   font-weight: 400;
 }
 
+/* Location bar */
+.location-bar text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+
 /* Desktop tooltip — fixed, follows mouse */
 .tooltip {
   position: fixed;
@@ -366,7 +373,7 @@ body {
       : isTablet
         ? Math.max(500, window.innerHeight * 0.6)
         : Math.max(500, Math.min(700, window.innerHeight * 0.6));
-    const margin = { top: 40, right: 60, bottom: 40, left: LEFT_PADDING };
+    const margin = { top: 40, right: 60, bottom: 80, left: LEFT_PADDING };
 
     // Align header and controls with the left margin
     document.getElementById('header').style.paddingLeft = margin.left + 'px';
@@ -415,6 +422,72 @@ body {
           .attr('y', height - margin.bottom + 28)
           .attr('class', `year-label ${isMajor ? 'year-label-major' : ''}`)
           .text(year);
+      }
+    });
+
+    // ── Location bar ──
+    const locations = [
+      { label: 'MADISON, WI',       start: new Date(1995, 0, 1),  end: new Date(1997, 7, 1),  color: '#FF0064' },
+      { label: 'MISSOULA, MT',      start: new Date(1997, 7, 1),  end: new Date(1999, 5, 1),  color: '#E8850C' },
+      { label: 'MINNEAPOLIS, MN',   start: new Date(1999, 5, 1),  end: new Date(2002, 11, 31), color: '#61BCFD' },
+      { label: 'LOS ANGELES, CA',   start: new Date(2003, 0, 1),  end: new Date(2005, 9, 1),  color: '#36A599' },
+      { label: 'CHICAGO, IL',       start: new Date(2005, 9, 1),  end: new Date(2011, 6, 1),  color: '#283852' },
+      { label: 'SAN FRANCISCO, CA', start: new Date(2011, 6, 1),  end: new Date(2013, 7, 31), color: '#D4543A' },
+      { label: 'NEW YORK, NY',      start: new Date(2013, 8, 1),  end: new Date(2016, 7, 31), color: '#7C1FF5' },
+      { label: 'MELBOURNE, AUS',    start: new Date(2016, 8, 1),  end: new Date(2026, 4, 1),  color: '#2D8A56' },
+    ];
+
+    // Location pin icon path (scaled to fit in bar)
+    const pinPath = 'M5.76,5.25C5.76,2.35,8.1,0,11,0C13.9,0,16.24,2.35,16.24,5.26C16.24,8.16,13.26,11.57,11.24,13.47C11.1,13.59,10.9,13.59,10.77,13.47C8.74,11.57,5.76,8.09,5.76,5.26ZM11,2.85C9.67,2.85,8.6,3.93,8.6,5.26C8.6,6.58,9.67,7.66,11,7.66C12.33,7.66,13.4,6.59,13.4,5.26C13.4,3.92,12.33,2.85,11,2.85Z';
+
+    const locGroup = svg.append('g').attr('class', 'location-bar');
+    const barY = height - margin.bottom + 38;
+    const barH = 24;
+    const gap = 10;
+
+    locations.forEach((loc, i) => {
+      let x1 = Math.max(xScale(loc.start), margin.left);
+      let x2 = Math.min(xScale(loc.end), width - margin.right);
+
+      // Add gap between bars (except first)
+      if (i > 0) x1 += gap / 2;
+      // Add gap after (except last)
+      if (i < locations.length - 1) x2 -= gap / 2;
+
+      const w = x2 - x1;
+      if (w <= 0) return;
+
+      // Background rect at 10% opacity
+      locGroup.append('rect')
+        .attr('x', x1)
+        .attr('y', barY)
+        .attr('width', w)
+        .attr('height', barH)
+        .attr('rx', 3)
+        .attr('fill', loc.color)
+        .attr('fill-opacity', 0.1)
+        .attr('stroke', 'none');
+
+      // Only show icon + label if bar is wide enough
+      if (w > 60) {
+        // Location pin icon
+        const iconScale = 0.85;
+        const iconX = x1 + 8;
+        const iconY = barY + (barH - 14 * iconScale) / 2;
+        locGroup.append('path')
+          .attr('d', pinPath)
+          .attr('transform', `translate(${iconX - 5.76 * iconScale}, ${iconY}) scale(${iconScale})`)
+          .attr('fill', loc.color);
+
+        // Label text
+        locGroup.append('text')
+          .attr('x', iconX + 12)
+          .attr('y', barY + barH / 2 + 3.5)
+          .attr('fill', loc.color)
+          .attr('font-family', 'Inter, sans-serif')
+          .attr('font-size', '10px')
+          .attr('font-weight', '500')
+          .text(loc.label);
       }
     });
 

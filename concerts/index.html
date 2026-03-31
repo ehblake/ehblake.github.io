@@ -299,6 +299,17 @@ body {
   const svg = d3.select('#chart');
 
   let currentActiveNode = null;
+  let isScrolling = false;
+  let scrollTimer = null;
+
+  window.addEventListener('scroll', function() {
+    isScrolling = true;
+    tooltip.classList.remove('visible');
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      isScrolling = false;
+    }, 150);
+  }, true);
 
   function hideTooltip() {
     tooltip.classList.remove('visible');
@@ -554,6 +565,7 @@ body {
     if (!isTouchDevice) {
       nodeGroups
         .on('mouseenter', function(event, d) {
+          if (isScrolling) return;
           d3.select(this).select('circle')
             .transition().duration(150)
             .attr('r', RADIUS + 3)
@@ -565,6 +577,7 @@ body {
           tooltip.classList.add('visible');
         })
         .on('mousemove', function(event) {
+          if (isScrolling) return;
           let tx = event.clientX + 16;
           let ty = event.clientY - 16;
           const rect = tooltip.getBoundingClientRect();

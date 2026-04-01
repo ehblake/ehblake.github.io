@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural visits — Edward Blake</title>
+    <meta name="description" content="An interactive map of museums I've visited around the world.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+
+    <style>
+        .museums-page {
+            padding: 20px 0 60px;
+        }
+
+        .museums-header {
+            margin-bottom: 30px;
+        }
+
+        .museums-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .museums-header p {
+            font-size: 1rem;
+            color: var(--color-text-light);
+        }
+
+        .museums-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+            margin-top: 4px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        #museums-map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Custom marker styles */
+        .custom-marker {
+            background-color: var(--color-accent);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Cluster styles */
+        .marker-cluster-small,
+        .marker-cluster-medium,
+        .marker-cluster-large {
+            background-color: rgba(255, 0, 100, 0.3);
+        }
+
+        .marker-cluster-small div,
+        .marker-cluster-medium div,
+        .marker-cluster-large div {
+            background-color: var(--color-accent);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Popup styles */
+        .leaflet-popup-content-wrapper {
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .leaflet-popup-content {
+            margin: 12px 16px;
+            font-size: 0.875rem;
+        }
+
+        .popup-museum-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .popup-region {
+            color: var(--color-text-light);
+            font-size: 0.75rem;
+        }
+
+        /* Region filter */
+        .region-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .region-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--color-border);
+            background: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .region-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .region-btn.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #fff;
+        }
+
+        /* Museums list */
+        .museums-list-section {
+            margin-top: 60px;
+        }
+
+        .museums-list-section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+        }
+
+        .region-group {
+            margin-bottom: 40px;
+        }
+
+        .region-group h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--color-accent);
+        }
+
+        .museum-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 8px 40px;
+        }
+
+        .museum-list li {
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .map-container {
+                height: 400px;
+            }
+
+            .museums-stats {
+                gap: 24px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .map-container {
+                height: 300px;
+            }
+
+            .region-filters {
+                gap: 8px;
+            }
+
+            .region-btn {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="/" class="logo">Edward Blake</a>
+            <nav class="nav">
+                <a href="projects.html">Projects</a>
+                <a href="experiments.html">Experiments</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+    </div>
+
+    <main>
+        <section class="museums-page">
+            <div class="container">
+                <div class="museums-header">
+                    <h1>Running tally of cultural attractions visited</h1>
+                </div>
+
+                <div class="museums-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="total-count">0</span>
+                        <span class="stat-label">Total sites</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="region-count">0</span>
+                        <span class="stat-label">Regions</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="country-count">0</span>
+                        <span class="stat-label">Countries</span>
+                    </div>
+                </div>
+
+                <div class="region-filters" id="region-filters">
+                    <button class="region-btn active" data-region="all">All</button>
+                </div>
+
+                <div class="map-container">
+                    <div id="museums-map"></div>
+                </div>
+
+                <div class="museums-list-section">
+                    <div id="museums-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="container">
+        <footer class="footer">
+            <p>&copy; Edward Blake 2026</p>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/eblake/" target="_blank" rel="noopener" class="footer-icon-link">
+                    <img src="images/icons/footer/linkedin.jpg" alt="LinkedIn" class="footer-icon">
+                    <img src="images/icons/footer/linkedin-pink.jpg" alt="LinkedIn" class="footer-icon footer-icon--hover">
+                </a>
+                <a href="https://www.flickr.com/photos/eblake/" target="_blank" rel="noopener" class="footer-icon-link">
+                    <img src="images/icons/footer/flickr.jpg" alt="Flickr" class="footer-icon">
+                    <img src="images/icons/footer/flickr-pink.jpg" alt="Flickr" class="footer-icon footer-icon--hover">
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <script>
+        (function() {
+            let map;
+            let markers;
+            let allData = [];
+
+            // Custom pink marker icon
+            const pinkIcon = L.divIcon({
+                className: 'custom-marker',
+                iconSize: [12, 12],
+                iconAnchor: [6, 6],
+                popupAnchor: [0, -8]
+            });
+
+            // Initialize map
+            function initMap() {
+                map = L.map('museums-map', {
+                    scrollWheelZoom: false
+                }).setView([20, 0], 2);
+
+                // Add OpenStreetMap tiles
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18
+                }).addTo(map);
+
+                // Initialize marker cluster group
+                markers = L.markerClusterGroup({
+                    maxClusterRadius: 50,
+                    spiderfyOnMaxZoom: true,
+                    showCoverageOnHover: false,
+                    zoomToBoundsOnClick: true
+                });
+
+                map.addLayer(markers);
+            }
+
+            // Load museum data
+            function loadData() {
+                fetch('data/museums.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        allData = data.regions;
+                        renderFilters();
+                        renderMarkers('all');
+                        renderList();
+                        updateStats();
+                    })
+                    .catch(error => {
+                        console.error('Error loading museum data:', error);
+                    });
+            }
+
+            // Render region filter buttons
+            function renderFilters() {
+                const container = document.getElementById('region-filters');
+
+                allData.forEach(region => {
+                    const btn = document.createElement('button');
+                    btn.className = 'region-btn';
+                    btn.dataset.region = region.name;
+                    btn.textContent = region.name + ' (' + region.museums.length + ')';
+                    container.appendChild(btn);
+                });
+
+                // Add click handlers
+                container.querySelectorAll('.region-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        container.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        renderMarkers(this.dataset.region);
+                    });
+                });
+            }
+
+            // Render markers on map
+            function renderMarkers(regionFilter) {
+                markers.clearLayers();
+
+                let bounds = [];
+
+                allData.forEach(region => {
+                    if (regionFilter !== 'all' && region.name !== regionFilter) return;
+
+                    region.museums.forEach(museum => {
+                        const marker = L.marker([museum.lat, museum.lng], { icon: pinkIcon });
+
+                        marker.bindPopup(
+                            '<div class="popup-museum-name">' + museum.name + '</div>' +
+                            '<div class="popup-region">' + region.name + '</div>'
+                        );
+
+                        markers.addLayer(marker);
+                        bounds.push([museum.lat, museum.lng]);
+                    });
+                });
+
+                if (bounds.length > 0) {
+                    map.fitBounds(bounds, { padding: [50, 50] });
+                }
+            }
+
+            // Render full list
+            function renderList() {
+                const container = document.getElementById('museums-list');
+                container.innerHTML = '';
+
+                allData.forEach(region => {
+                    const group = document.createElement('div');
+                    group.className = 'region-group';
+
+                    const title = document.createElement('h3');
+                    title.textContent = region.name;
+                    group.appendChild(title);
+
+                    const list = document.createElement('ul');
+                    list.className = 'museum-list';
+
+                    region.museums.forEach(museum => {
+                        const item = document.createElement('li');
+                        item.textContent = museum.name;
+                        list.appendChild(item);
+                    });
+
+                    group.appendChild(list);
+                    container.appendChild(group);
+                });
+            }
+
+            // Update statistics
+            function updateStats() {
+                let totalMuseums = 0;
+                allData.forEach(region => {
+                    totalMuseums += region.museums.length;
+                });
+
+                document.getElementById('total-count').textContent = totalMuseums;
+                document.getElementById('region-count').textContent = allData.length;
+
+                // Estimate countries based on regions
+                // NYC + East Coast + Midwest + West Coast + South = 2 (USA + Canada)
+                // Europe = ~15 countries, Asia = ~2, Australia = 1
+                document.getElementById('country-count').textContent = '15+';
+            }
+
+            // Initialize
+            initMap();
+            loadData();
+        })();
+    </script>
+</body>
+</html>

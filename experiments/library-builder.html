@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Builder — Edward Blake</title>
+    <meta name="description" content="A visual planning tool for mapping 50,000 books across 300 bays">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/project.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="/" class="logo">Edward Blake</a>
+            <nav class="nav">
+                <a href="../projects.html">Projects</a>
+                <a href="../experiments.html" class="active">Experiments</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <main class="project-page">
+            <h1 class="project-title" style="margin-bottom: 24px;">Library Builder</h1>
+            <p class="project-lede">While working on the new library at Mona, the librarians and I identified a practical problem. Before anything is built, you still need some sense of how much space different parts of the collection might take up, and how they could sit together.</p>
+
+            <!-- 1. Image -->
+            <div class="project-block project-block--img-text">
+                <div class="project-block__media">
+                    <img src="../images/experiments/lb-1.png" alt="Library Builder - architectural drawings">
+                    <p class="project-block__credit">Architectural drawings from the architects showing a couple of book bays.</p>
+                </div>
+            </div>
+
+            <p class="project-lede--secondary">Thankfully we had architectural drawings of the book bays. Two bay types, ground and mezzanine, were translated into precise SVGs that could be filled with books at scale. We had a dataset of around 30,000 titles, of which about 25% had dimensions and spine images. This was enough information to make an educated guess for the rest of the collection, without pretending to be exact.</p>
+
+            <!-- 2. Image -->
+            <div class="project-block project-block--img-text">
+                <div class="project-block__media">
+                    <img src="../images/experiments/lb-2.png" alt="Library Builder - early wireframe with human scale figure">
+                    <p class="project-block__credit">As part of the experience design work, I had created wireframes of the bays already.</p>
+                </div>
+            </div>
+
+            <p class="project-lede--secondary">The tool generates bays on demand. You can group by subject, publisher, or quantity and see how a collection occupies space. It lets librarians test arrangements early, while the building settles, long before a single book hits the shelf.</p>
+
+            <!-- 3. Image -->
+            <div class="project-block project-block--img-text">
+                <div class="project-block__media">
+                    <a href="https://www.edwardblake.net/library/" target="_blank" rel="noopener"><img src="../images/experiments/lb-3.png" alt="Library Builder - ground floor bays populated with spine images"></a>
+                    <p class="project-block__credit">Ground floor bays populated from the collection database.</p>
+                </div>
+            </div>
+
+            <p class="project-lede">Try the tool at <a href="https://www.edwardblake.net/library/" target="_blank" rel="noopener">edwardblake.net/library</a></p>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; Edward Blake 2026</p>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/eblake/" target="_blank" rel="noopener" class="footer-icon-link">
+                    <img src="../images/icons/footer/linkedin.jpg" alt="LinkedIn" class="footer-icon">
+                    <img src="../images/icons/footer/linkedin-pink.jpg" alt="LinkedIn" class="footer-icon footer-icon--hover">
+                </a>
+                <a href="https://www.flickr.com/photos/eblake/" target="_blank" rel="noopener" class="footer-icon-link">
+                    <img src="../images/icons/footer/flickr.jpg" alt="Flickr" class="footer-icon">
+                    <img src="../images/icons/footer/flickr-pink.jpg" alt="Flickr" class="footer-icon footer-icon--hover">
+                </a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

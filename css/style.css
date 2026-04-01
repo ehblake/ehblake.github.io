@@ -1,0 +1,756 @@
+/* ==========================================================================
+   Edward Blake Portfolio — Style
+   White bg, 8-col grid, DM Sans + Inter, #FF0064 accent
+   ========================================================================== */
+
+/* Reset & Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --grid-columns: 8;
+    --grid-gutter: 20px;
+    --grid-max-width: 1100px;
+    --color-bg: #fff;
+    --color-text: #111;
+    --color-text-light: #666;
+    --color-accent: #FF0064;
+    --color-accent-hover: #B6094C;
+    --color-border: #ddd;
+    --transition: 0.3s ease;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+/* Layout */
+.container {
+    max-width: var(--grid-max-width);
+    margin: 0 auto;
+    padding: 0 var(--grid-gutter);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.logo {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.logo:hover {
+    color: var(--color-accent-hover);
+}
+
+.nav {
+    display: flex;
+    gap: 36px;
+}
+
+.nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color var(--transition);
+}
+
+.nav a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.nav a.active {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Hero — 8-col grid layout
+   Tagline full width, image offset right (cols 3-8), intro left (cols 1-5)
+   ========================================================================== */
+.hero {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--grid-gutter);
+    padding: 60px 0 80px;
+}
+
+.hero-tagline {
+    grid-column: 1 / -1;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-size: 5.6rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+	padding-right: 100px;
+	padding-bottom: 42px;
+}
+
+.hero-image {
+    grid-column: 3 / 9;
+    border-radius: 4px;
+    overflow: hidden;
+	padding-bottom: 32px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero-intro {
+    grid-column: 1 / 6;
+    font-size: 1.3rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.hero-intro a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.hero-intro a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.section {
+    padding: 20px 0;
+}
+
+.section--no-border {
+    border-top: none;
+    padding-top: 40px;
+}
+
+.section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 32px;
+	margin-top: 32px;
+}
+
+/* ==========================================================================
+   Staggered Grid — used on homepage and projects page
+   8-col grid with offset/overlapping image cards
+   ========================================================================== */
+.staggered-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--grid-gutter);
+}
+
+.sg-item {
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+    transition: transform var(--transition);
+}
+
+.sg-item:hover {
+    transform: translateY(-4px);
+}
+
+.sg-item--placeholder {
+    pointer-events: none;
+    cursor: default;
+}
+
+.sg-item--placeholder img {
+    filter: grayscale(100%);
+}
+
+.sg-item img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+}
+
+.sg-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+}
+
+/* Row 1 */
+.sg-item--r1-left {
+    grid-column: 1 / 5;
+    grid-row: 1;
+}
+.sg-item--r1-left img { aspect-ratio: 5 / 3; }
+
+.sg-item--r1-right {
+    grid-column: 6 / 9;
+    grid-row: 1;
+    margin-top: 80px;
+	margin-bottom: 40px;
+}
+.sg-item--r1-right img { aspect-ratio: 1 / 1; }
+
+/* Row 2 */
+.sg-item--r2-left {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    margin-top: -80px;
+	margin-bottom: 100px;
+}
+.sg-item--r2-left img { aspect-ratio: auto; height: 300px; }
+
+.sg-item--r2-right {
+    grid-column: 5 / 9;
+    grid-row: 2;
+    margin-top: 40px;
+}
+.sg-item--r2-right img { aspect-ratio: auto; height: 340px; }
+
+/* Row 3 */
+.sg-item--r3-left {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    margin-top: -100px;
+}
+.sg-item--r3-left img { aspect-ratio: 3 / 4; }
+
+.sg-item--r3-right {
+    grid-column: 5 / 8;
+    grid-row: 3;
+    margin-top: 100px;
+	margin-bottom: 60px;
+}
+.sg-item--r3-right img { aspect-ratio: 1 / 1; }
+
+/* Row 4 — ASM (3 col 340px) + Mona Library (3 col square) */
+.sg-item--r4-a {
+    grid-column: 1 / 4;
+    grid-row: 4;
+    margin-top: -60px;
+}
+.sg-item--r4-a img { aspect-ratio: auto; height: 340px; }
+
+.sg-item--r4-b {
+    grid-column: 6 / 9;
+    grid-row: 4;
+    margin-top: 40px;
+}
+.sg-item--r4-b img { aspect-ratio: 1 / 1; }
+
+/* Row 5 — CMA (3 col 340px, offset 1 col) + WAM (3 col 520px) */
+.sg-item--r4-c {
+    grid-column: 2 / 5;
+    grid-row: 5;
+    margin-top: -80px;
+}
+.sg-item--r4-c img { aspect-ratio: auto; height: 340px; }
+
+.sg-item--r5-left {
+    grid-column: 6 / 9;
+    grid-row: 5;
+    margin-top: 40px;
+}
+.sg-item--r5-left img { aspect-ratio: auto; height: 520px; }
+
+/* Row 6 — NMA DOLS (4 col 300px) */
+.sg-item--r5-right {
+    grid-column: 1 / 5;
+    grid-row: 6;
+    margin-top: -210px;
+	margin-bottom: 100px;
+}
+.sg-item--r5-right img { aspect-ratio: auto; height: 300px; }
+
+/* Row 7 — NMA DOLS right (4 col 300px) */
+.sg-item--r7-right {
+    grid-column: 6 / 9;
+    grid-row: 7;
+    margin-top: -100px;
+    margin-bottom: 100px;
+}
+.sg-item--r7-right img { aspect-ratio: auto; height: 300px; }
+
+/* ==========================================================================
+   Experiments Grid
+   ========================================================================== */
+
+/* Row 1: Every Epigram (4 col, 4x3) + Concert Data Vis (3 col, square) */
+.sg-item--exp-1a {
+    grid-column: 1 / 5;
+    grid-row: 1;
+}
+.sg-item--exp-1a img { aspect-ratio: 4 / 3; height: auto; }
+.sg-item--exp-1a .sg-label { margin-bottom: 40px; }
+
+.sg-item--exp-1b {
+    grid-column: 6 / 9;
+    grid-row: 1;
+    margin-top: 80px;
+}
+.sg-item--exp-1b img { aspect-ratio: 1 / 1; }
+
+/* Row 2: Community Art Project (3 col, square) + Library Builder (4 col, 4x3) */
+.sg-item--exp-2a {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    margin-top: -20px;
+}
+.sg-item--exp-2a img { aspect-ratio: 1 / 1; height: auto; }
+.sg-item--exp-2a .sg-label { margin-bottom: 40px; }
+
+.sg-item--exp-2b {
+    grid-column: 5 / 9;
+    grid-row: 2;
+    margin-top: 40px;
+}
+.sg-item--exp-2b img { aspect-ratio: 4 / 3; }
+
+/* View all projects link */
+.view-all {
+    display: inline-block;
+    margin-top: 48px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.view-all:hover {
+    color: var(--color-accent-hover);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Institutions Grid — 4 per row
+   ========================================================================== */
+.institutions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--grid-gutter);
+}
+
+.institution-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    padding: 25px 40px;
+    box-sizing: border-box;
+    background: #f0f0f0;
+    border-radius: 4px;
+    opacity: 0.8;
+    transition: opacity var(--transition);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.institution-logo:hover {
+    opacity: 1;
+}
+
+.institution-logo img {
+    max-height: 100%;
+    max-width: 92%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.institution-logo img.fade-out {
+    opacity: 0;
+}
+
+.institutions-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.institutions-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ddd;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: background-color 0.3s ease;
+}
+
+.institutions-dot:hover {
+    background-color: #bbb;
+}
+
+.institutions-dot.active {
+    background-color: #FF0064;
+    cursor: default;
+}
+
+.institutions-dot.active:hover {
+    background-color: #FF0064;
+}
+
+/* ==========================================================================
+   Random Quote
+   ========================================================================== */
+.random-quote {
+    max-width: 640px;
+    padding: 0px 0 40px 0;
+    cursor: pointer;
+    min-height: 11.5rem;
+}
+
+.qword {
+    display: inline-block;
+    margin-right: 0.27em;
+}
+
+.qopen {
+    margin-left: -12px;
+    margin-right: 0;
+}
+
+.random-quote p {
+    font-family: 'DM Serif Display', 'didot', 'Libre Baskerville', Georgia, serif;
+    font-size: 2rem;
+	text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--color-accent);
+}
+
+.random-quote cite {
+    display: block;
+    margin-top: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--color-text-light);
+}
+
+/* ==========================================================================
+   Simple Text Pages (About, Contact)
+   ========================================================================== */
+.page-body {
+    padding: 60px 0;
+    min-height: 60vh;
+}
+
+.page-text {
+    max-width: 640px;
+}
+
+.page-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.page-text p:last-child {
+    margin-bottom: 0;
+}
+
+.page-email {
+    margin-top: 16px;
+}
+
+/* Interview Q&A */
+.interview-q {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: #FF0064;
+    margin-bottom: 0 !important;
+    margin-top: 32px;
+}
+
+.interview-q:first-child {
+    margin-top: 0;
+}
+
+.interview {
+    max-width: 1100px;
+}
+
+.interview h2 {
+    font-size: 1.7rem;
+}
+
+.interview p {
+    max-width: 640px;
+}
+
+.interview-fig {
+    margin: 32px 0 32px auto;
+    width: 75%;
+}
+
+.interview-fig--4col {
+    width: 50%;
+}
+
+.interview-fig--5col {
+    width: 62.5%;
+}
+
+.interview-fig--left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.interview-fig img {
+    width: 100%;
+    display: block;
+}
+
+.interview-fig .project-block__credit {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: #999;
+    padding-top: 8px;
+}
+
+.interview .interview-q + p {
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+/* Contact layout */
+.contact-layout {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--grid-gutter);
+}
+
+.contact-layout .page-text {
+    grid-column: 1 / 5;
+}
+
+.contact-image {
+    grid-column: 5 / 9;
+}
+
+.contact-image .project-block__placeholder,
+.contact-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+}
+
+.contact-image .project-block__placeholder {
+    background: #d9d9d9;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+}
+
+.footer-links {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-icon-link {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 80px;
+}
+
+.footer-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+.footer-icon--hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.footer-icon-link:hover .footer-icon--hover {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Responsive — Tablet
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .header {
+        padding: 28px 0;
+    }
+
+    .nav {
+        gap: 24px;
+    }
+
+    .hero {
+        display: block;
+        padding: 40px 0 56px;
+    }
+
+    .hero-tagline {
+        font-size: 1.75rem;
+        margin-bottom: 24px;
+    }
+
+    .hero-image {
+        margin-bottom: 24px;
+    }
+
+    .hero-intro {
+        font-size: 0.95rem;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    /* Staggered grid collapses to single column */
+    .staggered-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .sg-item {
+        margin-top: 0 !important;
+    }
+
+    .sg-item img {
+        aspect-ratio: 4 / 3 !important;
+    }
+
+    /* Institutions */
+    .institutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .institution-logo {
+        height: 100px;
+    }
+
+    /* Simple pages */
+    .page-body {
+        padding: 40px 0;
+    }
+
+    .page-text p {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Responsive — Mobile
+   ========================================================================== */
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .nav {
+        gap: 20px;
+    }
+
+    .hero-tagline {
+        font-size: 1.5rem;
+    }
+
+    .institutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .institution-logo {
+        height: 80px;
+    }
+}

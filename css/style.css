@@ -457,29 +457,31 @@ h1, h2, h3, h4 {
    Random Quote
    ========================================================================== */
 .quote-wrapper {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
+    position: relative;
 }
 
 .quote-next {
-    font-size: 2.4rem;
-    color: #ddd;
+    position: absolute;
+    left: 680px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 14px solid #ddd;
     cursor: pointer;
-    line-height: 1;
-    padding-top: 2px;
-    transition: color var(--transition);
-    user-select: none;
-    flex-shrink: 0;
+    transition: border-color var(--transition);
+    margin-top: 16px;
 }
 
 .quote-next:hover {
-    color: var(--color-accent);
+    border-left-color: var(--color-accent);
 }
 
 .random-quote {
     max-width: 640px;
     padding: 0px 0 40px 0;
+	font-weight: 400;
     cursor: pointer;
     min-height: 11.5rem;
 }
@@ -495,10 +497,10 @@ h1, h2, h3, h4 {
 }
 
 .random-quote p {
-    font-family: 'DM Serif Display', 'didot', 'Libre Baskerville', Georgia, serif;
-    font-size: 2rem;
+    font-family: 'didot', 'Libre Baskerville', Georgia, serif;
+    font-size: 1.9rem;
 	text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 1.1;
     color: var(--color-accent);
 }

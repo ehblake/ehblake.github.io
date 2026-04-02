@@ -130,7 +130,7 @@ h1, h2, h3, h4 {
 .hero-tagline {
     grid-column: 1 / -1;
     font-family: 'DM Sans', 'Inter', sans-serif;
-    font-size: 5.6rem;
+    font-size: 4.6rem;
     font-weight: 500;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -456,6 +456,27 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    Random Quote
    ========================================================================== */
+.quote-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.quote-next {
+    font-size: 2.4rem;
+    color: #ddd;
+    cursor: pointer;
+    line-height: 1;
+    padding-top: 2px;
+    transition: color var(--transition);
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.quote-next:hover {
+    color: var(--color-accent);
+}
+
 .random-quote {
     max-width: 640px;
     padding: 0px 0 40px 0;

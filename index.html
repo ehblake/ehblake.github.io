@@ -133,31 +133,41 @@
                     const logos = grid.querySelectorAll('.institution-logo');
                     const dots = document.querySelectorAll('.institutions-dot');
 
-                    function goToPage(pageIndex) {
+                    function preloadSet(set) {
+                        return Promise.all(set.map(name => new Promise(resolve => {
+                            const img = new Image();
+                            img.onload = img.onerror = () => resolve();
+                            img.src = `images/icons/${name}.png`;
+                        })));
+                    }
+
+                    async function goToPage(pageIndex) {
                         if (isSwapping || pageIndex === currentPage) return;
                         isSwapping = true;
 
-                        // Fade out
+                        const set = pages[pageIndex];
                         const imgs = grid.querySelectorAll('.institution-logo img');
-                        imgs.forEach(img => img.classList.add('fade-out'));
 
-                        // Update dots
+                        // Fade out + preload new images in parallel
+                        imgs.forEach(img => img.classList.add('fade-out'));
                         dots.forEach(d => d.classList.remove('active'));
                         dots[pageIndex].classList.add('active');
 
-                        // After fade out, swap and fade in
-                        setTimeout(() => {
-                            const set = pages[pageIndex];
-                            logos.forEach((logo, i) => {
-                                const img = logo.querySelector('img');
-                                img.src = `images/icons/${set[i]}.png`;
-                                img.alt = altNames[set[i]] || set[i];
-                            });
-                            grid.offsetHeight;
-                            imgs.forEach(img => img.classList.remove('fade-out'));
-                            currentPage = pageIndex;
-                            setTimeout(() => { isSwapping = false; }, 350);
-                        }, 300);
+                        await Promise.all([
+                            preloadSet(set),
+                            new Promise(r => setTimeout(r, 300))
+                        ]);
+
+                        // Swap while still invisible
+                        logos.forEach((logo, i) => {
+                            const img = logo.querySelector('img');
+                            img.src = `images/icons/${set[i]}.png`;
+                            img.alt = altNames[set[i]] || set[i];
+                        });
+                        grid.offsetHeight;
+                        imgs.forEach(img => img.classList.remove('fade-out'));
+                        currentPage = pageIndex;
+                        setTimeout(() => { isSwapping = false; }, 350);
                     }
 
                     function nextPage() {

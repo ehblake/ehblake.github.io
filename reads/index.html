@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>By the Books</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #faf9f6;
+  --surface: #fff;
+  --border: #e5e3dc;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-faint: #9a9a9a;
+}
+
+html, body {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+header {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 80px 24px 40px;
+  text-align: center;
+}
+header h1 { font-size:80px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 70px; }
+header .subtitle { font-size: 18px; color: var(--text-muted); font-style: italic; margin-bottom: 32px; }
+header .intro { font-size: 17px; color: var(--text-muted); text-align: left; margin-bottom: 32px; }
+header .stats {
+  display: flex; justify-content: center; gap: 40px; padding: 20px 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+header .stat { text-align: center; }
+header .stat-num { font-size: 28px; font-weight: 600; display: block; color: var(--text); }
+header .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
+
+/* Legend row (shared styles for header + sticky) */
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.legend-row .key-item { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.legend-row .key-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* Sticky top header (shows after scrolling past the main header) */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: auto;
+  max-height: 100px;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+}
+.sticky-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sticky-header .site-title {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+.sticky-header .legend-row {
+  font-size: 12px;
+  justify-content: flex-end;
+  flex: 1;
+}
+.sticky-header .legend-row .key-dot { width: 9px; height: 9px; }
+
+/* Viz sections */
+.viz-block {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+}
+.viz-block h2 { font-size: 28px; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.01em; }
+.viz-block .number {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--text-faint); margin-bottom: 6px;
+}
+.viz-block .caption {
+  font-size: 16px; color: var(--text-muted); margin-bottom: 28px;
+  max-width: 600px; font-style: italic;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+.viz-block svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* Full-bleed horizontal scroll wrapper (for book spines) */
+.viz-block.full-bleed { max-width: none; padding-left: 0; padding-right: 0; }
+.viz-block.full-bleed > .number,
+.viz-block.full-bleed > h2 {
+  max-width: 1000px; margin-left: auto; margin-right: auto;
+  padding-left: 24px; padding-right: 24px;
+}
+.viz-block.full-bleed > .caption {
+  /* Left-aligned inside the 1000px content column, capped at 600px */
+  max-width: 600px;
+  margin-left: max(24px, calc((100vw - 1000px) / 2 + 24px));
+  margin-right: 24px;
+  padding: 0;
+}
+
+.scroll-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 0;
+  /* Align first book with text content above (1000px centered, 24px inner padding) */
+  padding-left: max(24px, calc((100vw - 1000px) / 2 + 24px));
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* IE/Edge */
+}
+.scroll-wrap::-webkit-scrollbar { display: none; }
+.scroll-wrap svg { width: auto; max-width: none; }
+.viz-note {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px; color: var(--text-faint); margin-top: 16px; max-width: 680px;
+}
+
+/* Tooltip */
+.tooltip {
+  position: fixed; pointer-events: none; background: #1a1a1a; color: #fff;
+  padding: 8px 12px; border-radius: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px; line-height: 1.5; max-width: 280px;
+  z-index: 1000; opacity: 0; transition: opacity 0.15s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.tooltip.visible { opacity: 1; }
+.tooltip-title { font-weight: 600; margin-bottom: 2px; }
+.tooltip-sub { color: #bbb; font-size: 11px; }
+.tooltip-meta { color: #888; font-size: 10px; margin-top: 4px; }
+
+/* Footer */
+footer {
+  max-width: 780px; margin: 40px auto 0; padding: 40px 24px 80px;
+  border-top: 1px solid var(--border); color: var(--text-faint);
+  font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-align: center;
+}
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* SVG axis styling */
+.axis { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; }
+.axis path, .axis line { stroke: var(--border); }
+.axis text { fill: var(--text-muted); }
+
+/* Responsive */
+@media (max-width: 720px) {
+  header { padding: 50px 20px 30px; }
+  header h1 { font-size: 36px; }
+  header .stats { gap: 24px; }
+  .viz-block { padding: 40px 16px 24px; }
+  .viz-block h2 { font-size: 22px; }
+  .sticky-header { padding: 10px 16px; }
+  .sticky-header .site-title { font-size: 18px; }
+  .sticky-header .legend-row { font-size: 10px; gap: 6px 10px; }
+}
+
+.loading { text-align: center; color: var(--text-faint); font-style: italic; padding: 40px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>By the Books</h1>
+  <div class="subtitle">A visual essay of recent reads</div>
+  <div class="stats" id="header-stats"></div>
+  <div class="legend-row" id="header-legend" style="margin-top:28px"></div>
+</header>
+
+<!-- Sticky compressed header (shows on scroll past main header) -->
+<div class="sticky-header" id="sticky-header">
+  <div class="site-title">By the Books</div>
+  <div class="legend-row" id="sticky-legend"></div>
+</div>
+
+<div class="loading" id="loading">Loading books...</div>
+
+<section class="viz-block full-bleed" id="viz-1" style="display:none">
+  <h2>01 The Shelf</h2>
+  <p class="caption">
+    A shelf of everything I’ve read since 2018, arranged by the date finished. Each spine width is determined by the page count. The colour of the spine maps to the genre of the book.
+  </p>
+  <div class="scroll-wrap" id="scroll-spines">
+    <svg id="svg-spines"></svg>
+  </div>
+</section>
+
+<section class="viz-block" id="viz-2" style="display:none">
+  <h2>02 Genres Over Time</h2>
+  <p class="caption">
+    Interests rise and fall over time. Certain topics spike, then disappear. Literary fiction sits underneath it all, steady and continuous.
+  </p>
+  <svg id="svg-stream"></svg>
+</section>
+
+<section class="viz-block" id="viz-3" style="display:none">
+  <h2>03 Origins of the authors</h2>
+  <p class="caption">
+    A friend told me I read too many American authors. The data agrees.
+  </p>
+  <svg id="svg-countries"></svg>
+</section>
+
+<section class="viz-block" id="viz-4" style="display:none">
+  <h2>04 The Split</h2>
+  <p class="caption">
+    The balance between fiction and non-fiction shifts year to year.
+    Some years I lean into novels; other years less so.
+  </p>
+  <svg id="svg-fnf"></svg>
+</section>
+
+<section class="viz-block" id="viz-5" style="display:none">
+  <h2>05 Theme Breakdown</h2>
+  <p class="caption">
+    Inner ring: the six main categories. Middle ring: more specific subjects within each.
+    Outer ring: every book I've read, one tick each.
+  </p>
+  <svg id="svg-sunburst"></svg>
+</section>
+
+<section class="viz-block" id="viz-6" style="display:none">
+  <h2>06 Flows</h2>
+  <p class="caption">
+    A flow from genres to eras to origin of author. Ribbon thickness is the number of books taking that path. Hover a node or a ribbon to follow one strand of the reading history.
+  </p>
+  <svg id="svg-alluvial"></svg>
+</section>
+
+<footer>
+  <p>
+    Edward Blake © 2026
+  </p>
+</footer>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+<script>
+
+// ═══════════════════════════════════════════════════════════════
+// COLORS + DATA
+// ═══════════════════════════════════════════════════════════════
+
+// Editorial palette — 6 distinct hues, harmonious saturation
+const CATEGORY_COLORS = {
+  "Literary Fiction & Poetry": "#C9344B", // carmine red
+  "Memoir":                    "#D89A3C", // saffron
+  "The Arts":                  "#5AA17F", // verdigris
+  "History":                   "#8A6A3E", // tobacco brown
+  "Social Sciences":           "#3D5A80", // slate blue
+  "Technology":                "#6B5CA5", // plum purple
+};
+const CATEGORY_ORDER = Object.keys(CATEGORY_COLORS);
+const catColor = (c) => CATEGORY_COLORS[c] || "#aaa";
+
+const tooltip = d3.select("#tooltip");
+function showTip(event, html) { tooltip.html(html).classed("visible", true); moveTip(event); }
+function moveTip(event) {
+  const pad = 12;
+  tooltip.style("left", (event.clientX + pad) + "px").style("top", (event.clientY + pad) + "px");
+}
+function hideTip() { tooltip.classed("visible", false); }
+
+async function loadData() {
+  const resp = await fetch("data/books.json");
+  const db = await resp.json();
+  const books = db.books.map(b => {
+    const author = db.authors[b.authorKey] || {};
+    return { ...b, nationality: author.nationality, authorLang: author.originalLanguage,
+      dateReadObj: b.dateRead ? new Date(b.dateRead) : null };
+  }).filter(b => b.dateReadObj);
+  books.sort((a, b) => a.dateReadObj - b.dateReadObj);
+  return { db, books, authors: db.authors };
+}
+
+function renderHeaderStats(books, authors) {
+  const countries = new Set(Object.values(authors).map(a => a.nationality).filter(Boolean));
+  const years = [...new Set(books.map(b => b.challengeYear))].sort();
+  const stats = [
+    { num: books.length,                label: "books" },
+    { num: Object.keys(authors).length, label: "authors" },
+    { num: countries.size,              label: "countries" },
+    { num: years.length + "+",           label: "years", isText: true },
+  ];
+  d3.select("#header-stats").selectAll(".stat").data(stats).join("div").attr("class", "stat")
+    .html(d => `<span class="stat-num">${d.isText ? d.num : d.num.toLocaleString()}</span><span class="stat-label">${d.label}</span>`);
+}
+
+// Build sticky key
+function buildStickyKey() {
+  // Populate both legends (main header + sticky header)
+  const legendHtml = CATEGORY_ORDER.map(c =>
+    `<div class="key-item"><span class="key-dot" style="background:${catColor(c)}"></span>${c}</div>`
+  ).join("");
+  document.getElementById("header-legend").innerHTML = legendHtml;
+  document.getElementById("sticky-legend").innerHTML = legendHtml;
+
+  // Show sticky header once the main header scrolls out of view
+  const mainHeader = document.querySelector("header");
+  const stickyHeader = d3.select("#sticky-header");
+  const observer = new IntersectionObserver(entries => {
+    const entry = entries[0];
+    const pastHeader = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+    stickyHeader.classed("visible", pastHeader);
+  }, { threshold: 0 });
+  observer.observe(mainHeader);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+
+loadData().then(({ db, books, authors }) => {
+  d3.select("#loading").style("display", "none");
+  d3.selectAll(".viz-block").style("display", "");
+  renderHeaderStats(books, authors);
+  buildStickyKey();
+  buildSpines(books);
+  buildStream(books);
+  buildCountries(books, authors);
+  buildFnf(books);
+  try {
+    buildSunburst(books);
+  } catch (err) {
+    console.error("Sunburst error:", err);
+    const host = document.getElementById("svg-sunburst");
+    if (host && host.parentNode) {
+      const msg = document.createElement("div");
+      msg.style.cssText = "color: #c00; font-family: monospace; padding: 20px; border: 1px solid #c00; background: #fff5f5;";
+      msg.textContent = "Sunburst error: " + (err && err.message ? err.message : String(err));
+      host.parentNode.insertBefore(msg, host);
+    }
+  }
+  try {
+    buildAlluvial(books);
+  } catch (err) {
+    console.error("Alluvial error:", err);
+    const host = document.getElementById("svg-alluvial");
+    if (host && host.parentNode) {
+      const msg = document.createElement("div");
+      msg.style.cssText = "color: #c00; font-family: monospace; padding: 20px; border: 1px solid #c00; background: #fff5f5;";
+      msg.textContent = "Alluvial error: " + (err && err.message ? err.message : String(err));
+      host.parentNode.insertBefore(msg, host);
+    }
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// VIZ 1: POLAR THEME RINGS
+// ═══════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════
+// VIZ 1: BOOK SPINES (horizontal scroll)
+// ═══════════════════════════════════════════════════════════════
+
+function buildSpines(books) {
+  const MAX_HEIGHT = 280;
+  const SPINE_HEIGHTS = [220, 232, 244, 256, 268, 280]; // 6 heights
+  const MIN_WIDTH = 18;
+  const GAP = 2;
+  const PADDING_X = 0;
+  const PADDING_X_END = 180;    // trailing space so opened covers near the end aren't cut off
+  const COVER_H = 280;          // fixed height of expanded cover
+  const COVER_FALLBACK_W = 180; // used before image dimensions are known
+  const COVER_GAP = 2;          // extra spacing around expanded cover
+  const YEAR_WIDTH = 28;        // width of the year text column
+  const YEAR_PAD_LEFT = 12;     // extra space before the year text
+  const YEAR_FONT_SIZE = 28;
+  const TRANSITION_MS = 320;
+
+  // Typographic variety — mix of serif and sans-serif fonts
+  const FONTS = [
+    "Georgia, serif",
+    "'Baskerville', serif",
+    "'Palatino', 'Palatino Linotype', serif",
+    "'Didot', 'Bodoni Moda', serif",
+    "'American Typewriter', monospace",
+    "'Helvetica Neue', Helvetica, sans-serif",
+    "'Futura', sans-serif",
+    "'Avenir Next', 'Avenir', sans-serif",
+    "'Gill Sans', 'Gill Sans MT', sans-serif",
+    "'Optima', sans-serif",
+  ];
+
+  // Deterministic hash for stable per-book choices
+  function hashCode(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) {
+      h = ((h << 5) - h) + str.charCodeAt(i);
+      h |= 0;
+    }
+    return Math.abs(h);
+  }
+
+  function spineWidth(pages) {
+    const p = pages || 200;
+    return Math.max(MIN_WIDTH, Math.round(15 + p * 0.05));
+  }
+  function spineHeight(id) {
+    return SPINE_HEIGHTS[hashCode(id + "h") % SPINE_HEIGHTS.length];
+  }
+
+  // Sort books by dateRead
+  const sorted = books.slice().sort((a, b) => a.dateReadObj - b.dateReadObj);
+
+  // Cache for image natural aspect ratios (w/h), keyed by URL
+  const aspectCache = {};
+  function getAspect(url) {
+    if (!url) return null;
+    return aspectCache[url];
+  }
+  function loadAspect(url) {
+    if (!url) return;
+    if (url in aspectCache) return; // already loading or loaded
+    aspectCache[url] = null;
+    const img = new Image();
+    img.onload = () => {
+      aspectCache[url] = img.naturalWidth / img.naturalHeight;
+      // Update cover image elements and their clip rects for any book using this url
+      if (typeof bookGroups !== "undefined") {
+        sorted.forEach(b => {
+          if (b.coverUrl !== url) return;
+          const grp = bookGroups[b.goodreadsId];
+          if (!grp) return;
+          const baseH = spineHeight(b.goodreadsId);
+          const newW = Math.round(baseH * aspectCache[url]);
+          grp.select(".spine-cover").attr("width", newW);
+        });
+      }
+      // If any currently open book uses this url, re-apply layout so the rect/clip width catch up
+      if (typeof openSet !== "undefined" &&
+          typeof applyLayout === "function" &&
+          sorted.some(b => openSet.has(b.goodreadsId) && b.coverUrl === url)) {
+        // Force state change so applyLayout re-transitions
+        sorted.forEach(b => {
+          if (openSet.has(b.goodreadsId) && b.coverUrl === url && bookState[b.goodreadsId]) {
+            bookState[b.goodreadsId].isOpen = false;
+          }
+        });
+        applyLayout();
+      }
+    };
+    img.onerror = () => { aspectCache[url] = 0.65; };
+    img.src = url;
+  }
+
+  // (Preload moved to the end — after bookGroups and applyLayout are defined)
+
+  // Compute expanded cover width for a given book at a given height
+  function coverWidthFor(book, h) {
+    const aspect = getAspect(book.coverUrl);
+    if (!aspect) return Math.round(h * 0.65); // assume ~book-cover aspect
+    return Math.round(h * aspect);
+  }
+
+  // Build a sequence of items (year markers + books) in order
+  // Each year marker is inserted before the first book of that year
+  function buildSequence() {
+    const items = [];
+    let currentYear = null;
+    sorted.forEach(b => {
+      const y = b.dateReadObj.getFullYear();
+      if (y !== currentYear) {
+        items.push({ type: "year", year: y });
+        currentYear = y;
+      }
+      items.push({ type: "book", book: b });
+    });
+    return items;
+  }
+  const sequence = buildSequence();
+
+  // Compute placements for the sequence (multi-select: openSet is a Set of goodreadsIds)
+  // When a book is open, its spine transforms into the cover image (wider, but same height)
+  function computePlacements(openSet) {
+    let x = PADDING_X;
+    const bookPlacements = {};   // goodreadsId -> { x, w, h, yOffset, isOpen }
+    const yearPlacements = {};   // year -> { x }
+
+    sequence.forEach((item, idx) => {
+      if (item.type === "year") {
+        yearPlacements[item.year] = { x };
+        x += YEAR_PAD_LEFT + YEAR_WIDTH + GAP;
+      } else {
+        const b = item.book;
+        const baseW = spineWidth(b.pages);
+        const baseH = spineHeight(b.goodreadsId);
+        const isOpen = openSet.has(b.goodreadsId) && !!b.coverUrl;
+        const w = isOpen ? coverWidthFor(b, baseH) : baseW;
+        bookPlacements[b.goodreadsId] = {
+          x, w, baseW, baseH, h: baseH, isOpen,
+          yOffset: 10 + (MAX_HEIGHT - baseH),
+        };
+        x += w + GAP;
+      }
+    });
+    return { bookPlacements, yearPlacements, totalWidth: x };
+  }
+
+  const baseLayout = computePlacements(new Set());
+  const totalHeight = MAX_HEIGHT + 40;
+
+  function setSvgWidth(w) {
+    svg.attr("width", w).attr("viewBox", `0 0 ${w} ${totalHeight}`);
+  }
+
+  const svg = d3.select("#svg-spines")
+    .attr("height", totalHeight);
+  svg.selectAll("*").remove();
+  setSvgWidth(baseLayout.totalWidth + PADDING_X_END);
+
+  // Helpers
+  function maxCharsForSpine(h, fontSize) {
+    const avail = h - 24;
+    return Math.max(0, Math.floor(avail / (fontSize * 0.55)));
+  }
+  function truncate(str, max) {
+    if (str.length <= max) return str;
+    return str.slice(0, Math.max(1, max - 1)) + "\u2026";
+  }
+
+  // Years layer (embedded as typographic markers on the shelf, bottom-aligned)
+  const yearsLayer = svg.append("g").attr("class", "years-layer");
+  const yearGroups = {};
+  Object.entries(baseLayout.yearPlacements).forEach(([year, p]) => {
+    const grp = yearsLayer.append("g")
+      .attr("class", "year-group")
+      .attr("transform", `translate(${p.x + YEAR_PAD_LEFT}, 10)`)
+      .style("pointer-events", "none");
+    grp.append("text")
+      .attr("class", "year-label")
+      .attr("x", MAX_HEIGHT - 4)
+      .attr("y", -YEAR_WIDTH / 2)
+      .attr("transform", "rotate(90)")
+      .attr("text-anchor", "end")
+      .attr("dominant-baseline", "central")
+      .attr("font-family", "'Futura', 'Avenir Next', sans-serif")
+      .attr("font-weight", 900)
+      .attr("font-size", YEAR_FONT_SIZE + "px")
+      .attr("fill", "#1a1a1a")
+      .attr("letter-spacing", "-0.04em")
+      .text(year);
+    yearGroups[year] = grp;
+  });
+
+  // Spines layer
+  const g = svg.append("g").attr("class", "spines-layer");
+
+  // Draw each book's spine (fixed size — never changes)
+  const bookGroups = {};
+  const defs = svg.append("defs");
+  Object.entries(baseLayout.bookPlacements).forEach(([id, p]) => {
+    const b = sorted.find(x => x.goodreadsId === id);
+    if (!b) return;
+    const { x: bx, w, h, yOffset } = p;
+    const color = catColor(b.category || "Other");
+
+    const grp = g.append("g")
+      .attr("class", "spine-group")
+      .attr("transform", `translate(${bx}, ${yOffset})`);
+
+    // Spine rectangle
+    grp.append("rect")
+      .attr("class", "spine-rect")
+      .attr("x", 0).attr("y", 0).attr("width", w).attr("height", h)
+      .attr("fill", color);
+
+    // Cover image at its FULL target size (never resized); revealed by a clipPath
+    // that starts at spine width and grows to cover width on open.
+    if (b.coverUrl) {
+      const coverW = coverWidthFor(b, h);
+      const clipId = `clip-${id}`;
+      const clipPath = defs.append("clipPath").attr("id", clipId);
+      clipPath.append("rect")
+        .attr("class", "spine-clip-rect")
+        .attr("x", 0).attr("y", 0)
+        .attr("width", w).attr("height", h);
+
+      grp.append("image")
+        .attr("class", "spine-cover")
+        .attr("href", b.coverUrl)
+        .attr("x", 0).attr("y", 0)
+        .attr("width", coverW).attr("height", h)
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .attr("clip-path", `url(#${clipId})`)
+        .attr("opacity", 0)
+        .attr("pointer-events", "none");
+    }
+
+    // Hairlines
+    grp.append("line")
+      .attr("class", "top-hair")
+      .attr("x1", 0).attr("x2", w).attr("y1", 0.5).attr("y2", 0.5)
+      .attr("stroke", "rgba(255,255,255,0.3)").attr("stroke-width", 1);
+    grp.append("line")
+      .attr("class", "bot-hair")
+      .attr("x1", 0).attr("x2", w).attr("y1", h - 0.5).attr("y2", h - 0.5)
+      .attr("stroke", "rgba(0,0,0,0.2)").attr("stroke-width", 1);
+
+    // Title
+    if (w >= 16) {
+      const fontSize = Math.min(13, Math.max(9, w - 8));
+      const maxChars = maxCharsForSpine(h, fontSize);
+      let shortTitle = b.title
+        .replace(/\s*\([^)]*\)/g, "")
+        .split(":")[0]
+        .trim();
+      const hash = hashCode(b.goodreadsId);
+      if (hash % 10 === 0 && shortTitle.length < 20) shortTitle = shortTitle.toUpperCase();
+      const title = truncate(shortTitle, maxChars);
+      const font = FONTS[hash % FONTS.length];
+      const centered = (hash % 3) === 0;
+      const xPos = centered ? h / 2 : 14;
+      const anchor = centered ? "middle" : "start";
+
+      grp.append("text")
+        .attr("class", "spine-title")
+        .attr("x", xPos)
+        .attr("y", -(w / 2 - fontSize / 3))
+        .attr("transform", "rotate(90)")
+        .attr("text-anchor", anchor)
+        .attr("font-family", font)
+        .attr("font-size", fontSize + "px").attr("font-weight", 500)
+        .attr("fill", "#ffffff").attr("fill-opacity", 0.95)
+        .attr("pointer-events", "none")
+        .text(title);
+    }
+
+    bookGroups[b.goodreadsId] = grp;
+  });
+
+  // Track the set of open books and per-book open state for detecting changes
+  const openSet = new Set();
+  const bookState = {};  // id -> { isOpen: bool }
+
+  function applyLayout() {
+    const layout = computePlacements(openSet);
+    setSvgWidth(layout.totalWidth + PADDING_X_END);
+
+    // Update each book
+    Object.entries(layout.bookPlacements).forEach(([id, p]) => {
+      const b = sorted.find(x => x.goodreadsId === id);
+      const grp = bookGroups[id];
+      if (!grp) return;
+
+      const wasOpen = bookState[id] ? bookState[id].isOpen : false;
+      const stateChanged = wasOpen !== p.isOpen;
+
+      // Move group if x changed
+      const currentTransform = grp.attr("transform");
+      const targetTransform = `translate(${p.x}, ${p.yOffset})`;
+      if (currentTransform !== targetTransform) {
+        grp.interrupt().transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+          .attr("transform", targetTransform);
+      }
+
+      // Only transition rect/cover/title/hairlines if state actually changed
+      if (stateChanged) {
+        const rect = grp.select(".spine-rect");
+        const cover = grp.select(".spine-cover");
+        const title = grp.select(".spine-title");
+        const topHair = grp.select(".top-hair");
+        const botHair = grp.select(".bot-hair");
+        const clipRect = svg.select(`#clip-${id} .spine-clip-rect`);
+
+        rect.interrupt();
+        cover.interrupt();
+        clipRect.interrupt();
+        if (!title.empty()) title.interrupt();
+        topHair.interrupt();
+        botHair.interrupt();
+
+        // Hairlines width
+        topHair.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+          .attr("x2", p.w);
+        botHair.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+          .attr("x2", p.w);
+
+        // Clip rect follows the spine width (reveals the fixed-size cover image)
+        clipRect.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+          .attr("width", p.w);
+
+        if (p.isOpen && b.coverUrl) {
+          rect.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+            .attr("width", p.w)
+            .attr("fill-opacity", 0);
+          cover.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+            .attr("opacity", 1);
+          if (!title.empty()) {
+            title.transition().duration(TRANSITION_MS / 2).ease(d3.easeCubicOut)
+              .attr("fill-opacity", 0);
+          }
+        } else {
+          rect.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+            .attr("width", p.w)
+            .attr("fill-opacity", 1);
+          cover.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+            .attr("opacity", 0);
+          if (!title.empty()) {
+            title.transition().duration(TRANSITION_MS / 2).ease(d3.easeCubicOut)
+              .attr("fill-opacity", 0.95);
+          }
+        }
+      }
+
+      bookState[id] = { isOpen: p.isOpen };
+    });
+
+    // Move year labels (only if changed)
+    Object.entries(layout.yearPlacements).forEach(([year, p]) => {
+      const grp = yearGroups[year];
+      if (!grp) return;
+      const currentTransform = grp.attr("transform");
+      const targetTransform = `translate(${p.x + YEAR_PAD_LEFT}, 10)`;
+      if (currentTransform !== targetTransform) {
+        grp.interrupt().transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
+          .attr("transform", targetTransform);
+      }
+    });
+  }
+
+  // Click handlers
+  const bookIds = Object.keys(baseLayout.bookPlacements);
+
+  bookIds.forEach(id => {
+    const b = sorted.find(x => x.goodreadsId === id);
+    if (!b) return;
+    const grp = bookGroups[id];
+    grp
+      .style("cursor", "pointer")
+      .on("click", function(event) {
+        event.stopPropagation();
+        if (openSet.has(id)) {
+          openSet.delete(id);
+        } else {
+          openSet.add(id);
+        }
+        applyLayout();
+      })
+      .on("mouseenter", function(event) {
+        const year = b.dateReadObj.getFullYear();
+        showTip(event, `
+          <div class="tooltip-title">${b.title}</div>
+          <div class="tooltip-sub">${b.author}</div>
+          <div class="tooltip-meta">${b.category || ""} &middot; ${year}</div>
+        `);
+      })
+      .on("mousemove", moveTip)
+      .on("mouseleave", hideTip);
+  });
+
+  // Preload all covers — now that bookGroups is defined, callbacks can safely update widths
+  sorted.forEach(b => b.coverUrl && loadAspect(b.coverUrl));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VIZ 2: THEME STREAM
+// ═══════════════════════════════════════════════════════════════
+
+function buildStream(books) {
+  const width = 1000;
+  const height = 580; // 40% taller
+  const margin = { top: 20, right: 20, bottom: 40, left: 0 };
+
+  const svg = d3.select("#svg-stream").attr("viewBox", `0 0 ${width} ${height}`);
+  svg.selectAll("*").remove();
+
+  const years = d3.range(2018, 2027);
+  const catSet = new Set(books.map(b => b.category).filter(Boolean));
+  const allCats = CATEGORY_ORDER.filter(c => catSet.has(c));
+
+  const data = years.map(year => {
+    const row = { year };
+    allCats.forEach(c => row[c] = 0);
+    books.filter(b => b.challengeYear === year).forEach(b => { row[b.category || "Other"]++; });
+    return row;
+  });
+
+  const stack = d3.stack().keys(allCats).offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut);
+  const series = stack(data);
+
+  const x = d3.scaleLinear().domain(d3.extent(years)).range([margin.left, width - margin.right]);
+  const y = d3.scaleLinear()
+    .domain([d3.min(series, d => d3.min(d, p => p[0])), d3.max(series, d => d3.max(d, p => p[1]))])
+    .range([height - margin.bottom, margin.top]);
+
+  const area = d3.area()
+    .x(d => x(d.data.year)).y0(d => y(d[0])).y1(d => y(d[1]))
+    .curve(d3.curveCatmullRom);
+
+  svg.append("g").selectAll("path").data(series).join("path")
+    .attr("fill", d => catColor(d.key)).attr("d", area).attr("opacity", 0.9)
+    .style("cursor", "pointer")
+    .on("mouseenter", (event, d) => {
+      d3.select(event.currentTarget).attr("opacity", 1).attr("stroke", "#1a1a1a").attr("stroke-width", 1);
+      const total = d.reduce((s, p) => s + (p[1] - p[0]), 0);
+      showTip(event, `<div class="tooltip-title">${d.key}</div><div class="tooltip-sub">${total} books</div>`);
+    })
+    .on("mousemove", moveTip)
+    .on("mouseleave", (event) => {
+      d3.select(event.currentTarget).attr("opacity", 0.9).attr("stroke", "none"); hideTip();
+    });
+
+  svg.append("g").attr("class", "axis").attr("transform", `translate(0, ${height - margin.bottom})`)
+    .call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(years.length))
+    .call(g => g.select(".domain").remove());
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VIZ 3: COUNTRY COMPARISON (proportional stacked bars over time)
+// ═══════════════════════════════════════════════════════════════
+
+function buildCountries(books, authors) {
+  const width = 1000;
+  const height = 580;
+
+  const svg = d3.select("#svg-countries").attr("viewBox", `0 0 ${width} ${height}`);
+  svg.selectAll("*").remove();
+
+  // Count books per country and gather per-author counts
+  // Countries with 2 or fewer books are rolled into an "Other" bucket
+  const rawCountryTotal = {};
+  const rawAuthorCounts = {};   // country -> { author: count }
+  books.forEach(b => {
+    const nat = b.nationality || "Unknown";
+    rawCountryTotal[nat] = (rawCountryTotal[nat] || 0) + 1;
+    if (!rawAuthorCounts[nat]) rawAuthorCounts[nat] = {};
+    rawAuthorCounts[nat][b.author] = (rawAuthorCounts[nat][b.author] || 0) + 1;
+  });
+  const countryTotal = {};
+  const countryTopAuthors = {};  // country -> [ "Author (n)", ... ]
+  let otherCountriesCount = 0;
+  // Countries always forced into "Other" regardless of count
+  const FORCE_OTHER = new Set(["Switzerland", "Norway", "Lebanon"]);
+  function topAuthorsFrom(authorCountMap, n) {
+    return Object.entries(authorCountMap)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, n)
+      .map(([name, c]) => c > 1 ? `${name} (${c})` : name);
+  }
+  const otherCountryCounts = {};  // country -> book count (for the "Other" tooltip)
+  Object.entries(rawCountryTotal).forEach(([nat, count]) => {
+    if (count <= 2 || FORCE_OTHER.has(nat)) {
+      countryTotal["Other"] = (countryTotal["Other"] || 0) + count;
+      otherCountryCounts[nat] = count;
+      otherCountriesCount++;
+    } else {
+      countryTotal[nat] = count;
+      countryTopAuthors[nat] = topAuthorsFrom(rawAuthorCounts[nat], 3);
+    }
+  });
+  if (countryTotal["Other"]) {
+    // For Other, show the top 3 countries (by book count) rather than authors
+    countryTopAuthors["Other"] = Object.entries(otherCountryCounts)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 3)
+      .map(([name, c]) => c > 1 ? `${name} (${c})` : name);
+  }
+
+  // Geographic palette — distinct from the book genre colors. Earth / map-like tones.
+  const paletteColors = [
+    "#2D5D7B", // deep ocean
+    "#B05C3C", // rust
+    "#557A5A", // sage green
+    "#C9A24A", // ochre
+    "#5E4B8A", // iris purple
+    "#8B4A5F", // wine
+    "#4A8086", // teal
+  ];
+  // Derive softer tints for the tail countries by blending with white
+  function tint(hex, amount) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const nr = Math.round(r + (255 - r) * amount);
+    const ng = Math.round(g + (255 - g) * amount);
+    const nb = Math.round(b + (255 - b) * amount);
+    return "#" + [nr, ng, nb].map(v => v.toString(16).padStart(2, "0")).join("");
+  }
+
+  // Sort countries by count desc; assign palette colors to top 6, tinted versions to the rest
+  const sortedCountries = Object.entries(countryTotal).sort((a, b) => b[1] - a[1]);
+  const countryColor = {};
+  sortedCountries.forEach(([name], i) => {
+    if (i < paletteColors.length) {
+      countryColor[name] = paletteColors[i];
+    } else {
+      // Cycle through palette with increasing tint for visual variety
+      const paletteIdx = i % paletteColors.length;
+      const tintLevel = 0.3 + (Math.floor(i / paletteColors.length) * 0.15);
+      countryColor[name] = tint(paletteColors[paletteIdx], Math.min(tintLevel, 0.75));
+    }
+  });
+
+  // Build hierarchy for d3.treemap
+  const root = d3.hierarchy({
+    children: sortedCountries.map(([name, count]) => ({ name, count })),
+  })
+    .sum(d => d.count)
+    .sort((a, b) => b.value - a.value);
+
+  d3.treemap()
+    .size([width, height])
+    .paddingInner(3)
+    .round(true)(root);
+
+  // Draw rectangles
+  const leaves = svg.append("g").selectAll("g").data(root.leaves()).join("g")
+    .attr("transform", d => `translate(${d.x0}, ${d.y0})`);
+
+  leaves.append("rect")
+    .attr("width", d => d.x1 - d.x0)
+    .attr("height", d => d.y1 - d.y0)
+    .attr("fill", d => countryColor[d.data.name])
+    .style("cursor", "pointer")
+    .on("mouseenter", function(event, d) {
+      const base = countryColor[d.data.name];
+      d3.select(this).attr("fill", d3.color(base).darker(0.5));
+      const topAuthors = countryTopAuthors[d.data.name] || [];
+      if (topAuthors.length === 0) return;
+      showTip(event, topAuthors.map(a => `<div>${a}</div>`).join(""));
+    })
+    .on("mousemove", moveTip)
+    .on("mouseleave", function(event, d) {
+      d3.select(this).attr("fill", countryColor[d.data.name]);
+      hideTip();
+    });
+
+  // Font size tiers based on book count — keeps size consistent across similar-sized countries
+  function fontSizeTier(count) {
+    if (count >= 100) return 28;
+    if (count >= 50)  return 22;
+    if (count >= 20)  return 16;
+    if (count >= 10)  return 12;
+    if (count >= 5)   return 10;
+    return 9;
+  }
+
+  // Labels — country name and count, shown at the largest font size that fits
+  // Use getComputedTextLength() for accurate measurement instead of an estimate
+  leaves.each(function(d) {
+    const w = d.x1 - d.x0;
+    const h = d.y1 - d.y0;
+    const grp = d3.select(this);
+    const padX = 6;
+    const padY = 4;
+    const available = w - 2 * padX;
+
+    if (w < 24 || h < 18 || available < 18) return; // too small for any label
+
+    // Start from the tier size for this book count; shrink only if it actually overflows
+    const maxSize = fontSizeTier(d.data.count);
+    const minSize = 9;
+    const label = grp.append("text")
+      .attr("x", padX)
+      .attr("font-family", "'Iowan Old Style', Georgia, serif")
+      .attr("font-weight", 500)
+      .attr("fill", "#ffffff")
+      .attr("pointer-events", "none")
+      .text(d.data.name);
+
+    let fontSize = Math.round(maxSize);
+    label.attr("font-size", fontSize + "px");
+    // Shrink until it fits — use actual measured length
+    while (fontSize > minSize && label.node().getComputedTextLength() > available) {
+      fontSize -= 1;
+      label.attr("font-size", fontSize + "px");
+    }
+    if (label.node().getComputedTextLength() > available) {
+      label.remove();
+      return; // still doesn't fit even at min size
+    }
+    label.attr("y", fontSize + padY);
+
+    // Book count (only if there's room below the name)
+    const countFontSize = Math.max(9, Math.min(fontSize * 0.7, 16));
+    if (h > fontSize + countFontSize + 10) {
+      const countLabel = grp.append("text")
+        .attr("x", padX)
+        .attr("y", fontSize + padY + countFontSize + 2)
+        .attr("font-family", "-apple-system, sans-serif")
+        .attr("font-size", countFontSize + "px")
+        .attr("fill", "#ffffff")
+        .attr("fill-opacity", 0.8)
+        .attr("pointer-events", "none")
+        .text(d.data.count);
+      if (countLabel.node().getComputedTextLength() > available) countLabel.remove();
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VIZ 4: FICTION / NON-FICTION (stacked area showing balance)
+// ═══════════════════════════════════════════════════════════════
+
+function buildFnf(books) {
+  const width = 1000;
+  const height = 420;
+  const margin = { top: 40, right: 80, bottom: 40, left: 0 };
+
+  const FIC = "#C9344B";
+  const NF = "#3D5A80";
+
+  const years = d3.range(2018, 2027);
+  const data = years.map(year => {
+    const yb = books.filter(b => b.challengeYear === year);
+    const fic = yb.filter(b => b.fiction).length;
+    const nf = yb.length - fic;
+    return { year, fiction: fic, nonfiction: nf, total: yb.length };
+  });
+
+  const maxCount = d3.max(data, d => Math.max(d.fiction, d.nonfiction));
+
+  const svg = d3.select("#svg-fnf").attr("viewBox", `0 0 ${width} ${height}`);
+  svg.selectAll("*").remove();
+
+  // X scale: one axis per year
+  const x = d3.scalePoint()
+    .domain(years)
+    .range([margin.left, width - margin.right])
+    .padding(0.5);
+
+  // Y scale: 0 at bottom, max count at top
+  const y = d3.scaleLinear()
+    .domain([0, maxCount + 5])
+    .range([height - margin.bottom, margin.top]);
+
+  // Draw vertical axis lines for each year
+  years.forEach(year => {
+    const xPos = x(year);
+    svg.append("line")
+      .attr("x1", xPos).attr("x2", xPos)
+      .attr("y1", margin.top - 10).attr("y2", height - margin.bottom + 10)
+      .attr("stroke", "#e5e3dc").attr("stroke-width", 1);
+
+    // Year label at bottom
+    svg.append("text")
+      .attr("x", xPos).attr("y", height - margin.bottom + 30)
+      .attr("text-anchor", "middle")
+      .attr("font-family", "-apple-system, sans-serif")
+      .attr("font-size", "13px").attr("font-weight", 600).attr("fill", "#6b6b6b")
+      .text(year);
+  });
+
+  // Line generators
+  const line = d3.line().x(d => x(d.year)).curve(d3.curveMonotoneX);
+
+  // Shaded area between the two lines (optional — shows the gap)
+  const areaPath = d3.area()
+    .x(d => x(d.year))
+    .y0(d => y(d.nonfiction))
+    .y1(d => y(d.fiction))
+    .curve(d3.curveMonotoneX);
+
+  svg.append("path")
+    .datum(data)
+    .attr("d", areaPath)
+    .attr("fill", "#e5e3dc")
+    .attr("fill-opacity", 0.3);
+
+  // Fiction line
+  svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", FIC)
+    .attr("stroke-width", 2.5)
+    .attr("d", line.y(d => y(d.fiction)));
+
+  // Non-fiction line
+  svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", NF)
+    .attr("stroke-width", 2.5)
+    .attr("d", line.y(d => y(d.nonfiction)));
+
+  // Dots + count labels for each year
+  data.forEach(d => {
+    const xPos = x(d.year);
+
+    // Fiction dot
+    svg.append("circle")
+      .attr("cx", xPos).attr("cy", y(d.fiction))
+      .attr("r", 5).attr("fill", FIC).attr("stroke", "#fff").attr("stroke-width", 2)
+      .style("cursor", "pointer")
+      .on("mouseenter", function(event) {
+        d3.select(this).attr("r", 7);
+        const pct = d.total ? Math.round(100 * d.fiction / d.total) : 0;
+        showTip(event, `<div class="tooltip-title">${d.year}</div>
+          <div class="tooltip-sub">Fiction: ${d.fiction} (${pct}%)</div>`);
+      })
+      .on("mousemove", moveTip)
+      .on("mouseleave", function() { d3.select(this).attr("r", 5); hideTip(); });
+
+    // Fiction count label — always below its dot
+    svg.append("text")
+      .attr("x", xPos).attr("y", y(d.fiction) + 20)
+      .attr("text-anchor", "middle")
+      .attr("font-family", "-apple-system, sans-serif")
+      .attr("font-size", "11px").attr("font-weight", 600).attr("fill", FIC)
+      .text(d.fiction);
+
+    // Non-fiction dot
+    svg.append("circle")
+      .attr("cx", xPos).attr("cy", y(d.nonfiction))
+      .attr("r", 5).attr("fill", NF).attr("stroke", "#fff").attr("stroke-width", 2)
+      .style("cursor", "pointer")
+      .on("mouseenter", function(event) {
+        d3.select(this).attr("r", 7);
+        const pct = d.total ? Math.round(100 * d.nonfiction / d.total) : 0;
+        showTip(event, `<div class="tooltip-title">${d.year}</div>
+          <div class="tooltip-sub">Non-fiction: ${d.nonfiction} (${pct}%)</div>`);
+      })
+      .on("mousemove", moveTip)
+      .on("mouseleave", function() { d3.select(this).attr("r", 5); hideTip(); });
+
+    // Non-fiction count label — always above its dot
+    svg.append("text")
+      .attr("x", xPos).attr("y", y(d.nonfiction) - 14)
+      .attr("text-anchor", "middle")
+      .attr("font-family", "-apple-system, sans-serif")
+      .attr("font-size", "11px").attr("font-weight", 600).attr("fill", NF)
+      .text(d.nonfiction);
+  });
+
+  // Legend labels at the right end of each line
+  const last = data[data.length - 1];
+  const lastX = x(last.year);
+  svg.append("text")
+    .attr("x", lastX + 14).attr("y", y(last.fiction))
+    .attr("dominant-baseline", "central")
+    .attr("font-family", "-apple-system, sans-serif")
+    .attr("font-size", "12px").attr("font-weight", 600).attr("fill", FIC)
+    .text("Fiction");
+  svg.append("text")
+    .attr("x", lastX + 14).attr("y", y(last.nonfiction))
+    .attr("dominant-baseline", "central")
+    .attr("font-family", "-apple-system, sans-serif")
+    .attr("font-size", "12px").attr("font-weight", 600).attr("fill", NF)
+    .text("Non-fiction");
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VIZ 5: SUNBURST (category -> subcategory -> book)
+// ═══════════════════════════════════════════════════════════════
+
+// Mapping from sub-category (old 21-theme taxonomy) to main category,
+// used to order sub-categories within each ring segment.
+const SUBCAT_ORDER = {
+  "Literary Fiction & Poetry": ["Literary Fiction", "Science Fiction", "Poetry"],
+  "Memoir":                    ["Memoir", "Biography"],
+  "The Arts":                  ["Art", "Design", "Writing", "Music", "Architecture", "Books/Libraries"],
+  "History":                   ["History", "Australian History", "Travel"],
+  "Social Sciences":           ["Philosophy", "Politics", "Psychology", "Sociology", "Economics", "Essays", "Language", "Nature"],
+  "Technology":                ["Technology", "Science"],
+};
+
+function buildSunburst(books) {
+  const size = 820;
+  const radius = size / 2;
+
+  const svgRoot = d3.select("#svg-sunburst")
+    .attr("width", size)
+    .attr("height", size)
+    .attr("viewBox", `0 0 ${size} ${size}`)
+    .style("display", "block")
+    .style("margin", "0 auto");
+  svgRoot.selectAll("*").remove();
+  // All drawing happens inside this centered group so angles/radii use (0,0) as origin
+  const svg = svgRoot.append("g").attr("transform", `translate(${radius}, ${radius})`);
+
+  // Build the hierarchy: root -> category -> subCategory -> book
+  // Respect the configured order of categories and sub-categories
+  const catOrder = CATEGORY_ORDER; // already defined in the file
+  const rootChildren = [];
+  catOrder.forEach(cat => {
+    const subs = SUBCAT_ORDER[cat] || [];
+    const subChildren = [];
+    subs.forEach(sub => {
+      const bs = books.filter(b => b.category === cat && b.subCategory === sub);
+      if (bs.length === 0) return;
+      // Sort books alphabetically by title within a sub-category
+      bs.sort((a, b) => a.title.localeCompare(b.title));
+      subChildren.push({
+        name: sub,
+        category: cat,
+        children: bs.map(b => ({
+          name: b.title,
+          author: b.author,
+          category: cat,
+          subCategory: sub,
+          value: 1,
+          book: b,
+        })),
+      });
+    });
+    if (subChildren.length > 0) {
+      rootChildren.push({ name: cat, children: subChildren });
+    }
+  });
+
+  // Build hierarchy; no .sort() so children stay in the order we defined them
+  const root = d3.hierarchy({ name: "root", children: rootChildren })
+    .sum(d => d.value || 0);
+
+  // Partition layout
+  d3.partition().size([2 * Math.PI, radius])(root);
+
+  // Radii for each ring
+  const innerR1 = 80;   // inner edge of category ring
+  const outerR1 = 180;  // outer edge of category / inner of subcat
+  const outerR2 = 280;  // outer edge of subcat / inner of book ring
+  const outerR3 = radius - 10; // outer edge of book ring
+
+  // Re-map the partition's natural depth-based radii to our custom rings
+  function ringRadii(depth) {
+    if (depth === 1) return [innerR1, outerR1];
+    if (depth === 2) return [outerR1, outerR2];
+    if (depth === 3) return [outerR2, outerR3];
+    return [0, 0];
+  }
+
+  // Darken/lighten helper for subcategory tints
+  function tint(hex, amount) {
+    const c = d3.color(hex);
+    return amount > 0 ? c.brighter(amount).formatHex() : c.darker(-amount).formatHex();
+  }
+
+  // Build arc generator
+  const arc = d3.arc()
+    .startAngle(d => d.x0)
+    .endAngle(d => d.x1)
+    .padAngle(d => d.depth === 3 ? 0 : 0.003)
+    .padRadius(radius);
+
+  // Draw category ring
+  const cats = root.descendants().filter(d => d.depth === 1);
+  cats.forEach(d => {
+    const [r0, r1] = ringRadii(1);
+    const color = catColor(d.data.name);
+    svg.append("path")
+      .datum(d)
+      .attr("d", arc.innerRadius(r0).outerRadius(r1))
+      .attr("fill", color)
+      .style("cursor", "pointer")
+      .on("mouseenter", function(event) {
+        d3.select(this).attr("fill", d3.color(color).darker(0.4));
+        const total = d.value;
+        showTip(event, `<div class="tooltip-title">${d.data.name}</div>
+          <div class="tooltip-sub">${total} book${total !== 1 ? "s" : ""}</div>`);
+      })
+      .on("mousemove", moveTip)
+      .on("mouseleave", function() {
+        d3.select(this).attr("fill", color);
+        hideTip();
+      });
+  });
+
+  // Ring lightening factors — each ring gets a consistent tint outward
+  const SUB_TINT = 0.55;   // subcategory ring
+  const BOOK_TINT = 0.88;  // book ring (very light)
+
+  // Draw subcategory ring (tint of parent category color)
+  const subs = root.descendants().filter(d => d.depth === 2);
+  subs.forEach((d, i) => {
+    const [r0, r1] = ringRadii(2);
+    const baseColor = catColor(d.data.category);
+    const color = tint(baseColor, SUB_TINT);
+    svg.append("path")
+      .datum(d)
+      .attr("d", arc.innerRadius(r0).outerRadius(r1))
+      .attr("fill", color)
+      .style("cursor", "pointer")
+      .on("mouseenter", function(event) {
+        d3.select(this).attr("fill", d3.color(color).darker(0.4));
+        const total = d.value;
+        showTip(event, `<div class="tooltip-title">${d.data.name}</div>
+          <div class="tooltip-sub">${d.data.category} &middot; ${total} book${total !== 1 ? "s" : ""}</div>`);
+      })
+      .on("mousemove", moveTip)
+      .on("mouseleave", function() {
+        d3.select(this).attr("fill", color);
+        hideTip();
+      });
+  });
+
+  // Draw book ring (thin outer slices, each book one slice, even lighter)
+  // Vary outer radius with a pseudo-random offset per book so it feels organic
+  const bookNodes = root.descendants().filter(d => d.depth === 3);
+  const [bookR0Base, bookR1Base] = ringRadii(3);
+  // Use page count to vary bar length — genuinely irregular per book
+  const pageExtent = d3.extent(bookNodes, d => d.data.book.pages || 200);
+  const barScale = d3.scaleLinear().domain(pageExtent).range([0, 30]);
+  bookNodes.forEach((d, i) => {
+    const r0 = bookR0Base;
+    const r1 = bookR1Base - barScale(d.data.book.pages || 200);
+    const baseColor = catColor(d.data.category);
+    const color = tint(baseColor, BOOK_TINT);
+    svg.append("path")
+      .datum(d)
+      .attr("d", arc.innerRadius(r0).outerRadius(r1))
+      .attr("fill", color)
+      .style("cursor", "pointer")
+      .on("mouseenter", function(event) {
+        d3.select(this).attr("fill", d3.color(baseColor).darker(0.3));
+        const b = d.data.book;
+        showTip(event, `
+          <div class="tooltip-title">${b.title}</div>
+          <div class="tooltip-sub">${b.author}</div>
+          <div class="tooltip-meta">${d.data.subCategory} &middot; ${d.data.category}</div>
+        `);
+      })
+      .on("mousemove", moveTip)
+      .on("mouseleave", function() {
+        d3.select(this).attr("fill", color);
+        hideTip();
+      });
+  });
+
+  // Radial separator lines between books — match each book's varied outer radius
+  bookNodes.forEach((d, i) => {
+    const r0 = bookR0Base;
+    const r1 = bookR1Base - barScale(d.data.book.pages || 200);
+    const angle = d.x0 - Math.PI / 2;  // d3 uses 0 at top; rotate -90deg
+    const x1 = Math.cos(angle) * r0;
+    const y1 = Math.sin(angle) * r0;
+    const x2 = Math.cos(angle) * r1;
+    const y2 = Math.sin(angle) * r1;
+    svg.append("line")
+      .attr("x1", x1).attr("y1", y1)
+      .attr("x2", x2).attr("y2", y2)
+      .attr("stroke", "#faf9f6").attr("stroke-width", 0.6)
+      .attr("pointer-events", "none");
+  });
+
+  // Multi-line splits for long category labels
+  const CAT_LABEL_LINES = {
+    "Social Sciences": ["Social", "Sciences"],
+    "Literary Fiction & Poetry": ["Literary Fiction", "& Poetry"],
+  };
+
+  // Inner category labels — curved along the inner ring
+  cats.forEach(d => {
+    const midAngle = (d.x0 + d.x1) / 2;
+    const rotate = (midAngle * 180 / Math.PI) - 90;
+    // Put the label at the middle of the inner ring band
+    const lr = (innerR1 + outerR1) / 2;
+    // Determine if we need to flip the text for readability on bottom half
+    const flip = midAngle > Math.PI / 2 && midAngle < 3 * Math.PI / 2;
+    const textRotate = flip ? rotate + 180 : rotate;
+    const arcWidth = (d.x1 - d.x0) * lr;
+    // Only label if there's room
+    if (arcWidth < 30) return;
+    const g = svg.append("g")
+      .attr("transform", `rotate(${textRotate}) translate(${flip ? -lr : lr}, 0) rotate(${flip ? 180 : 0})`)
+      .style("pointer-events", "none");
+    const text = g.append("text")
+      .attr("text-anchor", "middle")
+      .attr("dominant-baseline", "central")
+      .attr("font-family", "-apple-system, sans-serif")
+      .attr("font-size", "13px").attr("font-weight", 700)
+      .attr("fill", "#ffffff");
+    const lines = CAT_LABEL_LINES[d.data.name];
+    if (lines) {
+      text.append("tspan").attr("x", 0).attr("dy", "-0.35em").text(lines[0]);
+      text.append("tspan").attr("x", 0).attr("dy", "1.1em").text(lines[1]);
+    } else {
+      text.text(d.data.name);
+    }
+  });
+
+  // Subcategory labels — smaller, in the middle of each subcat arc
+  subs.forEach(d => {
+    const midAngle = (d.x0 + d.x1) / 2;
+    const rotate = (midAngle * 180 / Math.PI) - 90;
+    const lr = (outerR1 + outerR2) / 2;
+    const arcWidth = (d.x1 - d.x0) * lr;
+    if (arcWidth < 24) return;
+    const flip = midAngle > Math.PI / 2 && midAngle < 3 * Math.PI / 2;
+    const textRotate = flip ? rotate + 180 : rotate;
+    const g = svg.append("g")
+      .attr("transform", `rotate(${textRotate}) translate(${flip ? -lr : lr}, 0) rotate(${flip ? 180 : 0})`)
+      .style("pointer-events", "none");
+    g.append("text")
+      .attr("text-anchor", "middle")
+      .attr("dominant-baseline", "central")
+      .attr("font-family", "-apple-system, sans-serif")
+      .attr("font-size", "11px").attr("font-weight", 600)
+      .attr("fill", "#ffffff")
+      .text(d.data.name);
+  });
+
+  // Center label: total
+  svg.append("text")
+    .attr("text-anchor", "middle").attr("dominant-baseline", "central")
+    .attr("y", -6)
+    .attr("font-family", "'Iowan Old Style', Georgia, serif")
+    .attr("font-size", "32px").attr("font-weight", 400).attr("fill", "#ffffff")
+    .text(books.length);
+  svg.append("text")
+    .attr("text-anchor", "middle").attr("dominant-baseline", "central")
+    .attr("y", 22)
+    .attr("font-family", "-apple-system, sans-serif")
+    .attr("font-size", "11px").attr("fill", "#ffffff")
+    .attr("text-transform", "uppercase").attr("letter-spacing", "0.1em")
+    .text("books");
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VIZ 6: ALLUVIAL — Genre → Era → Origin
+// ═══════════════════════════════════════════════════════════════
+
+const GROUP_COLORS = {
+  "era":     "#D89A3C",  // saffron
+  "origin":  "#5AA17F",  // verdigris
+};
+
+// Sub-category → parent main category (inverse of SUBCAT_ORDER)
+const SUB_TO_CAT = (() => {
+  const m = {};
+  Object.entries(SUBCAT_ORDER).forEach(([cat, subs]) => {
+    subs.forEach(s => { m[s] = cat; });
+  });
+  return m;
+})();
+
+// Cross-cutting theme tags — selected to avoid duplicating sub-categories.
+// Grouped for coloring and layout ordering.
+// The chord now reads `b.era` and `b.origin` directly from the book — no more
+// filtering from the `tags` array. Each book has exactly ONE era and ONE origin.
+const ERA_ORDER = ["Pre-1900", "20th Century", "21st Century"];
+const ORIGIN_ORDER = [
+  "American", "British", "Australian", "French", "Russian",
+  "European", "Asian", "African", "Other",
+];
+
+function buildAlluvial(books) {
+  const width = 1100;
+  const height = 820;
+  const margin = { top: 20, right: 160, bottom: 20, left: 160 };
+
+  const svgRoot = d3.select("#svg-alluvial")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .style("display", "block")
+    .style("margin", "0 auto")
+    .style("overflow", "visible");
+  svgRoot.selectAll("*").remove();
+  const svg = svgRoot.append("g");
+
+  // ─── Build nodes & links ─────────────────────────────────────────
+  // Column 0: sub-category (genre) — ordered by parent main category
+  // Column 1: era (Pre-1900, 20th, 21st)
+  // Column 2: origin (9 buckets)
+  const genres = [];
+  CATEGORY_ORDER.forEach(cat => {
+    (SUBCAT_ORDER[cat] || []).forEach(s => genres.push(s));
+  });
+  const subsInUse = new Set(books.map(b => b.subCategory).filter(Boolean));
+  const genreList = genres.filter(g => subsInUse.has(g));
+
+  const eraList = ERA_ORDER.filter(e => books.some(b => b.era === e));
+  const originList = ORIGIN_ORDER.filter(o => books.some(b => b.origin === o));
+
+  // Namespaced node IDs so nothing collides between columns
+  const nodeId = (col, name) => `${col}::${name}`;
+  const nodes = [
+    ...genreList.map(g  => ({ id: nodeId(0, g),  col: 0, name: g,
+                               color: CATEGORY_COLORS[SUB_TO_CAT[g]] || "#888",
+                               kind: "genre", parent: SUB_TO_CAT[g] })),
+    ...eraList.map(e    => ({ id: nodeId(1, e),  col: 1, name: e,
+                               color: GROUP_COLORS["era"], kind: "era" })),
+    ...originList.map(o => ({ id: nodeId(2, o),  col: 2, name: o,
+                               color: GROUP_COLORS["origin"], kind: "origin" })),
+  ];
+
+  // Links — two per book: (genre → era) and (era → origin). Aggregate counts.
+  const linkMap = new Map(); // "src|dst" -> { source, target, value, books[] }
+  const addLink = (src, dst, b) => {
+    const key = src + "|" + dst;
+    let l = linkMap.get(key);
+    if (!l) { l = { source: src, target: dst, value: 0, books: [] }; linkMap.set(key, l); }
+    l.value += 1;
+    l.books.push(b);
+  };
+  books.forEach(b => {
+    if (!b.subCategory || !b.era || !b.origin) return;
+    addLink(nodeId(0, b.subCategory), nodeId(1, b.era), b);
+    addLink(nodeId(1, b.era),          nodeId(2, b.origin), b);
+  });
+  const links = [...linkMap.values()];
+
+  // ─── Sankey layout ───────────────────────────────────────────────
+  const sankey = d3.sankey()
+    .nodeId(d => d.id)
+    .nodeWidth(14)
+    .nodePadding(6)
+    .nodeAlign(d3.sankeyJustify)
+    .nodeSort(null)  // preserve our input ordering within each column
+    .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]]);
+
+  // d3-sankey mutates the input graph, so clone
+  const graph = sankey({
+    nodes: nodes.map(n => ({ ...n })),
+    links: links.map(l => ({ ...l })),
+  });
+
+  // ─── Draw links ──────────────────────────────────────────────────
+  const linkGen = d3.sankeyLinkHorizontal();
+  const linkSel = svg.append("g")
+    .attr("fill", "none")
+    .attr("stroke-opacity", 0.5)
+    .selectAll("path")
+    .data(graph.links)
+    .join("path")
+    .attr("d", linkGen)
+    .attr("stroke", d => d.source.color)
+    .attr("stroke-width", d => Math.max(1, d.width))
+    .style("cursor", "pointer");
+
+  // ─── Draw nodes ──────────────────────────────────────────────────
+  const nodeSel = svg.append("g")
+    .selectAll("g")
+    .data(graph.nodes)
+    .join("g");
+
+  nodeSel.append("rect")
+    .attr("x", d => d.x0)
+    .attr("y", d => d.y0)
+    .attr("height", d => Math.max(1, d.y1 - d.y0))
+    .attr("width", d => d.x1 - d.x0)
+    .attr("fill", d => d.color)
+    .attr("stroke", d => d3.color(d.color).darker(0.6))
+    .attr("stroke-width", 0.6)
+    .style("cursor", "pointer");
+
+  // Labels — sit outside the rect on the side that has more room
+  nodeSel.append("text")
+    .attr("x", d => d.col === 2 ? d.x1 + 6 : d.x0 - 6)
+    .attr("y", d => (d.y0 + d.y1) / 2)
+    .attr("dy", "0.35em")
+    .attr("text-anchor", d => d.col === 2 ? "start" : "end")
+    .attr("font-family", "-apple-system, BlinkMacSystemFont, sans-serif")
+    .attr("font-size", d => d.col === 0 ? "11px" : "13px")
+    .attr("font-weight", d => d.col === 0 ? 500 : 600)
+    .attr("fill", "#1a1a1a")
+    .text(d => d.name);
+
+
+  // Column headers
+  const headerY = margin.top - 4;
+  const colXs = [
+    (graph.nodes.find(n => n.col === 0) || {}).x0,
+    (graph.nodes.find(n => n.col === 1) || {}).x0,
+    (graph.nodes.find(n => n.col === 2) || {}).x0,
+  ];
+  svg.append("g")
+    .selectAll("text")
+    .data([
+      { label: "GENRE",  x: colXs[0], anchor: "end",    dx: -6 },
+      { label: "ERA",    x: colXs[1], anchor: "middle", dx: 7 },
+      { label: "ORIGIN", x: colXs[2], anchor: "start",  dx: 20 },
+    ])
+    .join("text")
+    .attr("x", d => d.x + d.dx)
+    .attr("y", headerY)
+    .attr("text-anchor", d => d.anchor)
+    .attr("font-family", "-apple-system, sans-serif")
+    .attr("font-size", "10px")
+    .attr("font-weight", 700)
+    .attr("letter-spacing", "0.12em")
+    .attr("fill", "#888")
+    .text(d => d.label);
+
+  // ─── Interaction ─────────────────────────────────────────────────
+  // Build adjacency: for each node, the set of links touching it (including
+  // transitively so hovering a genre lights up its era→origin ribbons too).
+  const nodeLinks = new Map();      // nodeId -> Set<link>
+  const linkReachable = new Map();  // link -> Set<nodeIds>
+  graph.nodes.forEach(n => nodeLinks.set(n.id, new Set()));
+  graph.links.forEach(l => {
+    nodeLinks.get(l.source.id).add(l);
+    nodeLinks.get(l.target.id).add(l);
+  });
+
+  // For a hovered genre, find the set of era→origin links its books flow into.
+  function expandLinksForNode(node) {
+    const direct = nodeLinks.get(node.id);
+    if (node.col === 0) {
+      // Genre → include its direct links to eras, then for those eras,
+      // only the era→origin links that share underlying books.
+      const bookIds = new Set();
+      direct.forEach(l => l.books.forEach(b => bookIds.add(b.goodreadsId)));
+      return new Set(graph.links.filter(l =>
+        l.books.some(b => bookIds.has(b.goodreadsId)) &&
+        (l.source === node || l.source.col === 1)
+      ));
+    }
+    if (node.col === 2) {
+      // Origin → same shape, flow backwards through era.
+      const bookIds = new Set();
+      direct.forEach(l => l.books.forEach(b => bookIds.add(b.goodreadsId)));
+      return new Set(graph.links.filter(l =>
+        l.books.some(b => bookIds.has(b.goodreadsId)) &&
+        (l.target === node || l.target.col === 1)
+      ));
+    }
+    // Era (middle): every link touching it.
+    return direct;
+  }
+
+  const resetOpacity = () => {
+    linkSel.attr("stroke-opacity", 0.5);
+    nodeSel.selectAll("rect").attr("fill-opacity", 1);
+    nodeSel.selectAll("text").attr("fill-opacity", 1);
+  };
+
+  nodeSel
+    .on("mouseenter", function(event, d) {
+      const hot = expandLinksForNode(d);
+      linkSel.attr("stroke-opacity", l => hot.has(l) ? 0.85 : 0.06);
+      nodeSel.selectAll("rect").attr("fill-opacity", n => {
+        if (n === d) return 1;
+        // Light up nodes that touch any hot link
+        for (const l of hot) {
+          if (l.source === n || l.target === n) return 1;
+        }
+        return 0.25;
+      });
+      nodeSel.selectAll("text").attr("fill-opacity", function() {
+        const nodeDatum = d3.select(this.parentNode).datum();
+        if (nodeDatum === d) return 1;
+        for (const l of hot) {
+          if (l.source === nodeDatum || l.target === nodeDatum) return 1;
+        }
+        return 0.3;
+      });
+      showTip(event, `
+        <div class="tooltip-title">${d.name}</div>
+        <div class="tooltip-sub">${d.value} book${d.value !== 1 ? "s" : ""}</div>
+        <div class="tooltip-meta">${d.kind}${d.parent ? " · " + d.parent : ""}</div>
+      `);
+    })
+    .on("mousemove", moveTip)
+    .on("mouseleave", function() { resetOpacity(); hideTip(); });
+
+  linkSel
+    .on("mouseenter", function(event, l) {
+      linkSel.attr("stroke-opacity", x => x === l ? 0.95 : 0.05);
+      nodeSel.selectAll("rect").attr("fill-opacity", n =>
+        (n === l.source || n === l.target) ? 1 : 0.25);
+      nodeSel.selectAll("text").attr("fill-opacity", function() {
+        const nodeDatum = d3.select(this.parentNode).datum();
+        return (nodeDatum === l.source || nodeDatum === l.target) ? 1 : 0.3;
+      });
+      const sample = l.books.slice(0, 3).map(b => `“${b.title}”`).join("<br>");
+      showTip(event, `
+        <div class="tooltip-title">${l.source.name} <span style="color:#999;font-weight:400">→</span> ${l.target.name}</div>
+        <div class="tooltip-sub">${l.value} book${l.value !== 1 ? "s" : ""}</div>
+        ${sample ? `<div class="tooltip-meta">${sample}</div>` : ""}
+      `);
+    })
+    .on("mousemove", moveTip)
+    .on("mouseleave", function() { resetOpacity(); hideTip(); });
+}
+
+</script>
+</body>
+</html>

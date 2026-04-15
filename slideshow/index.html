@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Years</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="auth-overlay" class="auth-overlay">
+        <form class="auth-form" autocomplete="off">
+            <input type="password" class="auth-input" placeholder="password" autofocus spellcheck="false">
+            <button type="submit" class="auth-submit" aria-label="Enter">Enter</button>
+            <div class="auth-error" aria-live="polite"></div>
+        </form>
+    </div>
+
+    <button class="site-logo" type="button" aria-label="Filter by year" aria-haspopup="menu" aria-expanded="false" hidden>
+        <img src="images/logo-white.svg" alt="">
+    </button>
+    <nav class="year-picker" aria-label="Filter images by year"></nav>
+    <div id="grid"></div>
+    <div id="sentinel"></div>
+
+    <div id="modal" class="modal" aria-hidden="true">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <button class="modal-nav modal-nav--prev" aria-label="Previous">&#8249;</button>
+        <button class="modal-nav modal-nav--next" aria-label="Next">&#8250;</button>
+        <div class="modal-inner">
+            <div class="modal-image-wrap">
+                <img class="modal-image" alt="">
+            </div>
+            <div class="modal-caption-wrap">
+                <div class="modal-caption" data-placeholder=""></div>
+                <div class="modal-status" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -75,7 +75,7 @@
         if (!_ok) return;
         if (_logo) _logo.removeAttribute('hidden');
         try {
-            const manifestRes = await fetch('manifest.json?v=1776252480');
+            const manifestRes = await fetch('manifest.json?v=1776645571');
             manifest = await manifestRes.json();
         } catch (e) {
             grid.innerHTML = '<p style="padding:24px;color:#f66">Could not load manifest.json. Run <code>python3 generate_manifest.py</code>.</p>';
@@ -83,7 +83,7 @@
         }
 
         try {
-            const capRes = await fetch('./captions.json?v=1776252480');
+            const capRes = await fetch('./captions.json?v=1776645571');
             if (capRes.ok) captions = await capRes.json();
         } catch (e) {
             captions = {};
@@ -531,19 +531,20 @@
     requestAnimationFrame(driftTick);
 
     // ── Idle auto-slideshow ───────────────────────────────────────────────
-    // After 10s of no user input, automatically show a random image in the
-    // modal for 8s, then return to the grid for 5s, then show another, and
-    // so on until the user moves/clicks/types — at which point everything
-    // stops immediately and the user is back in control.
+    // After 5s of no user input, open the modal and play a burst of 6 random
+    // images (4s each), then close the modal for a 5s grid break, then start
+    // another burst — forever, until the user moves/clicks/types.
 
-    const IDLE_DELAY_MS = 10000;       // idle time before slideshow starts
-    const IDLE_SHOW_MS = 8000;         // how long each auto-modal stays up
-    const IDLE_BETWEEN_MS = 5000;      // pause between auto-modals
+    const IDLE_DELAY_MS = 5000;        // idle time before slideshow starts
+    const IDLE_SHOW_MS = 4000;         // how long EACH image in the burst stays up
+    const IDLE_BURST_COUNT = 6;        // images per burst
+    const IDLE_BETWEEN_MS = 5000;      // grid break between bursts
 
     let lastActivity = Date.now();
     let idleShowActive = false;
     let idleTimer = null;
     let idleStoppedAt = 0;
+    let idleBurstRemaining = 0;
 
     function markActivity() {
         lastActivity = Date.now();
@@ -564,6 +565,7 @@
     function startIdleShow() {
         if (!manifest.length) return;
         idleShowActive = true;
+        idleBurstRemaining = IDLE_BURST_COUNT;
         showNextIdleImage();
     }
 
@@ -573,18 +575,28 @@
         const item = manifest[idx];
         currentTileIndex = idx;
         showImage(item.file);
-        modal.classList.add('is-active');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        // Keep the modal open across the whole burst; only open it once.
+        if (!modal.classList.contains('is-active')) {
+            modal.classList.add('is-active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        idleBurstRemaining--;
 
         idleTimer = setTimeout(function () {
             if (!idleShowActive) return;
-            // Close the modal but stay in slideshow mode
-            hideIdleModal();
-            idleTimer = setTimeout(function () {
-                if (!idleShowActive) return;
+            if (idleBurstRemaining > 0) {
+                // Swap to the next image without closing the modal
                 showNextIdleImage();
-            }, IDLE_BETWEEN_MS);
+            } else {
+                // Burst complete — close modal, pause on the grid, then loop
+                hideIdleModal();
+                idleTimer = setTimeout(function () {
+                    if (!idleShowActive) return;
+                    idleBurstRemaining = IDLE_BURST_COUNT;
+                    showNextIdleImage();
+                }, IDLE_BETWEEN_MS);
+            }
         }, IDLE_SHOW_MS);
     }
 
@@ -611,8 +623,22 @@
         }
     }
 
+    // Filter mousemove: only count it as activity when the cursor's viewport
+    // position actually changes. Without this filter, the drift auto-scroll
+    // under a stationary cursor fires mousemove events (the pointer's document
+    // coordinates change even though screen coords don't), which would reset
+    // the idle timer and prevent the slideshow from ever starting.
+    let lastMouseX = -1;
+    let lastMouseY = -1;
+    function handleRealMouseMove(e) {
+        if (e.clientX === lastMouseX && e.clientY === lastMouseY) return;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        markActivity();
+    }
+
     // Activity listeners (capture phase so they always fire first)
-    window.addEventListener('mousemove', markActivity, { capture: true, passive: true });
+    window.addEventListener('mousemove', handleRealMouseMove, { capture: true, passive: true });
     window.addEventListener('mousedown', markActivity, { capture: true, passive: true });
     window.addEventListener('wheel',     markActivity, { capture: true, passive: true });
     window.addEventListener('touchstart',markActivity, { capture: true, passive: true });

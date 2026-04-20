@@ -75,7 +75,7 @@
         if (!_ok) return;
         if (_logo) _logo.removeAttribute('hidden');
         try {
-            const manifestRes = await fetch('manifest.json?v=1776645571');
+            const manifestRes = await fetch('manifest.json?v=1776685205');
             manifest = await manifestRes.json();
         } catch (e) {
             grid.innerHTML = '<p style="padding:24px;color:#f66">Could not load manifest.json. Run <code>python3 generate_manifest.py</code>.</p>';
@@ -83,7 +83,7 @@
         }
 
         try {
-            const capRes = await fetch('./captions.json?v=1776645571');
+            const capRes = await fetch('./captions.json?v=1776685205');
             if (capRes.ok) captions = await capRes.json();
         } catch (e) {
             captions = {};

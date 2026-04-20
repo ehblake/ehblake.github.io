@@ -297,7 +297,9 @@
         { "name": "Maritime Museum of Tasmania", "lat": -42.8814, "lng": 147.3361 },
 		{ "name": "Arrowtown Chinese Settlement", "lat": -44.9375, "lng": 168.8292 },
 		{ "name": "Tokyo Imperial Palace", "lat": 35.6892, "lng": 139.6917 },
-		{ "name": "Kyoto Imperial Palace", "lat": 35.0241, "lng": 135.7621 }
+		{ "name": "Kyoto Imperial Palace", "lat": 35.0241, "lng": 135.7621 },
+		{ "name": "Burke Museum", "lat": -36.3578, "lng": 146.6891 },
+		{ "name": "Beechworth Historic Court House", "lat": -36.3590, "lng": 146.6886 }
       ]
     }
   ]

@@ -353,10 +353,18 @@ h1, h2, h3, h4 {
 .sg-item--exp-2a {
     grid-column: 1 / 4;
     grid-row: 2;
-    margin-top: -20px;
+    margin-top: 20px;
 }
 .sg-item--exp-2a img { aspect-ratio: 1 / 1; height: auto; }
 .sg-item--exp-2a .sg-label { margin-bottom: 40px; }
+
+.sg-item--exp-3a {
+    grid-column: 1 / 5;
+    grid-row: 3;
+    margin-top: 40px;
+}
+.sg-item--exp-3a img { aspect-ratio: 4 / 3; height: auto; }
+.sg-item--exp-3a .sg-label { margin-bottom: 40px; }
 
 .sg-item--exp-2b {
     grid-column: 5 / 9;

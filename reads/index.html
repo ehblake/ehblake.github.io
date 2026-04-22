@@ -293,6 +293,17 @@ const CATEGORY_COLORS = {
 const CATEGORY_ORDER = Object.keys(CATEGORY_COLORS);
 const catColor = (c) => CATEGORY_COLORS[c] || "#aaa";
 
+// Small per-category colophon drawn near the foot of each spine. Kept minimal
+// and Unicode-only so it renders the same at any size and never becomes text-mush.
+const CATEGORY_GLYPHS = {
+  "Literary Fiction & Poetry": "❦",
+  "Memoir":                    "✦",
+  "The Arts":                  "◈",
+  "History":                   "§",
+  "Social Sciences":           "◉",
+  "Technology":                "▲",
+};
+
 const tooltip = d3.select("#tooltip");
 function showTip(event, html) { tooltip.html(html).classed("visible", true); moveTip(event); }
 function moveTip(event) {
@@ -549,9 +560,11 @@ function buildSpines(books) {
   svg.selectAll("*").remove();
   setSvgWidth(baseLayout.totalWidth + PADDING_X_END);
 
-  // Helpers
+  // Helpers — leave clearance at the foot for the occasional colophon glyph
+  const TITLE_TOP_CLEAR = 14;
+  const TITLE_BOT_CLEAR = 24;
   function maxCharsForSpine(h, fontSize) {
-    const avail = h - 24;
+    const avail = h - TITLE_TOP_CLEAR - TITLE_BOT_CLEAR;
     return Math.max(0, Math.floor(avail / (fontSize * 0.55)));
   }
   function truncate(str, max) {
@@ -589,11 +602,22 @@ function buildSpines(books) {
   // Draw each book's spine (fixed size — never changes)
   const bookGroups = {};
   const defs = svg.append("defs");
+  // Per-book spine colour: base category colour with ±6% lightness jitter so
+  // no two adjacent spines of the same category read as identical stock.
+  function spineColor(book) {
+    const base = catColor(book.category || "Other");
+    const hash = hashCode(book.goodreadsId);
+    const jitterPct = ((hash % 13) - 6) / 100; // -0.06 .. +0.06
+    const c = d3.hsl(base);
+    c.l = Math.max(0.1, Math.min(0.75, c.l + jitterPct));
+    return c.formatHex();
+  }
+
   Object.entries(baseLayout.bookPlacements).forEach(([id, p]) => {
     const b = sorted.find(x => x.goodreadsId === id);
     if (!b) return;
     const { x: bx, w, h, yOffset } = p;
-    const color = catColor(b.category || "Other");
+    const body = spineColor(b);
 
     const grp = g.append("g")
       .attr("class", "spine-group")
@@ -603,7 +627,7 @@ function buildSpines(books) {
     grp.append("rect")
       .attr("class", "spine-rect")
       .attr("x", 0).attr("y", 0).attr("width", w).attr("height", h)
-      .attr("fill", color);
+      .attr("fill", body);
 
     // Cover image at its FULL target size (never resized); revealed by a clipPath
     // that starts at spine width and grows to cover width on open.
@@ -627,43 +651,158 @@ function buildSpines(books) {
         .attr("pointer-events", "none");
     }
 
-    // Hairlines
-    grp.append("line")
-      .attr("class", "top-hair")
-      .attr("x1", 0).attr("x2", w).attr("y1", 0.5).attr("y2", 0.5)
-      .attr("stroke", "rgba(255,255,255,0.3)").attr("stroke-width", 1);
-    grp.append("line")
-      .attr("class", "bot-hair")
-      .attr("x1", 0).attr("x2", w).attr("y1", h - 0.5).attr("y2", h - 0.5)
-      .attr("stroke", "rgba(0,0,0,0.2)").attr("stroke-width", 1);
+    // ─── Decorations ──────────────────────────────────────────────
+    // Grouped so they can be faded together when the spine opens into a cover.
+    const decor = grp.append("g").attr("class", "spine-decor");
 
-    // Title
+    // Right-edge shadow (1px) — simulates the gap between adjacent books
+    decor.append("rect")
+      .attr("class", "spine-edge")
+      .attr("x", w - 1).attr("y", 0).attr("width", 1).attr("height", h)
+      .attr("fill", "rgba(0,0,0,0.25)");
+
+    // Publisher-style colophon near the foot — only ~50% of books, chosen
+    // deterministically from the book id so the pattern is stable across reloads.
+    const spineHash = hashCode(b.goodreadsId);
+    const hasColophon = (spineHash % 2) === 0;
+    if (hasColophon && w >= 22) {
+      const glyph = CATEGORY_GLYPHS[b.category];
+      if (glyph) {
+        decor.append("text")
+          .attr("class", "spine-colophon")
+          .attr("x", w / 2)
+          .attr("y", h - 14)
+          .attr("text-anchor", "middle")
+          .attr("font-family", "-apple-system, sans-serif")
+          .attr("font-size", Math.min(12, Math.max(9, w * 0.28)) + "px")
+          .attr("fill", "rgba(255,255,255,0.55)")
+          .attr("pointer-events", "none")
+          .text(glyph);
+      }
+    }
+
+    // Title — and on thicker books (w ≥ 40), the author on a second line below
     if (w >= 16) {
       const fontSize = Math.min(13, Math.max(9, w - 8));
-      const maxChars = maxCharsForSpine(h, fontSize);
+      const hash = hashCode(b.goodreadsId);
+      const font = FONTS[hash % FONTS.length];
+
+      // Show author only on thicker spines where there's genuine room
+      const showAuthor = w >= 40;
+      let centered = (hash % 3) === 0;
+      // A centered title with a trailing author line reads awkwardly — force
+      // left-aligned layout when we're showing the author.
+      if (showAuthor) centered = false;
+
+      // Title copy
       let shortTitle = b.title
         .replace(/\s*\([^)]*\)/g, "")
         .split(":")[0]
         .trim();
-      const hash = hashCode(b.goodreadsId);
       if (hash % 10 === 0 && shortTitle.length < 20) shortTitle = shortTitle.toUpperCase();
-      const title = truncate(shortTitle, maxChars);
-      const font = FONTS[hash % FONTS.length];
-      const centered = (hash % 3) === 0;
-      const xPos = centered ? h / 2 : 14;
-      const anchor = centered ? "middle" : "start";
 
-      grp.append("text")
+      // Title and author are PARALLEL columns (both read down the spine), with
+      // the title column on the left side of the spine width and the author
+      // column on the right — like the Cancer Ward / Knausgaard references.
+      const availLen = h - TITLE_TOP_CLEAR - TITLE_BOT_CLEAR;
+
+      // Glyph body ratios (empirically derived from getBBox: body ≈ 1.15× font,
+      // with ~0.23× font as descender depth on the "bottom" of the glyph, which
+      // after rotate(90) is the LEFT edge of the rendered column)
+      const BODY = 1.15;
+      const DESC = 0.23;
+      const COL_GAP = 7;  // nominal; actual rendered gap is ~6px after BODY estimation slack
+
+      // Author copy (primary author only, drop "& Other" co-authors)
+      let authorText = null;
+      let authorSize = 0;
+      if (showAuthor) {
+        authorSize = Math.max(8, fontSize - 3);
+        const rawAuthor = b.author.split(/\s*&\s*|,\s*(?!Jr\.|Sr\.|III|II|IV)/)[0].trim();
+        const maxAuthorChars = Math.min(22, Math.floor(availLen / (authorSize * 0.55)));
+        authorText = truncate(rawAuthor.toUpperCase(), maxAuthorChars);
+      }
+
+      // Title gets the full available length — it's in its own column
+      const maxChars = Math.floor(availLen / (fontSize * 0.55));
+      const title = truncate(shortTitle, maxChars);
+
+      // Positioning differs depending on whether we have an author:
+      //  • With author: both lines centred along spine length (anchor="middle"),
+      //    and centred in spine width as a block with a 6px column gap.
+      //  • Without author: preserve the original behaviour — centred spines
+      //    (hash % 3 === 0) use middle anchor, the rest start from TITLE_TOP_CLEAR.
+      let titleXPos, titleAnchor;
+      let titleBaselineX, authorBaselineX;
+      if (authorText) {
+        titleXPos = h / 2;
+        titleAnchor = "middle";
+        const titleBodyW  = fontSize   * BODY;
+        const authorBodyW = authorSize * BODY;
+        const blockW = titleBodyW + COL_GAP + authorBodyW;
+        const margin = Math.max(2, (w - blockW) / 2);
+        titleBaselineX  = margin + fontSize   * DESC;
+        authorBaselineX = margin + titleBodyW + COL_GAP + authorSize * DESC;
+      } else {
+        titleXPos = centered ? h / 2 : TITLE_TOP_CLEAR;
+        titleAnchor = centered ? "middle" : "start";
+        titleBaselineX = w / 2 - fontSize / 3;
+      }
+
+      const titleEl = grp.append("text")
         .attr("class", "spine-title")
-        .attr("x", xPos)
-        .attr("y", -(w / 2 - fontSize / 3))
+        .attr("x", titleXPos)
+        .attr("y", -titleBaselineX)
         .attr("transform", "rotate(90)")
-        .attr("text-anchor", anchor)
+        .attr("text-anchor", titleAnchor)
         .attr("font-family", font)
         .attr("font-size", fontSize + "px").attr("font-weight", 500)
         .attr("fill", "#ffffff").attr("fill-opacity", 0.95)
         .attr("pointer-events", "none")
         .text(title);
+
+      // Author column — initial position, will be adjusted after measuring.
+      let authorEl = null;
+      if (authorText) {
+        authorEl = grp.append("text")
+          .attr("class", "spine-author")
+          .attr("x", h / 2)
+          .attr("y", -authorBaselineX)
+          .attr("transform", "rotate(90)")
+          .attr("text-anchor", "middle")
+          .attr("font-family", font)
+          .attr("font-size", authorSize + "px")
+          .attr("font-weight", 600)
+          .attr("letter-spacing", "0.12em")
+          .attr("fill", "#ffffff").attr("fill-opacity", 0.7)
+          .attr("pointer-events", "none")
+          .text(authorText);
+
+        // Measure actual rendered bboxes and shift both columns so that
+        // (a) there are exactly COL_GAP px between the glyph bodies, and
+        // (b) left and right margins in the spine width are equal.
+        const tB = titleEl.node().getBBox();
+        const aB = authorEl.node().getBBox();
+        // After rotate(90): display-X range of a pre-rotation bbox is
+        // [-bbox.y - bbox.height, -bbox.y].
+        const tDispL = -tB.y - tB.height;
+        const tDispR = -tB.y;
+        const aDispL = -aB.y - aB.height;
+        const aDispR = -aB.y;
+        const titleBodyW  = tDispR - tDispL;
+        const authorBodyW = aDispR - aDispL;
+        const blockW = authorBodyW + COL_GAP + titleBodyW;
+        const margin = Math.max(2, (w - blockW) / 2);
+        // Author on the LEFT column, title on the RIGHT
+        const newADispL = margin;
+        const newTDispL = margin + authorBodyW + COL_GAP;
+        // Shifting display-X by +d means subtracting d from the y attribute
+        // (because display-X = -y).
+        const titleShift  = newTDispL - tDispL;
+        const authorShift = newADispL - aDispL;
+        titleEl.attr("y", (+titleEl.attr("y")) - titleShift);
+        authorEl.attr("y", (+authorEl.attr("y")) - authorShift);
+      }
     }
 
     bookGroups[b.goodreadsId] = grp;
@@ -694,27 +833,25 @@ function buildSpines(books) {
           .attr("transform", targetTransform);
       }
 
-      // Only transition rect/cover/title/hairlines if state actually changed
+      // Only transition rect/cover/title/author/decor if state actually changed
       if (stateChanged) {
         const rect = grp.select(".spine-rect");
         const cover = grp.select(".spine-cover");
         const title = grp.select(".spine-title");
-        const topHair = grp.select(".top-hair");
-        const botHair = grp.select(".bot-hair");
+        const author = grp.select(".spine-author");
+        const decor = grp.select(".spine-decor");
         const clipRect = svg.select(`#clip-${id} .spine-clip-rect`);
 
         rect.interrupt();
         cover.interrupt();
         clipRect.interrupt();
         if (!title.empty()) title.interrupt();
-        topHair.interrupt();
-        botHair.interrupt();
+        if (!author.empty()) author.interrupt();
+        decor.interrupt();
 
-        // Hairlines width
-        topHair.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
-          .attr("x2", p.w);
-        botHair.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
-          .attr("x2", p.w);
+        // Fade decorations (edge shadow, colophon) with the spine
+        decor.transition().duration(TRANSITION_MS / 2).ease(d3.easeCubicOut)
+          .style("opacity", p.isOpen ? 0 : 1);
 
         // Clip rect follows the spine width (reveals the fixed-size cover image)
         clipRect.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
@@ -730,6 +867,10 @@ function buildSpines(books) {
             title.transition().duration(TRANSITION_MS / 2).ease(d3.easeCubicOut)
               .attr("fill-opacity", 0);
           }
+          if (!author.empty()) {
+            author.transition().duration(TRANSITION_MS / 2).ease(d3.easeCubicOut)
+              .attr("fill-opacity", 0);
+          }
         } else {
           rect.transition().duration(TRANSITION_MS).ease(d3.easeCubicOut)
             .attr("width", p.w)
@@ -739,6 +880,10 @@ function buildSpines(books) {
           if (!title.empty()) {
             title.transition().duration(TRANSITION_MS / 2).ease(d3.easeCubicOut)
               .attr("fill-opacity", 0.95);
+          }
+          if (!author.empty()) {
+            author.transition().duration(TRANSITION_MS / 2).ease(d3.easeCubicOut)
+              .attr("fill-opacity", 0.72);
           }
         }
       }

@@ -66,6 +66,7 @@
     let columnWidth = 0;
     let columnHeights = [];     // running pixel height of each column
     let currentTileIndex = -1;  // for prev/next inside modal
+    let stopAtEnd = false;      // filtered views: no infinite looping
 
     // ── Init ──────────────────────────────────────────────────────────────
     async function init() {
@@ -75,7 +76,7 @@
         if (!_ok) return;
         if (_logo) _logo.removeAttribute('hidden');
         try {
-            const manifestRes = await fetch('manifest.json?v=1776685205');
+            const manifestRes = await fetch('manifest.json?v=1776841954');
             manifest = await manifestRes.json();
         } catch (e) {
             grid.innerHTML = '<p style="padding:24px;color:#f66">Could not load manifest.json. Run <code>python3 generate_manifest.py</code>.</p>';
@@ -83,25 +84,33 @@
         }
 
         try {
-            const capRes = await fetch('./captions.json?v=1776685205');
+            const capRes = await fetch('./captions.json?v=1776841954');
             if (capRes.ok) captions = await capRes.json();
         } catch (e) {
             captions = {};
         }
 
-        // Build year index from the FULL manifest (before filtering)
-        const yearIndex = buildYearIndex(manifest, captions);
-        const totalCount = manifest.length;
+        // Build collection index + determine which files are "collection-only"
+        // (they get hidden from main grid, year filters, and uncaptioned view)
+        const collections = buildCollectionIndex(manifest, captions);
+        const hiddenFiles = collections.hidden;
+
+        // The "public" manifest excludes hidden files — used for year index + totals
+        const publicManifest = manifest.filter(function (item) { return !hiddenFiles.has(item.file); });
+        const yearIndex = buildYearIndex(publicManifest, captions);
+        const totalCount = publicManifest.length;
 
         // Parse URL for filter params
         const params = new URLSearchParams(window.location.search);
         const filterMode = params.get('filter');  // 'uncaptioned' | null
         const yearFilter = params.get('year');    // '2018' | ... | 'undated' | null
+        const collectionFilter = params.get('collection'); // 'tony-hardhat' | ...
 
         let activeLabel = null;
+        let activeCollection = null;
 
         if (filterMode === 'uncaptioned') {
-            manifest = manifest.filter(function (item) {
+            manifest = publicManifest.filter(function (item) {
                 const c = captions[item.file];
                 return !c || !c.trim();
             });
@@ -113,12 +122,25 @@
             } else {
                 files = new Set(yearIndex.years[yearFilter] || []);
             }
-            manifest = manifest.filter(function (item) { return files.has(item.file); });
+            manifest = publicManifest.filter(function (item) { return files.has(item.file); });
             activeLabel = yearFilter;
+        } else if (collectionFilter && COLLECTIONS[collectionFilter]) {
+            const files = new Set(collections.index[collectionFilter] || []);
+            manifest = manifest.filter(function (item) { return files.has(item.file); });
+            activeLabel = COLLECTIONS[collectionFilter].label;
+            activeCollection = collectionFilter;
+        } else {
+            // Default view — hide collection-only files from the main grid
+            manifest = publicManifest;
         }
 
-        // Populate year picker (counts from the full manifest) and wire it up
-        populateYearPicker(yearIndex, totalCount, yearFilter);
+        // Year / undated / uncaptioned views show each image once (no looping)
+        // and disable drift. Main view + curated collections stay infinite
+        // with drift — collections are handpicked so repeats feel intentional.
+        stopAtEnd = !!activeLabel && !activeCollection;
+
+        // Populate year picker and wire it up
+        populateYearPicker(yearIndex, collections.index, totalCount, yearFilter, activeCollection);
         setupYearPickerToggle();
 
         if (activeLabel) {
@@ -132,6 +154,32 @@
         fillToBottom();
         setupSentinel();
     }
+
+    // ── Special curated collections ──────────────────────────────────────
+    // Each collection is matched by exact caption text. Appears in the year
+    // picker below the Undated row. To add images, paste the caption here.
+
+    const COLLECTIONS = {
+        'tony-hardhat': {
+            label: 'Tony in a hard hat',
+            // Captions that ALSO appear in the main grid / year filters
+            captions: [
+                'Tony and Tim Stroh with WAM and Multiplex teams, 2020',
+                'Mona tour with David, April 2019',
+                'Tony at NMA, Dec 2020',
+                "DW and Tony walking through Kiefer's cathedral, 2024",
+                'Site tour with DW, 2024',
+                'Tony at Mona, 2024',
+                'Hard-headed Tony, 2024',
+                'DW, Nic, Tony and Kim, Kiefer site at Mona, 2024',
+            ],
+            // Captions that ONLY appear here — hidden from main grid + year views
+            hiddenCaptions: [],
+            // Filename prefixes (case-insensitive). Matching files are hidden
+            // from everything else and only appear in this collection.
+            hiddenPrefixes: ['th-hat'],
+        },
+    };
 
     // ── Year extraction + picker ─────────────────────────────────────────
     const YEAR_RE = /\b(20\d{2})\b/g;
@@ -159,7 +207,46 @@
         return { years: years, undated: undated };
     }
 
-    function populateYearPicker(yearIndex, totalCount, activeYear) {
+    // For each collection, resolve caption lists + filename prefixes to filenames.
+    // Returns { index: { collectionKey: [files…] }, hidden: Set(files) }
+    // where `hidden` is files that should ONLY appear inside their collection.
+    function buildCollectionIndex(items, caps) {
+        const index = {};
+        const hidden = new Set();
+        for (const key in COLLECTIONS) {
+            const col = COLLECTIONS[key];
+            const visibleCaps = new Set(col.captions || []);
+            const hiddenCaps = new Set(col.hiddenCaptions || []);
+            const hiddenPrefixes = (col.hiddenPrefixes || []).map(function (p) {
+                return p.toLowerCase();
+            });
+            const files = [];
+            const seen = new Set();
+            for (const item of items) {
+                const c = (caps[item.file] || '').trim();
+                const nameLower = item.file.toLowerCase();
+                const matchesPrefix = hiddenPrefixes.some(function (p) {
+                    return nameLower.startsWith(p);
+                });
+                if (matchesPrefix) {
+                    if (!seen.has(item.file)) { files.push(item.file); seen.add(item.file); }
+                    hidden.add(item.file);
+                    continue;
+                }
+                if (!c) continue;
+                if (visibleCaps.has(c)) {
+                    if (!seen.has(item.file)) { files.push(item.file); seen.add(item.file); }
+                } else if (hiddenCaps.has(c)) {
+                    if (!seen.has(item.file)) { files.push(item.file); seen.add(item.file); }
+                    hidden.add(item.file);
+                }
+            }
+            index[key] = files;
+        }
+        return { index: index, hidden: hidden };
+    }
+
+    function populateYearPicker(yearIndex, collectionIndex, totalCount, activeYear, activeCollection) {
         const picker = document.querySelector('.year-picker');
         if (!picker) return;
         picker.innerHTML = '';
@@ -173,7 +260,8 @@
             picker.appendChild(a);
         }
 
-        addLink('./', 'All years', totalCount, !activeYear);
+        const nothingActive = !activeYear && !activeCollection;
+        addLink('./', 'All years', totalCount, nothingActive);
 
         const divider = document.createElement('hr');
         picker.appendChild(divider);
@@ -187,6 +275,22 @@
             const divider2 = document.createElement('hr');
             picker.appendChild(divider2);
             addLink('?year=undated', 'Undated', yearIndex.undated.length, activeYear === 'undated');
+        }
+
+        // Curated collections appear at the very bottom
+        const collectionKeys = Object.keys(COLLECTIONS);
+        if (collectionKeys.length > 0) {
+            const divider3 = document.createElement('hr');
+            picker.appendChild(divider3);
+            for (const key of collectionKeys) {
+                const count = (collectionIndex[key] || []).length;
+                addLink(
+                    '?collection=' + key,
+                    COLLECTIONS[key].label,
+                    count,
+                    activeCollection === key
+                );
+            }
         }
     }
 
@@ -298,6 +402,7 @@
     function appendBatch(n) {
         if (manifest.length === 0) return;
         for (let i = 0; i < n; i++) {
+            if (stopAtEnd && nextIndex >= manifest.length) return;
             const item = manifest[nextIndex % manifest.length];
             appendTile(item, nextIndex);
             nextIndex++;
@@ -309,7 +414,10 @@
         const targetBottom = window.scrollY + window.innerHeight * PREFILL_VH;
         let safety = 50;
         while (Math.max.apply(null, columnHeights) < targetBottom && safety-- > 0) {
+            const before = nextIndex;
             appendBatch(BATCH);
+            // In filtered mode we may have exhausted the stream — stop looping
+            if (nextIndex === before) break;
         }
     }
 
@@ -383,8 +491,12 @@
     modalNext.addEventListener('click', function () { navigate(1); });
 
     modal.addEventListener('click', function (e) {
-        // Click outside the inner content closes the modal
-        if (e.target === modal) closeModal();
+        // Close on any click outside the image, nav buttons, or caption.
+        // Clicking the backdrop, padding, or empty gap all return to the grid.
+        if (e.target.closest('.modal-image')) return;
+        if (e.target.closest('.modal-nav')) return;
+        if (e.target.closest('.modal-caption')) return;
+        closeModal();
     });
 
     document.addEventListener('keydown', function (e) {
@@ -497,6 +609,7 @@
         if (document.hidden) return false;
         if (modal.classList.contains('is-active')) return false;
         if (Date.now() < manualPauseUntil) return false;
+        if (stopAtEnd) return false;   // filtered views: no drift
         return true;
     }
 

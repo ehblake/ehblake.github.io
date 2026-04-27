@@ -687,6 +687,11 @@ h1, h2, h3, h4 {
     opacity: 1;
 }
 
+/* Prevent stray horizontal scroll on mobile */
+html, body {
+    overflow-x: hidden;
+}
+
 /* ==========================================================================
    Responsive — Tablet
    ========================================================================== */
@@ -711,21 +716,34 @@ h1, h2, h3, h4 {
     .hero-tagline {
         font-size: 1.75rem;
         margin-bottom: 24px;
+        padding-right: 0;
+        padding-bottom: 0;
     }
 
     .hero-image {
         margin-bottom: 24px;
+        padding-bottom: 0;
     }
 
     .hero-intro {
         font-size: 0.95rem;
     }
 
+    /* Tighten section spacing */
     .section {
-        padding: 60px 0;
+        padding: 24px 0;
     }
 
-    /* Staggered grid collapses to single column */
+    .section-title {
+        margin-top: 8px;
+        margin-bottom: 16px;
+    }
+
+    .view-all {
+        margin-top: 24px;
+    }
+
+    /* Staggered grid collapses to single column with consistent spacing */
     .staggered-grid {
         display: flex;
         flex-direction: column;
@@ -734,10 +752,16 @@ h1, h2, h3, h4 {
 
     .sg-item {
         margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .sg-item img {
         aspect-ratio: 4 / 3 !important;
+    }
+
+    /* Hide off-screen quote-next arrow (caused horizontal scroll) */
+    .quote-next {
+        display: none;
     }
 
     /* Institutions */
@@ -757,6 +781,29 @@ h1, h2, h3, h4 {
     .page-text p {
         font-size: 1rem;
     }
+
+    /* Interview figures: full width on mobile */
+    .interview-fig,
+    .interview-fig--4col,
+    .interview-fig--5col {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Contact page: stack text then image */
+    .contact-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .contact-image .project-block__placeholder,
+    .contact-image img {
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
+    }
 }
 
 /* ==========================================================================
@@ -765,16 +812,42 @@ h1, h2, h3, h4 {
 @media (max-width: 480px) {
     .header {
         flex-direction: column;
-        gap: 16px;
+        gap: 24px;
         text-align: center;
     }
 
-    .nav {
-        gap: 20px;
+    /* Logo: ~80% of mobile width */
+    .logo {
+        font-size: 9vw;
+        letter-spacing: 0.04em;
     }
 
+    /* Nav: 2x2 grid, slightly larger text */
+    .nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 24px;
+        justify-items: center;
+        max-width: 320px;
+    }
+
+    .nav a {
+        font-size: 1.05rem;
+    }
+
+    /* Headline +40% (1.5rem → 2.1rem) */
     .hero-tagline {
-        font-size: 1.5rem;
+        font-size: 2.1rem;
+    }
+
+    /* Subhead +25% (0.95rem → 1.2rem) */
+    .hero-intro {
+        font-size: 1.2rem;
+    }
+
+    /* Fixed quote height so footer doesn't bounce */
+    .random-quote {
+        min-height: 22rem;
     }
 
     .institutions-grid {

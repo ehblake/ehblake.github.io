@@ -25,6 +25,14 @@
     a.href = imgUrl;
     var absoluteUrl = a.href;
 
+    // Inject mobile-only <img> after the header so the hero appears below
+    // logo+nav on small screens (CSS hides on desktop, shows ≤768px)
+    var mobileImg = document.createElement('img');
+    mobileImg.src = imgUrl;
+    mobileImg.className = 'project-hero-banner__mobile-img';
+    mobileImg.alt = '';
+    banner.appendChild(mobileImg);
+
     var img = new Image();
 
     img.onload = function () {

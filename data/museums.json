@@ -118,7 +118,8 @@
         { "name": "Minnesota Children's Museum", "lat": 44.9452, "lng": -93.0972 },
         { "name": "Milwaukee Art Museum", "lat": 43.0401, "lng": -87.8974 },
         { "name": "Harley-Davidson Museum", "lat": 43.0317, "lng": -87.9165 },
-        { "name": "Museum of the Rockies", "lat": 45.6588, "lng": -111.0432 }
+        { "name": "Museum of the Rockies", "lat": 45.6588, "lng": -111.0432 },
+        { "name": "Obama Presidential Center", "lat": 41.7838, "lng": -87.5892 }
       ]
     },
     {
@@ -226,12 +227,35 @@
       ]
     },
     {
-      "name": "Australasia",
+      "name": "Asia",
       "museums": [
         { "name": "National Gallery Singapore", "lat": 1.2903, "lng": 103.8517 },
         { "name": "Lee Kong Chian Natural History Museum", "lat": 1.3010, "lng": 103.7734 },
         { "name": "National Museum of Singapore", "lat": 1.2966, "lng": 103.8485 },
         { "name": "ArtScience Museum", "lat": 1.2863, "lng": 103.8593 },
+        { "name": "Tokyo Imperial Palace", "lat": 35.6892, "lng": 139.6917 },
+        { "name": "Kyoto Imperial Palace", "lat": 35.0241, "lng": 135.7621 },
+        { "name": "Sun Yat Sen Museum Penang", "lat": 5.4144, "lng": 100.3395 },
+        { "name": "Georgetown Mansion", "lat": 5.4221, "lng": 100.3307 },
+        { "name": "Pinang Peranakan Mansion", "lat": 5.4179, "lng": 100.3388 },
+        { "name": "Penang Hill Biosphere Reserve", "lat": 5.4239, "lng": 100.2731 },
+        { "name": "Hin Bus Depot", "lat": 5.4113, "lng": 100.3244 },
+        { "name": "Asia Camera Museum", "lat": 5.4171, "lng": 100.3387 },
+        { "name": "Temple of Literature", "lat": 21.0272, "lng": 105.8355 },
+        { "name": "Memorial House of Ho Chi Minh", "lat": 21.0367, "lng": 105.8341 },
+        { "name": "Vietnam Museum of Ethnology", "lat": 21.0408, "lng": 105.7989 },
+        { "name": "Vietnam National Fine Arts Museum", "lat": 21.0302, "lng": 105.8379 },
+        { "name": "Hoa Lo Prison Relic Museum", "lat": 21.0261, "lng": 105.8465 },
+        { "name": "Trang An UNESCO World Heritage Site", "lat": 20.2531, "lng": 105.8946 },
+        { "name": "Imperial City Hue", "lat": 16.4700, "lng": 107.5771 },
+        { "name": "National Library of the Nguyen Dynasty", "lat": 16.4815, "lng": 107.5758 },
+        { "name": "Hồ Thuỷ Tiên", "lat": 16.4231, "lng": 107.6224 },
+        { "name": "Thanh Ha Pottery Village", "lat": 15.8788, "lng": 108.2942 }
+      ]
+    },
+    {
+      "name": "Oceania",
+      "museums": [
         { "name": "National Museum of Australia", "lat": -35.2935, "lng": 149.1206 },
         { "name": "ACMI", "lat": -37.8172, "lng": 144.9688 },
         { "name": "RAAF Museum Point Cook", "lat": -37.9318, "lng": 144.7530 },
@@ -296,8 +320,6 @@
         { "name": "Craft Victoria", "lat": -37.8172, "lng": 144.9688 },
         { "name": "Maritime Museum of Tasmania", "lat": -42.8814, "lng": 147.3361 },
 		{ "name": "Arrowtown Chinese Settlement", "lat": -44.9375, "lng": 168.8292 },
-		{ "name": "Tokyo Imperial Palace", "lat": 35.6892, "lng": 139.6917 },
-		{ "name": "Kyoto Imperial Palace", "lat": 35.0241, "lng": 135.7621 },
 		{ "name": "Burke Museum", "lat": -36.3578, "lng": 146.6891 },
 		{ "name": "Beechworth Historic Court House", "lat": -36.3590, "lng": 146.6886 }
       ]

@@ -186,6 +186,132 @@
     padding-top: 8px;
 }
 
+/* ==========================================================================
+   Inline video — silent looping motion sitting in the editorial flow
+   ========================================================================== */
+.project-video {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: #111;
+    line-height: 0;
+}
+
+.project-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Pause control. Motion running past five seconds needs a way to stop it
+   (WCAG 2.2.2), so this is required rather than decorative — but it stays
+   out of the way until you go looking for it. */
+.project-video__toggle {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 9px 14px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: rgba(17, 17, 17, 0.55);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--transition), background var(--transition);
+}
+
+.project-video:hover .project-video__toggle,
+.project-video__toggle:focus-visible,
+.project-video.is-paused .project-video__toggle {
+    opacity: 1;
+}
+
+.project-video__toggle:hover,
+.project-video__toggle:focus-visible {
+    background: var(--color-accent);
+}
+
+/* Two bars — pause */
+.project-video__toggle::before {
+    content: '';
+    width: 8px;
+    height: 10px;
+    background: linear-gradient(
+        to right,
+        currentColor 0 3px,
+        transparent 3px 5px,
+        currentColor 5px 8px
+    );
+}
+
+/* Triangle — play */
+.project-video.is-paused .project-video__toggle::before {
+    width: 0;
+    height: 0;
+    background: none;
+    border-left: 9px solid currentColor;
+    border-top: 5.5px solid transparent;
+    border-bottom: 5.5px solid transparent;
+}
+
+/* Without JS the button can't do anything, so don't offer it —
+   the video still autoplays and loops on its own. */
+.no-js .project-video__toggle {
+    display: none;
+}
+
+/* ==========================================================================
+   Link list — "read more" references
+   ========================================================================== */
+
+/* When a lede introduces the list directly, close the gap between them
+   so they read as one unit rather than two separate blocks. */
+.project-lede--secondary:has(+ .project-links) {
+    margin-bottom: 12px;
+}
+
+.project-links {
+    margin-left: 32px;
+    margin-bottom: 44px;
+    /* Match the lede it follows, so the list doesn't read as browser default */
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    line-height: 1.5;
+}
+
+.project-links li {
+    margin-bottom: 6px;
+}
+
+.project-links li:last-child {
+    margin-bottom: 0;
+}
+
+.project-links a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.project-links a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
 /* Text left (cols 1-2) + two images (cols 3-5, 6-8) */
 .project-block--text-2img .project-block__copy {
     grid-column: 1 / 3;

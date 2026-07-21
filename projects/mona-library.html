@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mona Library — Edward Blake</title>
-    <meta name="description" content="Digital library experience for MONA">
+    <title>Phrontisterion — Edward Blake</title>
+    <meta name="description" content="Digital library experience for Mona">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/project.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 </head>
 <body>
     <!-- Hero banner — full width image -->
-    <div class="project-hero-banner" style="background: url('../images/projects/mona-lib-darkness.webp') center/cover no-repeat;">
+    <div class="project-hero-banner" style="background: url('../images/projects/mona-lib-blender-01.webp') center/cover no-repeat;">
         <div class="container">
             <header class="header">
                 <a href="/" class="logo">Edward Blake</a>
@@ -29,61 +29,105 @@
 
     <div class="container">
         <main class="project-page">
-            <h1 class="project-title">Mona Library</h1>
+            <h1 class="project-title">Phrontisterion</h1>
 			<h2 class="project-location">Hobart, Australia</h2>
-            <p class="project-lede">A simple yet bold brief: Design a system where books can move arbitrarily but we still know where they are.</p>
-            <p class="project-lede--secondary">Traditional libraries rely on classification systems that organise knowledge into stable hierarchies. At Mona, the ambition is almost the opposite. The library is conceived as a living collection where books can move freely across the shelves, forming new relationships over time. Instead of a permanent order, the library becomes a field of associations shaped by curiosity, interpretation, and discovery.</p>
+            <p class="project-lede">A dream project to redefine how people discover books inside one of the world’s most unusual libraries.</p>
+            <p class="project-lede--secondary">When David Walsh set out to build a new library beneath Mona, his ambition extended far beyond creating another reading room. His brief to us was deceptively simple. “I want to be able to move books arbitrarily, but still know where they are. The librarians become curators.” This meant no Dewey or traditional logic of classification for the collection.</p>
 
             <!-- Full width image -->
             <div class="project-block--full-width">
                 <img src="../images/projects/mona-lib-borges.webp" alt="Borges quote">
-				<p class="project-block__credit">An excellent quote from Borges I uncovered in my research.</p>
+				<p class="project-block__credit">An excellent quote from Borges that I uncovered in my research.</p>
             </div>
-
-            <!-- Content block: text left + image right -->
-
+			
+            <p class="project-lede">The Phrontisterion collection includes more than 50,000 books, rare manuscripts and maps. Built over decades, it spans literature, philosophy, science, history, art and countless other fields, revealing the breadth of Walsh’s curiosity rather than any single collecting agenda.</p>
+			
             <div class="project-block project-block--img-text">
                 <div class="project-block__media">
-                    <img src="../images/projects/mona-lib-workshop.webp" alt="Mona Library workshop">
-					<p class="project-block__credit">Early workshop with the Mona library team in Hobart, mapping out requirements and features for the new library system.</p>
+                    <img src="../images/projects/mona-lib-03-bowie.jpg" alt="Mona Library Bowie">
+                </div>
+                <div class="project-block__copy">
+                    <p>A curated arrangement of Bowie books and ephemera, including the handwritten lyrics to Starman alongside Picasso plates.</p>
                 </div>
             </div>
 
-            <p class="project-lede">The philosopher Ernst Cassirer once described the <a href="https://warburg.sas.ac.uk/library-collections/library">Warburg Library</a> as "a catalogue of problems," where books were arranged so that ideas from different fields might collide. The collection later became one of the intellectual foundations of London's great research libraries, but its real legacy was the idea that a library could be organised around thought rather than classification.</p>
+			<p class="project-lede--secondary">Working alongside technologists, librarians and curators over three and a half years, we designed a new visitor experience that treats every book as a point of entry into the wider collection. Rather than following a fixed shelf order, visitors can begin almost anywhere, uncover unexpected connections between books, and navigate the collection through a combination of physical browsing and digital guidance.</p>
 			
-            <!-- Full width image -->
-            <div class="project-block--full-width">
-                <img src="../images/projects/mona-lib-warburg3.webp" alt="Warburg Library">
-                <p class="project-block__credit">Aby Warburg, Ovid Exhibition in the Reading Room of the Kunstwissenschaftliche Bibliothek Warburg, Hamburg, 1927.</p>
-            </div>
+			<p class="project-lede">One of the library’s defining features is a series of interactive “Live Bays” that reveal the collection as a network of ideas rather than a static archive.</p>
 			
-			<p class="project-lede--secondary">At Mona, the same spirit animates the space. Art, philosophy, science, myth, politics, and literature sit side by side, reflecting the wide-ranging curiosity of the museum's founder. The result is something closer to an exploration than a conventional museum and library visit. Books and objects</p>
-
-            <!-- Full width image -->
-            <div class="project-block--full-width">
-                <img src="../images/projects/mona-lib-supercase.webp" alt="Warburg Library">
-                <p class="project-block__credit">Displays inside of Mona featuring globes, ceramics, artworks and books, 2023</p>
-            </div>
-
-            <!-- Content block: text left + image right -->
-			
-			<p class="project-lede--secondary">Behind the scenes, a new digital infrastructure allows the collection to remain fluid without losing track of the books themselves. The system quietly maintains a living map of the library, allowing visitors and staff to navigate the evolving landscape of books. This underlying framework makes it possible for librarians to act less as custodians of order and more as curators of ideas, shaping new arrangements and perspectives across the collection.</p>
-            <div class="project-block project-block--text-img">
+            <div class="project-block project-block--img-text">
                 <div class="project-block__media">
-                    <img src="../images/projects/mona-lib-data-1.webp" alt="Warburg Library">
-                </div>
+                    <div class="project-video" data-project-video>
+                        <video
+                            src="../images/projects/mona-lib-test.mp4"
+                            poster="../images/projects/mona-lib-test-poster.jpg"
+                            autoplay muted loop playsinline preload="metadata"
+                            aria-label="A visitor browsing a single bay while the projection system highlights related titles"></video>
+                        <button type="button" class="project-video__toggle" aria-pressed="false">
+                            <span class="project-video__toggle-label">Pause</span>
+                        </button>
+                    </div>
+                </div>	
+                <div class="project-block__copy">
+                    <p>Prototyping the “Live Bays” concept using Lidar and computer vision to allow people to physically reveal connections amongst the books on the shelves.</p>
+                </div>	
             </div>
+			<p class="project-lede">The Live Bays installation spans 15 metres and features over 2,500 books that respond to visitor interaction in real time.</p>
 
-            <p class="project-lede">In this way the Mona Library becomes both a reflection of its owner's intellectual world and an invitation for visitors to enter it. As Alberto Manguel observed, what defines a library is not simply the titles it contains, but the web of associations they create together. At Mona, those associations are allowed to grow, shift, and multiply, turning the library into a place where knowledge is not merely stored but continually rediscovered.</p>
-			
-            <!-- Full width image -->
             <div class="project-block--full-width">
-                <img src="../images/projects/mona-lib-bowie.webp" alt="Warburg Library">
+                <img src="../images/projects/mona-lib-06-livebays.jpg" alt="The Live Bays running the length of the library wall">
             </div>
 
-            <p class="project-lede--secondary">The project is currently in development and will open to the public in 2026.</p>
+			<p class="project-lede">A second major experience we designed is The Dial, which challenges the idea that the rarest books are the least accessible.</p>
+			
+            <div class="project-block--full-width">
+                <img src="../images/projects/mona-lib-07-dial-horz.jpg" alt="The Dial reading desk and its brass dial interface">
+            </div>
+			
+			<p class="project-lede">We developed a display and dial so that, rather than seeing a single spread from behind glass, visitors can turn through the entire book at 1:1 scale and resolution, page by page.</p>
+			
+            <div class="project-block project-block--img-text">
+                <div class="project-block__media">
+                    <div class="project-video" data-project-video>
+                        <video
+                            src="../images/projects/mona-lib-dial.mp4"
+                            poster="../images/projects/mona-lib-dial-poster.jpg"
+                            autoplay muted loop playsinline preload="metadata"
+                            aria-label="A visitor turning through Shakespeare's First Folio page by page using the brass dial"></video>
+                        <button type="button" class="project-video__toggle" aria-pressed="false">
+                            <span class="project-video__toggle-label">Pause</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="project-block__copy">
+                    <p>Shakespeare’s First Folio has its own station right next to the real thing, letting you turn through any of the 36 plays at full scale.</p>
+                </div>
+			</div>
+			
+			<p class="project-lede--secondary">Over 60 rare books and atlases were reproduced in painstaking detail and can be navigated by a simple brass “dial”. The result is an experience that captures something of the quiet ritual of reading while opening remarkable works to every visitor.</p>
+			<p class="project-lede">All of this is in service of the concept of a library and the physical book. We could have gone the “all digital” route, but we pushed the other way: we celebrated the open collection and encouraged visitors to explore and discover in ways both familiar and new.</p>
+			<p class="project-lede--secondary">You can read more about this project at...</p>
+			<ul class="project-links">
+				<li>
+				<a href="https://www.theguardian.com/artanddesign/2026/jun/22/phrontisteriona-mona-hobart-david-walsh-library-book-collection-shakespeare-bowie">The Guardian</a> (The cost blowout was Anselm Kiefer’s doing, not ours.)</li>
+				<li><a href=
+				"https://www.abc.net.au/news/2026-06-21/mona-library-phrontisterion-david-walsh-opening/106824466">The ABC</a></li>
+				<li><a href="https://www.theartnewspaper.com/2026/06/21/a-multi-millionaire-on-a-mission-david-walsh-expands-his-museum-of-old-and-new-art">The Art Newspaper</a></li>
+				<li><a href=
+				"https://theconversation.com/monas-new-library-is-spectacular-but-does-it-work-as-a-library-286439">The Conversation</a></li>
+				<li><a href="https://www.timeandtide.info/post/the-art-of-getting-lost-david-walsh-s-library-beneath-the-earth">Time and Tide</a> (my favourite of the bunch)</li>
+			</ul>
+				
 
-            <!-- Collaborators -->
+			
+
+			
+			
+
+            
+		
+			
+
             <section class="project-partners">
                 <h2>Collaborators</h2>
                 <div class="project-partners__links">
@@ -109,5 +153,6 @@
         </footer>
     </div>
     <script src="../js/adaptive-header.js"></script>
+    <script src="../js/project-video.js"></script>
 </body>
 </html>

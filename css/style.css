@@ -608,6 +608,94 @@ h1, h2, h3, h4 {
     margin-bottom: 0;
 }
 
+/* About: two-column layout — interview + images left (5 col), credits right (3 col) */
+.about-layout {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--grid-gutter);
+    align-items: start;
+}
+
+.about-layout .interview {
+    grid-column: 1 / 6;
+    max-width: none;
+}
+
+.about-credits {
+    grid-column: 6 / 9;
+    font-family: 'Inter', sans-serif;
+}
+
+/* All interview images move left and fill the 5-col column (no float, no stagger) */
+.about-layout .interview-fig,
+.about-layout .interview-fig--4col,
+.about-layout .interview-fig--5col,
+.about-layout .interview-fig--left {
+    width: 100%;
+    margin: 32px 0;
+}
+
+.about-credits__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.credit-year + .credit-year {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid #eee;
+}
+
+.credit-year__label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: 0 0 12px;
+}
+
+.credit-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.credit + .credit {
+    margin-top: 14px;
+}
+
+.credit__kind {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 3px;
+}
+
+.credit__work {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin: 0;
+    max-width: none;
+}
+
+.credit__detail {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--color-text-light);
+    margin: 2px 0 0;
+    max-width: none;
+}
+
 /* Contact layout */
 .contact-layout {
     display: grid;
@@ -789,6 +877,24 @@ html, body {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
+    }
+
+    /* About: stack credits below the interview */
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .about-layout .interview,
+    .about-credits {
+        grid-column: auto;
+    }
+
+    .about-credits {
+        max-width: 640px;
+        margin-top: 40px;
+        padding-top: 32px;
+        border-top: 1px solid var(--color-border);
     }
 
     /* Contact page: stack text then image */

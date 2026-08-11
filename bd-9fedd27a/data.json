@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11T18:40:04.182Z",
+  "updated": "2026-08-11T18:42:07.529Z",
   "updatedBy": "Edward (site)",
   "deadlines": [
     {
@@ -11,35 +11,11 @@
       "new": false
     },
     {
-      "id": "d3",
-      "date": "2026-08-27",
-      "title": "Mondriaan Interdisciplinair consult hour",
-      "note": "you're watching this one · signup online",
-      "url": "https://www.mondriaanfonds.nl/en/registration-consultation-hour-interdisciplinary-grant/",
-      "new": false
-    },
-    {
-      "id": "d4",
-      "date": "2026-09-07",
-      "title": "MRBAB Brussels tender",
-      "note": "teaming only · still unverified — check TED before committing",
-      "url": "",
-      "new": false
-    },
-    {
       "id": "d5",
       "date": "2026-09-09",
       "title": "Ecsite 2027 Call to Speak opens",
       "note": "reminder task fires 9 Sep — highest-value speaking play",
       "url": "https://www.ecsite.eu/Ecsite-2027",
-      "new": false
-    },
-    {
-      "id": "d6",
-      "date": "2026-09-20",
-      "title": "IAAPA advance pricing ends (expo 21–25 Sep)",
-      "note": "book Designer reception in same transaction · verify SC&M reception",
-      "url": "https://iaapa.org/expos-and-events/expo-europe/pricing",
       "new": false
     },
     {

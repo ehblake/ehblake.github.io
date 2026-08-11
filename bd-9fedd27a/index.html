@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Field Notes — BD</title>
+<style>
+  :root{
+    color-scheme:light;
+    --ink:#1a1a1a; --paper:#faf8f5; --pink:#B6094C; --line:#e2ddd6;
+    --muted:#6b6560; --chip:#f0ece6; --card:#fff;
+    --red:#c0202f; --amber:#b06a00; --green:#3a7d44;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{font-size:17px}
+  body{background:var(--paper); color:var(--ink);
+    font:1rem/1.55 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    max-width:820px; margin:0 auto; padding:36px 22px 120px}
+  header{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:6px}
+  h1{font-family:Georgia, "Times New Roman", serif; font-weight:400; font-size:1.9rem; letter-spacing:.01em}
+  .stamp{color:var(--muted); font-size:.82rem}
+  .topnote{color:var(--muted); font-size:.9rem; margin-bottom:26px}
+  h2{font-family:Georgia, serif; font-weight:400; font-size:1.25rem; margin:34px 0 4px; display:flex; align-items:baseline; gap:10px}
+  h2 .count{color:var(--muted); font-size:.85rem; font-family:"Helvetica Neue", sans-serif}
+  .rule{border:0; border-top:1px solid var(--line); margin:0 0 14px}
+  /* rows */
+  .row{display:grid; grid-template-columns:86px 1fr auto; gap:6px 16px; padding:13px 0; border-bottom:1px solid var(--line); align-items:baseline}
+  .row:last-child{border-bottom:0}
+  .row.lead, .row.wait{grid-template-columns:1fr auto}
+  .when{font-weight:700; white-space:nowrap; font-size:.95rem}
+  .when small{display:block; font-weight:400; color:var(--muted); font-size:.78rem}
+  .t-red{color:var(--red)} .t-amber{color:var(--amber)} .t-ok{color:var(--green)} .t-past{color:#999}
+  .body .title{font-weight:600; font-size:1.02rem}
+  .body .title a{color:inherit; text-decoration:none; border-bottom:1px solid transparent}
+  .body .title a:hover{color:var(--pink)}
+  .body .note{color:var(--muted); font-size:.9rem; margin-top:2px}
+  .subdate{color:var(--muted); font-size:.82rem; white-space:nowrap}
+  .newdot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--pink); margin-right:8px; vertical-align:2px}
+  .empty{color:var(--muted); font-style:italic; padding:14px 0}
+  /* edit affordances */
+  .tools{display:flex; gap:6px; align-self:center; opacity:0; transition:opacity .15s}
+  body.editing .tools{opacity:1}
+  .tools button{border:1px solid var(--line); background:var(--card); color:var(--muted);
+    border-radius:5px; font-size:.78rem; padding:3px 9px; cursor:pointer; white-space:nowrap}
+  .tools button:hover{color:var(--pink); border-color:var(--pink)}
+  .tools button.del:hover{color:var(--red); border-color:var(--red)}
+  body.editing [data-edit]{outline:1px dashed transparent; border-radius:3px; padding:1px 3px; margin:-1px -3px; cursor:text}
+  body.editing [data-edit]:hover{outline-color:#d8b0c0; background:#fff}
+  body.editing [data-edit]:focus{outline:1.5px solid var(--pink); background:#fff}
+  .addrow{margin:10px 0 0}
+  .addrow button{border:1px dashed var(--line); background:transparent; color:var(--muted);
+    border-radius:6px; padding:7px 14px; font-size:.85rem; cursor:pointer; display:none}
+  body.editing .addrow button{display:inline-block}
+  .addrow button:hover{color:var(--pink); border-color:var(--pink)}
+  input.dateedit{font:inherit; font-weight:700; width:100%; border:1px solid var(--line); border-radius:4px; padding:1px 2px; background:#fff; display:none}
+  body.editing .row.dl .when span.whentext{display:none}
+  body.editing input.dateedit{display:block}
+  /* bar */
+  .bar{position:fixed; left:0; right:0; bottom:0; background:#141414; color:#aaa;
+    display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; padding:12px 20px; font-size:.9rem}
+  .bar button{border:0; border-radius:5px; padding:9px 20px; font-size:.95rem; cursor:pointer}
+  #editBtn{background:#333; color:#fff}
+  #saveBtn{background:#ff0064; color:#fff; display:none}
+  #cancelBtn{background:#333; color:#fff; display:none}
+  #gearBtn{background:none; border:1px solid #444; color:#888; padding:8px 12px}
+  body.editing #editBtn{display:none}
+  body.editing #saveBtn, body.editing #cancelBtn{display:inline-block}
+  .bar .msg{flex-basis:100%; text-align:center; font-size:.8rem; color:#888; display:none}
+  .bar .msg.show{display:block}
+  /* settings */
+  #settings{position:fixed; inset:0; background:rgba(20,20,20,.55); display:none; align-items:center; justify-content:center; padding:20px; z-index:60}
+  #settings.show{display:flex}
+  #settings .box{background:#fff; border-radius:10px; padding:22px; width:min(460px,100%); box-shadow:0 10px 50px rgba(0,0,0,.35)}
+  #settings h3{font-family:Georgia, serif; font-weight:400; margin-bottom:4px}
+  #settings p{color:var(--muted); font-size:.83rem; margin-bottom:14px}
+  #settings label{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:10px 0 3px}
+  #settings input{width:100%; font:inherit; font-size:.92rem; padding:7px 9px; border:1px solid var(--line); border-radius:6px}
+  #settings .btns{display:flex; justify-content:flex-end; gap:8px; margin-top:18px}
+  #settings .btns button{border:0; border-radius:5px; padding:8px 16px; font-size:.9rem; cursor:pointer}
+  #settings .ok{background:var(--pink); color:#fff}
+  #settings .close{background:var(--chip)}
+  @media(max-width:560px){
+    html{font-size:16px}
+    .row{grid-template-columns:1fr; gap:2px}
+    .when{display:flex; gap:8px; align-items:baseline}
+    .tools{opacity:1; justify-content:flex-end}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Field Notes</h1>
+    <span class="stamp" id="stamp">loading…</span>
+  </header>
+  <div class="topnote">Deadlines, leads &amp; things in flight — Open Field BD. Edit anything; saves publish everywhere in ~30s.</div>
+
+  <h2>⏰ Deadlines <span class="count" id="c-deadlines"></span></h2>
+  <hr class="rule">
+  <div id="deadlines"></div>
+  <div class="addrow"><button data-add="deadlines">+ add deadline</button></div>
+
+  <h2>🌱 Leads <span class="count" id="c-leads"></span></h2>
+  <hr class="rule">
+  <div id="leads"></div>
+  <div class="addrow"><button data-add="leads">+ add lead</button></div>
+
+  <h2>⏳ Waiting <span class="count" id="c-waiting"></span></h2>
+  <hr class="rule">
+  <div id="waiting"></div>
+  <div class="addrow"><button data-add="waiting">+ add item</button></div>
+
+  <div class="bar">
+    <button id="editBtn">✏️ Edit</button>
+    <button id="saveBtn">Save changes</button>
+    <button id="cancelBtn">Cancel</button>
+    <button id="gearBtn" title="Settings">⚙</button>
+    <span class="msg" id="msg"></span>
+  </div>
+
+  <div id="settings">
+    <div class="box">
+      <h3>Publishing setup</h3>
+      <p>Edits save by committing <code>data.json</code> back to the site's GitHub repo. Paste a fine-grained token (Contents: read &amp; write, this repo only). Stored only in this browser.</p>
+      <label>GitHub token</label><input id="s-token" type="password" placeholder="github_pat_…" autocomplete="off">
+      <label>Repository</label><input id="s-repo" value="ehblake/ehblake.github.io">
+      <label>Branch</label><input id="s-branch" value="main">
+      <label>Path to data.json</label><input id="s-path" value="">
+      <div class="btns">
+        <button class="close" id="s-close">Close</button>
+        <button class="ok" id="s-save">Save settings</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+"use strict";
+// ---------- state ----------
+let DATA = null;        // live (edited) state
+let PRISTINE = null;    // last loaded/saved state (JSON string)
+const $ = id => document.getElementById(id);
+const CFG_KEY = "fieldnotes-cfg";
+function cfg(){
+  let c = {};
+  try { c = JSON.parse(localStorage.getItem(CFG_KEY) || "{}"); } catch(e){}
+  return Object.assign({repo:"ehblake/ehblake.github.io", branch:"main",
+    path: location.pathname.replace(/\/(index\.html)?$/, "").replace(/^\//,"") + "/data.json", token:""}, c);
+}
+function saveCfg(c){ localStorage.setItem(CFG_KEY, JSON.stringify(c)); }
+function uid(p){ return p + Math.random().toString(36).slice(2,8); }
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+// ---------- render ----------
+function daysInfo(dateStr){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dt = new Date(dateStr + "T00:00:00");
+  if (isNaN(dt)) return {label:"?", cls:"t-ok", nice:dateStr};
+  const days = Math.round((dt - today) / 86400000);
+  const cls = days < 0 ? "t-past" : days <= 7 ? "t-red" : days <= 21 ? "t-amber" : "t-ok";
+  const label = days < 0 ? "past" : days === 0 ? "TODAY" : days + "d";
+  const nice = dt.toLocaleDateString("en-GB", {day:"numeric", month:"short"});
+  return {label, cls, nice};
+}
+function titleHTML(item){
+  const dot = item.new ? '<span class="newdot" title="new since last scan"></span>' : "";
+  const inner = `<span data-edit="title">${esc(item.title)}</span>`;
+  if (item.url && !document.body.classList.contains("editing"))
+    return `${dot}<a href="${esc(item.url)}" target="_blank" rel="noopener">${inner}</a>`;
+  return dot + inner;
+}
+function render(){
+  // deadlines sorted by date
+  const dl = $("deadlines"); dl.innerHTML = "";
+  const ds = [...DATA.deadlines].sort((a,b) => a.date < b.date ? -1 : 1);
+  ds.forEach(item => {
+    const d = daysInfo(item.date);
+    const row = document.createElement("div");
+    row.className = "row dl"; row.dataset.id = item.id; row.dataset.sec = "deadlines";
+    row.innerHTML = `
+      <div class="when ${d.cls}"><span class="whentext">${d.label}<small>${d.nice}</small></span>
+        <input class="dateedit" type="date" value="${esc(item.date)}"></div>
+      <div class="body"><div class="title">${titleHTML(item)}</div>
+        <div class="note" data-edit="note">${esc(item.note)}</div></div>
+      <div class="tools"><button class="del" data-act="del">✕ remove</button></div>`;
+    dl.appendChild(row);
+  });
+  if (!ds.length) dl.innerHTML = '<div class="empty">No deadlines — enjoy the quiet.</div>';
+
+  const le = $("leads"); le.innerHTML = "";
+  DATA.leads.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "row lead"; row.dataset.id = item.id; row.dataset.sec = "leads";
+    row.innerHTML = `
+      <div class="body"><div class="title">${titleHTML(item)}</div>
+        <div class="note" data-edit="note">${esc(item.note)}</div></div>
+      <div class="tools"><button data-act="towait" title="move to Waiting">✓ submitted</button>
+        <button class="del" data-act="del">✕ remove</button></div>`;
+    le.appendChild(row);
+  });
+  if (!DATA.leads.length) le.innerHTML = '<div class="empty">No open leads right now.</div>';
+
+  const wa = $("waiting"); wa.innerHTML = "";
+  DATA.waiting.forEach(item => {
+    const sub = item.submitted ? new Date(item.submitted + "T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short"}) : "";
+    const row = document.createElement("div");
+    row.className = "row wait"; row.dataset.id = item.id; row.dataset.sec = "waiting";
+    row.innerHTML = `
+      <div class="body"><div class="title">${titleHTML(item)}
+        <span class="subdate">· sent ${esc(sub)}</span></div>
+        <div class="note" data-edit="note">${esc(item.note)}</div></div>
+      <div class="tools"><button class="del" data-act="del">✕ remove</button></div>`;
+    wa.appendChild(row);
+  });
+  if (!DATA.waiting.length) wa.innerHTML = '<div class="empty">Nothing pending.</div>';
+
+  $("c-deadlines").textContent = ds.length || "";
+  $("c-leads").textContent = DATA.leads.length || "";
+  $("c-waiting").textContent = DATA.waiting.length || "";
+  $("stamp").textContent = "updated " + (DATA.updated || "").slice(0,10) + (DATA.updatedBy ? " · " + DATA.updatedBy.split(" ")[0] : "");
+  applyEditability();
+}
+function applyEditability(){
+  const on = document.body.classList.contains("editing");
+  document.querySelectorAll("[data-edit]").forEach(el => el.contentEditable = on ? "plaintext-only" : "false");
+}
+function findItem(sec, id){ return DATA[sec].find(x => x.id === id); }
+function isDirty(){ return JSON.stringify(DATA) !== PRISTINE; }
+
+// ---------- editing ----------
+document.addEventListener("input", e => {
+  const row = e.target.closest(".row"); if (!row) return;
+  const item = findItem(row.dataset.sec, row.dataset.id); if (!item) return;
+  if (e.target.matches("input.dateedit")) item.date = e.target.value;
+  else if (e.target.dataset.edit) item[e.target.dataset.edit] = e.target.textContent.trim();
+});
+document.addEventListener("click", e => {
+  const btn = e.target.closest("button"); if (!btn) return;
+  if (btn.dataset.add){
+    const sec = btn.dataset.add;
+    const item = sec === "deadlines"
+      ? {id:uid("d"), date:new Date().toISOString().slice(0,10), title:"New deadline", note:"", url:"", new:false}
+      : sec === "leads"
+      ? {id:uid("l"), title:"New lead", note:"", url:"", new:false}
+      : {id:uid("w"), title:"New submission", submitted:new Date().toISOString().slice(0,10), note:"", url:"", new:false};
+    DATA[sec].push(item); render();
+    const el = document.querySelector(`.row[data-id="${item.id}"] [data-edit="title"]`);
+    if (el){ el.focus(); document.getSelection().selectAllChildren(el); }
+    return;
+  }
+  const row = e.target.closest(".row"); if (!row) return;
+  const sec = row.dataset.sec, id = row.dataset.id;
+  if (btn.dataset.act === "del"){
+    DATA[sec] = DATA[sec].filter(x => x.id !== id); render();
+  }
+  if (btn.dataset.act === "towait"){
+    const item = findItem(sec, id); if (!item) return;
+    DATA.leads = DATA.leads.filter(x => x.id !== id);
+    DATA.waiting.unshift({id:uid("w"), title:item.title, submitted:new Date().toISOString().slice(0,10),
+      note:item.note, url:item.url || "", new:false});
+    render();
+  }
+});
+$("editBtn").addEventListener("click", () => { document.body.classList.add("editing"); render(); });
+$("cancelBtn").addEventListener("click", () => {
+  DATA = JSON.parse(PRISTINE);
+  document.body.classList.remove("editing"); render(); note("");
+});
+
+// ---------- save (GitHub commit) ----------
+function note(t, sticky){
+  const m = $("msg"); m.textContent = t; m.classList.toggle("show", !!t);
+  if (t && !sticky) setTimeout(() => { if (m.textContent === t) m.classList.remove("show"); }, 6000);
+}
+function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
+async function gh(path, opts, c){
+  const r = await fetch("https://api.github.com/repos/" + c.repo + "/" + path, Object.assign({
+    headers: {Authorization:"Bearer " + c.token, Accept:"application/vnd.github+json"}
+  }, opts));
+  return r;
+}
+async function save(){
+  const c = cfg();
+  if (!c.token){ note("No token set — opening settings", true); openSettings(); return; }
+  if (!isDirty()){ document.body.classList.remove("editing"); render(); note("No changes"); return; }
+  $("saveBtn").disabled = true; note("Saving…", true);
+  try {
+    DATA.updated = new Date().toISOString();
+    DATA.updatedBy = "Edward (site)";
+    [].concat(DATA.deadlines, DATA.leads, DATA.waiting).forEach(x => x.new = false);
+    const body = JSON.stringify(DATA, null, 2) + "\n";
+    let branch = c.branch;
+    let get = await gh("contents/" + c.path + "?ref=" + branch, {}, c);
+    if (get.status === 404 && branch === "main"){
+      branch = "master";
+      get = await gh("contents/" + c.path + "?ref=" + branch, {}, c);
+    }
+    const sha = get.ok ? (await get.json()).sha : undefined;
+    const put = await gh("contents/" + c.path, {
+      method:"PUT",
+      body: JSON.stringify({message:"field notes: edit by EB", content:b64(body), sha, branch})
+    }, c);
+    if (!put.ok){
+      const err = await put.json().catch(() => ({}));
+      throw new Error(put.status + " " + (err.message || ""));
+    }
+    PRISTINE = JSON.stringify(DATA);
+    document.body.classList.remove("editing"); render();
+    note("✓ Saved — live everywhere in ~30s");
+  } catch(e){
+    note("Save failed: " + String(e.message).slice(0,90) + " — edits kept here, try again", true);
+  } finally { $("saveBtn").disabled = false; }
+}
+$("saveBtn").addEventListener("click", save);
+
+// ---------- settings ----------
+function openSettings(){
+  const c = cfg();
+  $("s-token").value = c.token; $("s-repo").value = c.repo;
+  $("s-branch").value = c.branch; $("s-path").value = c.path;
+  $("settings").classList.add("show");
+}
+$("gearBtn").addEventListener("click", openSettings);
+$("s-close").addEventListener("click", () => $("settings").classList.remove("show"));
+$("s-save").addEventListener("click", () => {
+  saveCfg({token:$("s-token").value.trim(), repo:$("s-repo").value.trim(),
+    branch:$("s-branch").value.trim(), path:$("s-path").value.trim()});
+  $("settings").classList.remove("show"); note("Settings saved");
+});
+window.addEventListener("beforeunload", e => { if (isDirty()) { e.preventDefault(); e.returnValue = ""; } });
+
+// ---------- load ----------
+(async () => {
+  try {
+    const r = await fetch("data.json?ts=" + Date.now(), {cache:"no-store"});
+    DATA = await r.json();
+  } catch(e){
+    $("stamp").textContent = "couldn't load data.json";
+    DATA = {updated:"", deadlines:[], leads:[], waiting:[]};
+  }
+  PRISTINE = JSON.stringify(DATA);
+  render();
+})();
+</script>
+</body>
+</html>

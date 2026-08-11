@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11T18:44:33.197Z",
+  "updated": "2026-08-11T18:46:33.116Z",
   "updatedBy": "Edward (site)",
   "deadlines": [
     {
@@ -63,6 +63,13 @@
       "title": "Museum Studio (Event Communications et al.) — down the road",
       "note": "your call: interesting find, keep for later. Also fuels the counter-positioning story for small-budget museums.",
       "url": "https://www.museumstudio.com/careers",
+      "new": false
+    },
+    {
+      "id": "lbhs1um",
+      "title": "Copenhagen Photo Festival Open Call",
+      "note": "see: copenhagenphotofestival.com/calls-for-entry/ - submit by 9/1",
+      "url": "",
       "new": false
     }
   ],

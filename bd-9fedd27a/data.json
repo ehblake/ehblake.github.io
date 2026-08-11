@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11T18:42:07.529Z",
+  "updated": "2026-08-11T18:43:13.861Z",
   "updatedBy": "Edward (site)",
   "deadlines": [
     {
@@ -32,6 +32,14 @@
       "title": "Mondriaan Regeling Interdisciplinair deadline 16:00",
       "note": "€24,900 · your maybe-apply — decide late Sep",
       "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
+      "new": false
+    },
+    {
+      "id": "dzatnfn",
+      "date": "2026-09-30",
+      "title": "Essay for Museum iD",
+      "note": "Writing an essay on Phrontisterion - Mona's Library",
+      "url": "",
       "new": false
     }
   ],

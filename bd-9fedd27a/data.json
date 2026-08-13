@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13T17:52:54.360Z",
+  "updated": "2026-08-13T18:51:21.948Z",
   "updatedBy": "Edward (site)",
   "deadlines": [
     {
@@ -80,6 +80,14 @@
       "submitted": "2026-08-04",
       "note": "credentials sent · pool, no timeline — may surface per-project",
       "url": "https://job-boards.greenhouse.io/journey/jobs/5197393007",
+      "new": false
+    },
+    {
+      "id": "w7t5c5i",
+      "title": "Web residency project - Little Libraries",
+      "submitted": "2026-08-13",
+      "note": "see: https://www.akademie-solitude.de/de/postproject/web-residencies/calls-2026/ignore-all-previous-instructions/",
+      "url": "",
       "new": false
     }
   ]

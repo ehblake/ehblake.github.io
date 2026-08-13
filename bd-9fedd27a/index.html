@@ -50,6 +50,8 @@
   .when{font-weight:700; white-space:nowrap; font-size:.95rem}
   .when small{display:block; font-weight:400; color:var(--muted); font-size:.78rem}
   .t-red{color:#111} .t-amber{color:#111} .t-ok{color:#111} .t-past{color:#111; text-decoration:line-through}
+  .row.soon .when{color:#8F00FF}
+  .row.soon .body .title{color:#8F00FF}
   .body .title{font-weight:600; font-size:1.02rem; line-height: 22px; margin-bottom: 4px;}
   .body .title a{color:inherit; text-decoration:none; border-bottom:1px solid transparent}
   .body .title a:hover{color:var(--pink)}
@@ -167,12 +169,12 @@ function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;")
 function daysInfo(dateStr){
   const today = new Date(); today.setHours(0,0,0,0);
   const dt = new Date(dateStr + "T00:00:00");
-  if (isNaN(dt)) return {label:"?", cls:"t-ok", nice:dateStr};
+  if (isNaN(dt)) return {label:"?", cls:"t-ok", nice:dateStr, days:99};
   const days = Math.round((dt - today) / 86400000);
   const cls = days < 0 ? "t-past" : days <= 7 ? "t-red" : days <= 21 ? "t-amber" : "t-ok";
   const label = days < 0 ? "past" : days === 0 ? "TODAY" : days + "d";
   const nice = dt.toLocaleDateString("en-GB", {day:"numeric", month:"short"});
-  return {label, cls, nice};
+  return {label, cls, nice, days};
 }
 function titleHTML(item){
   const dot = item.new ? '<span class="newdot" title="new since last scan"></span>' : "";
@@ -188,7 +190,7 @@ function render(){
   ds.forEach(item => {
     const d = daysInfo(item.date);
     const row = document.createElement("div");
-    row.className = "row dl"; row.dataset.id = item.id; row.dataset.sec = "deadlines";
+    row.className = "row dl" + (d.days >= 0 && d.days < 10 ? " soon" : ""); row.dataset.id = item.id; row.dataset.sec = "deadlines";
     row.innerHTML = `
       <div class="when ${d.cls}"><span class="whentext">${d.label}<small>${d.nice}</small></span>
         <input class="dateedit" type="date" value="${esc(item.date)}"></div>

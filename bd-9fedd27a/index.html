@@ -75,6 +75,8 @@
   body.editing .addrow button{display:inline-block}
   .addrow button:hover{color:var(--pink); border-color:var(--pink)}
   input.dateedit{font:inherit; font-weight:700; width:100%; border:1px solid var(--line); border-radius:4px; padding:1px 2px; background:#fff; display:none}
+  input.urledit{font:inherit; font-size:.78rem; color:var(--muted); width:100%; border:1px dashed var(--line); border-radius:4px; padding:2px 6px; margin-top:4px; background:#fff; display:none}
+  body.editing input.urledit{display:block}
   body.editing .row.dl .when span.whentext{display:none}
   body.editing input.dateedit{display:block}
   /* settings */
@@ -195,7 +197,8 @@ function render(){
       <div class="when ${d.cls}"><span class="whentext">${d.label}<small>${d.nice}</small></span>
         <input class="dateedit" type="date" value="${esc(item.date)}"></div>
       <div class="body"><div class="title">${titleHTML(item)}</div>
-        <div class="note" data-edit="note">${esc(item.note)}</div></div>
+        <div class="note" data-edit="note">${esc(item.note)}</div>
+        <input class="urledit" type="text" placeholder="https:// — paste a link (optional)" value="${esc(item.url||'')}"></div>
       <div class="tools"><button class="del" data-act="del">✕ remove</button></div>`;
     dl.appendChild(row);
   });
@@ -207,7 +210,8 @@ function render(){
     row.className = "row lead"; row.dataset.id = item.id; row.dataset.sec = "leads";
     row.innerHTML = `
       <div class="body"><div class="title">${titleHTML(item)}</div>
-        <div class="note" data-edit="note">${esc(item.note)}</div></div>
+        <div class="note" data-edit="note">${esc(item.note)}</div>
+        <input class="urledit" type="text" placeholder="https:// — paste a link (optional)" value="${esc(item.url||'')}"></div>
       <div class="tools"><button data-act="towait" title="move to Awaiting">✓ submitted</button>
         <button class="del" data-act="del">✕ remove</button></div>`;
     le.appendChild(row);
@@ -222,7 +226,8 @@ function render(){
     row.innerHTML = `
       <div class="body"><div class="title">${titleHTML(item)}
         <span class="subdate">· sent ${esc(sub)}</span></div>
-        <div class="note" data-edit="note">${esc(item.note)}</div></div>
+        <div class="note" data-edit="note">${esc(item.note)}</div>
+        <input class="urledit" type="text" placeholder="https:// — paste a link (optional)" value="${esc(item.url||'')}"></div>
       <div class="tools"><button class="del" data-act="del">✕ remove</button></div>`;
     wa.appendChild(row);
   });
@@ -246,6 +251,7 @@ document.addEventListener("input", e => {
   const row = e.target.closest(".row"); if (!row) return;
   const item = findItem(row.dataset.sec, row.dataset.id); if (!item) return;
   if (e.target.matches("input.dateedit")) item.date = e.target.value;
+  else if (e.target.matches("input.urledit")) item.url = e.target.value.trim();
   else if (e.target.dataset.edit) item[e.target.dataset.edit] = e.target.textContent.trim();
 });
 document.addEventListener("click", e => {

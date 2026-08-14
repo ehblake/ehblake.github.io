@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13T19:01:51.985Z",
+  "updated": "2026-08-14T20:46:22.334Z",
   "updatedBy": "Edward (site)",
   "deadlines": [
     {
@@ -96,6 +96,14 @@
       "submitted": "2026-08-13",
       "note": "see: https://www.akademie-solitude.de/de/postproject/web-residencies/calls-2026/ignore-all-previous-instructions/",
       "url": "",
+      "new": false
+    },
+    {
+      "id": "wgd9lsp",
+      "title": "Design Grant Scheme",
+      "submitted": "2026-08-14",
+      "note": "",
+      "url": "Should here in September",
       "new": false
     }
   ]

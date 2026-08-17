@@ -299,36 +299,56 @@ async function gh(path, opts, c){
   }, opts));
   return r;
 }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+// GitHub write requests intermittently die mid-flight (fetch throws TypeError
+// "Failed to fetch"). Retry a few times, and before each retry re-read the file:
+// a lost response can mean the commit actually landed.
+const SAVE_TRIES = 4, SAVE_BACKOFF = [600, 1500, 3000];
 async function save(){
   const c = cfg();
   if (!c.token){ note("No token set — opening settings", true); openSettings(); return; }
   if (!isDirty()){ document.body.classList.remove("editing"); render(); note("No changes"); return; }
-  $("saveBtn").disabled = true; note("Saving…", true);
+  $("saveBtn").disabled = true;
+  const finish = () => {
+    PRISTINE = JSON.stringify(DATA);
+    document.body.classList.remove("editing"); render();
+    note("✓ Saved — live everywhere in ~30s");
+  };
   try {
     DATA.updated = new Date().toISOString();
     DATA.updatedBy = "Edward (site)";
     [].concat(DATA.deadlines, DATA.leads, DATA.waiting).forEach(x => x.new = false);
-    const body = JSON.stringify(DATA, null, 2) + "\n";
-    let branch = c.branch;
-    let get = await gh("contents/" + c.path + "?ref=" + branch, {}, c);
-    if (get.status === 404 && branch === "main"){
-      branch = "master";
-      get = await gh("contents/" + c.path + "?ref=" + branch, {}, c);
+    const wanted = b64(JSON.stringify(DATA, null, 2) + "\n");
+    let branch = c.branch, lastErr = null;
+    for (let attempt = 1; attempt <= SAVE_TRIES; attempt++){
+      note(attempt === 1 ? "Saving…" : "Network hiccup — retrying (" + attempt + "/" + SAVE_TRIES + ")…", true);
+      try {
+        let get = await gh("contents/" + c.path + "?ref=" + branch + "&ts=" + Date.now(), {}, c);
+        if (get.status === 404 && branch === "main"){
+          branch = "master";
+          get = await gh("contents/" + c.path + "?ref=" + branch + "&ts=" + Date.now(), {}, c);
+        }
+        const cur = get.ok ? await get.json() : null;
+        // Did an earlier attempt land after all?
+        if (cur && cur.content && cur.content.replace(/\s/g, "") === wanted){ finish(); return; }
+        const put = await gh("contents/" + c.path, {
+          method:"PUT",
+          body: JSON.stringify({message:"field notes: edit by EB", content:wanted, sha: cur ? cur.sha : undefined, branch})
+        }, c);
+        if (put.ok){ finish(); return; }
+        const err = await put.json().catch(() => ({}));
+        // 409/422 = someone (or an earlier attempt) moved the sha — refetch and retry.
+        if (put.status === 409 || put.status === 422){ lastErr = new Error(put.status + " sha conflict"); }
+        else throw new Error(put.status + " " + (err.message || ""));  // 401/403/404 won't fix themselves
+      } catch(e){
+        if (!(e instanceof TypeError)) throw e;   // real API error, not a dropped connection
+        lastErr = e;
+      }
+      if (attempt < SAVE_TRIES) await sleep(SAVE_BACKOFF[attempt - 1] || 3000);
     }
-    const sha = get.ok ? (await get.json()).sha : undefined;
-    const put = await gh("contents/" + c.path, {
-      method:"PUT",
-      body: JSON.stringify({message:"field notes: edit by EB", content:b64(body), sha, branch})
-    }, c);
-    if (!put.ok){
-      const err = await put.json().catch(() => ({}));
-      throw new Error(put.status + " " + (err.message || ""));
-    }
-    PRISTINE = JSON.stringify(DATA);
-    document.body.classList.remove("editing"); render();
-    note("✓ Saved — live everywhere in ~30s");
+    throw lastErr || new Error("save failed");
   } catch(e){
-    note("Save failed: " + String(e.message).slice(0,90) + " — edits kept here, try again", true);
+    note("Save failed (" + String(e.message).slice(0,60) + ") — edits kept here, try again", true);
   } finally { $("saveBtn").disabled = false; }
 }
 $("saveBtn").addEventListener("click", save);

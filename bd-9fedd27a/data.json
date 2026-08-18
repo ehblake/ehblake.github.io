@@ -1,94 +1,131 @@
 {
-  "updated": "2026-08-18T07:45:24.029Z",
-  "updatedBy": "Edward (site)",
-  "deadlines": [
-    {
-      "id": "d5",
-      "date": "2026-09-09",
-      "title": "Ecsite 2027 Call to Speak opens",
-      "note": "reminder task fires 9 Sep — highest-value speaking play",
-      "url": "https://www.ecsite.eu/Ecsite-2027",
-      "new": false
-    },
-    {
-      "id": "d8",
-      "date": "2026-10-01",
-      "title": "Mondriaan Regeling Interdisciplinair deadline 16:00",
-      "note": "€24,900 · your maybe-apply — decide late Sep",
-      "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
-      "new": false
-    },
-    {
-      "id": "dzatnfn",
-      "date": "2026-09-30",
-      "title": "Essay for Museum iD",
-      "note": "Writing an essay on Phrontisterion - Mona's Library",
-      "url": "",
-      "new": false
-    }
-  ],
-  "leads": [
-    {
-      "id": "l1",
-      "title": "Michael Huijser at Mondriaan Fonds",
-      "note": "starts 17 Aug · email again ~1 Sep once he's settled (first email got no reply). Your top-scored thread (10/10).",
-      "url": "https://www.mondriaanfonds.nl/en/current/",
-      "new": false
-    },
-    {
-      "id": "l2",
-      "title": "Mondriaan Interdisciplinair grant — maybe apply",
-      "note": "your call: watching, not pushing while the Huijser thread is live. Consult hour 27 Aug, deadline 1 Oct.",
-      "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
-      "new": false
-    },
-    {
-      "id": "l6",
-      "title": "Museum Studio (Event Communications et al.) — down the road",
-      "note": "your call: interesting find, keep for later. Also fuels the counter-positioning story for small-budget museums.",
-      "url": "https://www.museumstudio.com/careers",
-      "new": false
-    },
-    {
-      "id": "lbhs1um",
-      "title": "Copenhagen Photo Festival Open Call",
-      "note": "see: copenhagenphotofestival.com/calls-for-entry/ - submit by 9/1",
-      "url": "",
-      "new": false
-    }
-  ],
-  "waiting": [
-    {
-      "id": "w1",
-      "title": "HIGH VOLTAGE group show, Groningen",
-      "submitted": "2026-08-08",
-      "note": "call closes 30 Aug · outcome TBA · practice run, fit doubts noted",
-      "url": "",
-      "new": false
-    },
-    {
-      "id": "w2",
-      "title": "Journey — freelance Creatives & CDs network pool",
-      "submitted": "2026-08-04",
-      "note": "credentials sent · pool, no timeline — may surface per-project",
-      "url": "https://job-boards.greenhouse.io/journey/jobs/5197393007",
-      "new": false
-    },
-    {
-      "id": "w7t5c5i",
-      "title": "Web residency project - Little Libraries",
-      "submitted": "2026-08-13",
-      "note": "see: https://www.akademie-solitude.de/de/postproject/web-residencies/calls-2026/ignore-all-previous-instructions/",
-      "url": "",
-      "new": false
-    },
-    {
-      "id": "wgd9lsp",
-      "title": "Design Grant Scheme",
-      "submitted": "2026-08-14",
-      "note": "",
-      "url": "Should here in September",
-      "new": false
-    }
-  ]
+ "updated": "2026-08-18T08:46:30.121Z",
+ "updatedBy": "Claude (scan #10, 18 Aug)",
+ "deadlines": [
+  {
+   "id": "d_uithoorn",
+   "date": "2026-08-27",
+   "title": "Uithoorn kunstopdracht — CV + motivation",
+   "note": "€50k ex BTW (€1k sketch / €6k design / €44k realisation) · 15km, NO locality clause · anne.marion.cense@uithoorn.nl · ⚠️ VERIFY DATE: listing says 27 Aug, a search index says it closed 10 Aug",
+   "url": "https://boknet.nl/nl/prikbord/kunstopdracht-gemeentehuisplein-uithoorn",
+   "new": true
+  },
+  {
+   "id": "d_zoetermeer",
+   "date": "2026-09-01",
+   "title": "Zoetermeer MOTION kunstopdracht",
+   "note": "€90k ex BTW · 3 shortlisted get €3k sketch fee · postal submission only, no email · participation-heavy — weaker fit than Uithoorn",
+   "url": "https://boknet.nl/nl/prikbord/beeldende-kunstopdracht-motion-beweeg-college-en-sporthal-zoetermeer",
+   "new": true
+  },
+  {
+   "id": "d5",
+   "date": "2026-09-09",
+   "title": "Ecsite 2027 Call to Speak opens",
+   "note": "reminder task fires 9 Sep — highest-value speaking play",
+   "url": "https://www.ecsite.eu/Ecsite-2027",
+   "new": false
+  },
+  {
+   "id": "dzatnfn",
+   "date": "2026-09-30",
+   "title": "Essay for Museum iD",
+   "note": "Writing an essay on Phrontisterion - Mona's Library",
+   "url": "",
+   "new": false
+  },
+  {
+   "id": "d8",
+   "date": "2026-10-01",
+   "title": "Mondriaan Regeling Interdisciplinair deadline 16:00",
+   "note": "€24,900 · your maybe-apply — decide late Sep",
+   "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
+   "new": false
+  }
+ ],
+ "leads": [
+  {
+   "id": "l1",
+   "title": "Michael Huijser at Mondriaan Fonds",
+   "note": "starts 17 Aug · email again ~1 Sep once he's settled (first email got no reply). Your top-scored thread (10/10).",
+   "url": "https://www.mondriaanfonds.nl/en/current/",
+   "new": false
+  },
+  {
+   "id": "l2",
+   "title": "Mondriaan Interdisciplinair grant — maybe apply",
+   "note": "your call: watching, not pushing while the Huijser thread is live. Consult hour 27 Aug, deadline 1 Oct.",
+   "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
+   "new": false
+  },
+  {
+   "id": "l6",
+   "title": "Museum Studio (Event Communications et al.) — down the road",
+   "note": "your call: interesting find, keep for later. Also fuels the counter-positioning story for small-budget museums.",
+   "url": "https://www.museumstudio.com/careers",
+   "new": false
+  },
+  {
+   "id": "lbhs1um",
+   "title": "Copenhagen Photo Festival Open Call",
+   "note": "see: copenhagenphotofestival.com/calls-for-entry/ - submit by 9/1",
+   "url": "",
+   "new": false
+  },
+  {
+   "id": "l_batavialand",
+   "title": "Museum Batavialand (Lelystad) — €25m renewal, no design partner named",
+   "note": "Batavia replica brought ashore, new build + depots, reopens end 2028. De Zwarte Hond + Arup have the sketch design; NOBODY named on exhibition/interpretive design. New Projectleider Vernieuwing & Development started 1 Aug (Marie-José Helle, fundraising background). 45 min away. Direct approach — my top pick (8/10).",
+   "url": "https://www.batavialand.nl/agenda/vernieuwing-museum-batavialand/",
+   "new": true
+  },
+  {
+   "id": "l_teaching_cold",
+   "title": "Teaching — cold guest-lecture doors (posted roles won't return until Mar–Jun 2027)",
+   "note": "Correction: every part-time art-school role for 2026–27 closed May–June. No autumn wave. Only live route: Reinwardt MA coordinator, Sandberg design dept, HvA Digital Society School (j.m.a.van.wijck@hva.nl). Also diarise Sandberg Temporary Department call for its next cycle.",
+   "url": "",
+   "new": true
+  },
+  {
+   "id": "l_slavernijmuseum",
+   "title": "Nationaal Slavernijmuseum — exhibition design tendered separately, later",
+   "note": "Architecture competition is a separate lot; the museum org will tender exhibition design itself. Opens 2030. Calendar watch + teaming target, nothing to do now.",
+   "url": "",
+   "new": true
+  }
+ ],
+ "waiting": [
+  {
+   "id": "w1",
+   "title": "HIGH VOLTAGE group show, Groningen",
+   "submitted": "2026-08-08",
+   "note": "call closes 30 Aug · outcome TBA · practice run, fit doubts noted",
+   "url": "",
+   "new": false
+  },
+  {
+   "id": "w2",
+   "title": "Journey — freelance Creatives & CDs network pool",
+   "submitted": "2026-08-04",
+   "note": "credentials sent · pool, no timeline — may surface per-project",
+   "url": "https://job-boards.greenhouse.io/journey/jobs/5197393007",
+   "new": false
+  },
+  {
+   "id": "w7t5c5i",
+   "title": "Web residency project - Little Libraries",
+   "submitted": "2026-08-13",
+   "note": "see: https://www.akademie-solitude.de/de/postproject/web-residencies/calls-2026/ignore-all-previous-instructions/",
+   "url": "",
+   "new": false
+  },
+  {
+   "id": "wgd9lsp",
+   "title": "Design Grant Scheme",
+   "submitted": "2026-08-14",
+   "note": "",
+   "url": "Should here in September",
+   "new": false
+  }
+ ]
 }

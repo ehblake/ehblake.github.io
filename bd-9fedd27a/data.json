@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T09:12:17.083Z",
+  "updated": "2026-08-18T09:13:26.697Z",
   "updatedBy": "Edward (site)",
   "deadlines": [
     {
@@ -50,13 +50,6 @@
       "new": false
     },
     {
-      "id": "lbhs1um",
-      "title": "Copenhagen Photo Festival Open Call",
-      "note": "see: copenhagenphotofestival.com/calls-for-entry/ - submit by 9/1",
-      "url": "",
-      "new": false
-    },
-    {
       "id": "l_batavialand",
       "title": "Museum Batavialand (Lelystad) — €25m renewal, no design partner named",
       "note": "Batavia replica brought ashore, new build + depots, reopens end 2028. De Zwarte Hond + Arup have the sketch design; NOBODY named on exhibition/interpretive design. New Projectleider Vernieuwing & Development started 1 Aug (Marie-José Helle, fundraising background). 45 min away. Direct approach — my top pick (8/10).",
@@ -64,17 +57,17 @@
       "new": false
     },
     {
-      "id": "l_teaching_cold",
-      "title": "Teaching — cold guest-lecture doors (posted roles won't return until Mar–Jun 2027)",
-      "note": "Correction: every part-time art-school role for 2026–27 closed May–June. No autumn wave. Only live route: Reinwardt MA coordinator, Sandberg design dept, HvA Digital Society School (j.m.a.van.wijck@hva.nl). Also diarise Sandberg Temporary Department call for its next cycle.",
-      "url": "",
-      "new": false
-    },
-    {
       "id": "l_slavernijmuseum",
       "title": "Nationaal Slavernijmuseum — exhibition design tendered separately, later",
       "note": "Architecture competition is a separate lot; the museum org will tender exhibition design itself. Opens 2030. Calendar watch + teaming target, nothing to do now.",
       "url": "",
+      "new": false
+    },
+    {
+      "id": "lfd1b5j",
+      "title": "Attend MuseumCongres in Utrecht Oct 1",
+      "note": "",
+      "url": "https://museumcongres.nl/bestel-je-tickets/",
       "new": false
     }
   ],

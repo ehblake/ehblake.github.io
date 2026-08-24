@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-18T09:13:26.697Z",
-  "updatedBy": "Edward (site)",
+  "updated": "2026-08-24T07:18:47.883Z",
+  "updatedBy": "Claude (scan 24 Aug)",
   "deadlines": [
     {
       "id": "d5",
@@ -25,6 +25,14 @@
       "note": "€24,900 · your maybe-apply — decide late Sep",
       "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
       "new": false
+    },
+    {
+      "id": "d_bdmuseum",
+      "date": "2026-09-14",
+      "title": "Belasting & Douane Museum — marktconsultatie herinrichting",
+      "note": "TenderNed 606414 / IUC26-635. Pre-procurement: Belastingdienst is still writing the uitvraag and asking the market to improve it. No reference or turnover hurdles — just needs a free TenderNed account.",
+      "url": "https://www.tenderned.nl/aankondigingen/overzicht/436626",
+      "new": true
     }
   ],
   "leads": [
@@ -69,6 +77,13 @@
       "note": "",
       "url": "https://museumcongres.nl/bestel-je-tickets/",
       "new": false
+    },
+    {
+      "id": "bdmuseum-mac",
+      "title": "Belasting & Douane Museum, Rotterdam — full re-fit going to European tender",
+      "note": "Marktconsultatie published 18 Aug for the herinrichting of the whole museum; a European tender follows. CPV 92520000-2. Douanedek wing already closed 6 Jul 2026, so the re-fit is real and moving. Collection + a genuinely good story (smuggling, customs, tax); Rotterdam ~1hr. Dutch-language process, and the eventual tender needs a partner — but the consultation is yours to enter alone and puts your name in the file before the brief is locked. Top pick this run (8/10).",
+      "url": "https://www.tenderned.nl/aankondigingen/overzicht/436626",
+      "new": true
     }
   ],
   "waiting": [

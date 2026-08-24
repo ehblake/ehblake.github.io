@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-24T07:18:47.883Z",
-  "updatedBy": "Claude (scan 24 Aug)",
+  "updated": "2026-08-24T08:59:41.961Z",
+  "updatedBy": "Claude (open outreach, 24 Aug)",
   "deadlines": [
     {
       "id": "d5",
@@ -118,6 +118,70 @@
       "note": "",
       "url": "Should here in September",
       "new": false
+    },
+    {
+      "id": "w_opera",
+      "title": "Jeroen — Opera Amsterdam",
+      "submitted": "2026-08-24",
+      "note": "Amsterdam exhibition/interior design studio. NEW target — was not on the dossier list before today; added to Tier A. No prior relationship on file, so this is a cold-to-warm first contact. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://www.opera-amsterdam.nl/",
+      "new": true
+    },
+    {
+      "id": "w_louter",
+      "title": "Pepijn — Studio Louter",
+      "submitted": "2026-08-24",
+      "note": "Your warmest door (met Nov ’25, office nearby). The live trigger is the Rubenshuis Antwerp consortium with Wondering + CREATE.eu — design development runs through 2027, so capacity is the natural ask. Dossier outreach #1. Note their vacatures page now 404s — no listings at all, which makes the direct name the only route. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://www.studiolouter.nl/",
+      "new": true
+    },
+    {
+      "id": "w_kdj",
+      "title": "Niels — Kossmanndejong",
+      "submitted": "2026-08-24",
+      "note": "Tier A Amsterdam, top-tier exhibition design, 30+ international team. No public openings and no jobs page worth watching — a named contact is the only door here, so this one matters more than most. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://kossmanndejong.nl/",
+      "new": true
+    },
+    {
+      "id": "w_nl",
+      "title": "info@ — NorthernLight",
+      "submitted": "2026-08-24",
+      "note": "Timely: two trainee roles went live this week, which per your own read means they are busy enough to staff and someone is actually watching the inbox. Their page also carries a standing \"send us your portfolio\" form. Best-odds inbox of the eight right now. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://www.northernlight.nl/job-offers",
+      "new": true
+    },
+    {
+      "id": "w_tellart",
+      "title": "Pim — Tellart",
+      "submitted": "2026-08-24",
+      "note": "Best structural fit for a one-person BV: careers page explicitly describes a network of freelance experts they staff projects from, English-first, Amsterdam. Coffee Nov ’25, \"they were impressed\". Expect white-label — fine, as long as it is not all of it. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://tellart.com/careers",
+      "new": true
+    },
+    {
+      "id": "w_huijser",
+      "title": "Michael Huijser — Mondriaan Fonds",
+      "submitted": "2026-08-24",
+      "note": "⚠️ RELATIONSHIP-SENSITIVE — flag, do not push. Started at Mondriaan 17 Aug; this is the ~1 Sep re-approach at his Mondriaan address after the personal-address email got a holiday auto-reply in July. Two-track value: positioning advice at the top of NL’s main visual-arts fund, and the Scheepvaartmuseum presentations team separately. Scans will surface silence here as information only — they will not recommend chasing him. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://www.mondriaanfonds.nl/",
+      "new": true
+    },
+    {
+      "id": "w_acmi",
+      "title": "Anat — ACMI (Melbourne)",
+      "submitted": "2026-08-24",
+      "note": "AU/EU bridge. Same shape as the Art Processors channel — useful for short-term bridge revenue and as a network node, not a core NL play. Remote/timezone caveats apply. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://www.acmi.net.au/",
+      "new": true
+    },
+    {
+      "id": "w_tinker",
+      "title": "Nienke — Tinker Imagineers",
+      "submitted": "2026-08-24",
+      "note": "Tier A, Utrecht (occasional travel = fine). ~30 core team \"plus a broad network of freelancers\"; closest analogue to Art Processors / Local Projects. Met founder + lead producer Dec ’25. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "url": "https://www.tinker.nl/",
+      "new": true
     }
   ]
 }

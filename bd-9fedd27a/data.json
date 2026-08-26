@@ -1,7 +1,23 @@
 {
-  "updated": "2026-08-24T08:59:41.961Z",
-  "updatedBy": "Claude (open outreach, 24 Aug)",
+  "updated": "2026-08-26T09:02:59.557Z",
+  "updatedBy": "Claude (scan #12, 26 Aug)",
   "deadlines": [
+    {
+      "id": "d_museumnext",
+      "date": "2026-09-04",
+      "title": "MuseumNext Creative Museums — submit speaker proposal",
+      "note": "⚠️ date is SELF-SET, not published. Call is open now; event 21–22 Oct, 20-min pre-recorded, online, free. Their own suggested topic: \"How are museums pushing the boundaries in exhibition design?\" Pitch first-hand delivery (Mona / Opera House / AMNH), not a capabilities deck.",
+      "url": "https://www.museumnext.com/events/creative-museum-summit/call-for-speakers/",
+      "new": true
+    },
+    {
+      "id": "d_wdcd_sep",
+      "date": "2026-09-08",
+      "title": "WDCD Designers for Designers LIVE — Rotterdam, 19:00",
+      "note": "Leeszaal Rotterdam West. Free peer-to-peer coaching, curated small group. Date now verified on the DpfR agenda (the 6 Sep figure was wrong). Online edition also runs periodically via Zoom.",
+      "url": "https://www.designplatformrotterdam.nl/agenda",
+      "new": true
+    },
     {
       "id": "d5",
       "date": "2026-09-09",
@@ -9,6 +25,14 @@
       "note": "reminder task fires 9 Sep — highest-value speaking play",
       "url": "https://www.ecsite.eu/Ecsite-2027",
       "new": false
+    },
+    {
+      "id": "d_bdmuseum",
+      "date": "2026-09-14",
+      "title": "Belasting & Douane Museum — marktconsultatie herinrichting",
+      "note": "TenderNed 606414 / IUC26-635. Pre-procurement: Belastingdienst is still writing the uitvraag and asking the market to improve it. No reference or turnover hurdles — just needs a free TenderNed account.",
+      "url": "https://www.tenderned.nl/aankondigingen/overzicht/436626",
+      "new": true
     },
     {
       "id": "dzatnfn",
@@ -25,14 +49,6 @@
       "note": "€24,900 · your maybe-apply — decide late Sep",
       "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
       "new": false
-    },
-    {
-      "id": "d_bdmuseum",
-      "date": "2026-09-14",
-      "title": "Belasting & Douane Museum — marktconsultatie herinrichting",
-      "note": "TenderNed 606414 / IUC26-635. Pre-procurement: Belastingdienst is still writing the uitvraag and asking the market to improve it. No reference or turnover hurdles — just needs a free TenderNed account.",
-      "url": "https://www.tenderned.nl/aankondigingen/overzicht/436626",
-      "new": true
     }
   ],
   "leads": [
@@ -83,6 +99,13 @@
       "title": "Belasting & Douane Museum, Rotterdam — full re-fit going to European tender",
       "note": "Marktconsultatie published 18 Aug for the herinrichting of the whole museum; a European tender follows. CPV 92520000-2. Douanedek wing already closed 6 Jul 2026, so the re-fit is real and moving. Collection + a genuinely good story (smuggling, customs, tax); Rotterdam ~1hr. Dutch-language process, and the eventual tender needs a partner — but the consultation is yours to enter alone and puts your name in the file before the brief is locked. Top pick this run (8/10).",
       "url": "https://www.tenderned.nl/aankondigingen/overzicht/436626",
+      "new": true
+    },
+    {
+      "id": "l_spoorwegmuseum",
+      "title": "Spoorwegmuseum Utrecht — renewal masterplan completes 2026",
+      "note": "Cold approach, no posting. Masterplan being written NOW toward the 2027 centenary; they tried to build the concept team internally (3 roles, all closed 31 Jul); no structural subsidy, just reorganised to avoid bankruptcy. Their own words: knowledge \"will be brought in from outside where needed\". Lean one-person BV at €110–125/hr is the shape they can afford. Door: dir. Leontien Lems / Hoofd Publiek Cécile Brvar (newly recruited).",
+      "url": "https://www.spoorwegmuseum.nl/over/nieuws/spoorwegmuseum-start-noodzakelijke-vernieuwing/",
       "new": true
     }
   ],

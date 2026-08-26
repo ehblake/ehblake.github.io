@@ -1,15 +1,7 @@
 {
-  "updated": "2026-08-26T09:02:59.557Z",
-  "updatedBy": "Claude (scan #12, 26 Aug)",
+  "updated": "2026-08-26T09:19:55.282Z",
+  "updatedBy": "Claude (correction, 26 Aug)",
   "deadlines": [
-    {
-      "id": "d_museumnext",
-      "date": "2026-09-04",
-      "title": "MuseumNext Creative Museums — submit speaker proposal",
-      "note": "⚠️ date is SELF-SET, not published. Call is open now; event 21–22 Oct, 20-min pre-recorded, online, free. Their own suggested topic: \"How are museums pushing the boundaries in exhibition design?\" Pitch first-hand delivery (Mona / Opera House / AMNH), not a capabilities deck.",
-      "url": "https://www.museumnext.com/events/creative-museum-summit/call-for-speakers/",
-      "new": true
-    },
     {
       "id": "d_wdcd_sep",
       "date": "2026-09-08",
@@ -49,6 +41,14 @@
       "note": "€24,900 · your maybe-apply — decide late Sep",
       "url": "https://www.mondriaanfonds.nl/en/current/news/new-interdisciplinary-grant-for-individual-makers-and-organisations/",
       "new": false
+    },
+    {
+      "id": "d_museumnext_oct",
+      "date": "2026-10-30",
+      "title": "MuseumNext — next speaker-call round closes (3 summits)",
+      "note": "CORRECTION of my 26 Aug error. The in-lane one — Creative Museums, \"pushing the boundaries in exhibition design\" — closed 1 JULY 2026. I told you no deadline was published; it was published on the page and I misread a truncated result. What is actually open, all closing 30 Oct: Digital Learning (8-9 Dec), Museums Health & Well-Being (26-27 Jan 27), Green Museums (23-24 Feb 27) — all off your lane. Your call whether any is worth 20 pre-recorded minutes. The in-lane 2027 summits are not announced yet; scans now check all MuseumNext CFS pages every run.",
+      "url": "https://www.museumnext.com/events/",
+      "new": true
     }
   ],
   "leads": [

@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-26T09:19:55.282Z",
-  "updatedBy": "Claude (correction, 26 Aug)",
+  "updated": "2026-08-28T20:34:16.416Z",
+  "updatedBy": "Claude (scan 28 Aug)",
   "deadlines": [
     {
       "id": "d_wdcd_sep",
@@ -19,11 +19,27 @@
       "new": false
     },
     {
+      "id": "d_reinwardt",
+      "date": "2026-09-09",
+      "title": "Reinwardt Academie — docenten bachelor (a door, not a job)",
+      "note": "3 posts, 0,4 and 0,6 fte, Dutch-language, temporary ~1 yr. It FAILS your brief: 16-24 hrs vs your 12-hr cap, and the duties are structural (student + internship supervision, exams, curriculum), not lectures and crits. Specialisms sought are collectiemanagement/publiekswerk, not experience design. On the board only because it is the one live Amsterdam heritage-teaching opening at a named dossier target, and a post you cannot take is still a pretext for a letter to the programme. 9 Sep is the hook.",
+      "url": "https://www.reinwardt.ahk.nl/actueel/vacatures/vacaturebeschrijving/docenten-voor-de-bachelor-1/",
+      "new": true
+    },
+    {
       "id": "d_bdmuseum",
       "date": "2026-09-14",
       "title": "Belasting & Douane Museum — marktconsultatie herinrichting",
       "note": "TenderNed 606414 / IUC26-635. Pre-procurement: Belastingdienst is still writing the uitvraag and asking the market to improve it. No reference or turnover hurdles — just needs a free TenderNed account.",
       "url": "https://www.tenderned.nl/aankondigingen/overzicht/436626",
+      "new": true
+    },
+    {
+      "id": "d_aam_cfp",
+      "date": "2026-09-21",
+      "title": "AAM 2027 call for proposals closes (23:59 PT)",
+      "note": "The strongest in-lane speaking call currently open anywhere. Track \"Audience, Experiences & Value Creation\" lists \"Visitor Experience and Engagement Design\" and \"Exhibitions as Experience and Meaning-Making\" — your lane, named twice, in their taxonomy. Case Study format: 60 min, max 2 presenters, deep dive into one project with measurable outcomes. THREE CATCHES: presenters must attend IN PERSON (Houston, 5-8 May 2027 — no streaming, and inability to attend is a listed disqualification); industry submissions must include a museum professional as co-presenter, so a former client has to say yes inside three weeks; and the page contradicts itself with a 26 Sep figure — treat 21 Sep as real. The decision this week is not submit-or-not, it is whether there is a museum co-presenter.",
+      "url": "https://annualmeeting.aam-us.org/callforproposals/",
       "new": true
     },
     {
@@ -107,6 +123,13 @@
       "note": "Cold approach, no posting. Masterplan being written NOW toward the 2027 centenary; they tried to build the concept team internally (3 roles, all closed 31 Jul); no structural subsidy, just reorganised to avoid bankruptcy. Their own words: knowledge \"will be brought in from outside where needed\". Lean one-person BV at €110–125/hr is the shape they can afford. Door: dir. Leontien Lems / Hoofd Publiek Cécile Brvar (newly recruited).",
       "url": "https://www.spoorwegmuseum.nl/over/nieuws/spoorwegmuseum-start-noodzakelijke-vernieuwing/",
       "new": true
+    },
+    {
+      "id": "l_afk_cat3_call",
+      "title": "Phone AFK about the categorie 3 pot before you draft anything",
+      "note": "Checked as promised: NO aanvraagstop posted today, cat 3 is open and still first-come. But AFK own numbers for H1 are the story — 356 applications Jan-30 Apr worth €6,256,593 against a €2,196,500 budget, 2.8x oversubscribed, closed 7 May at 08:00 with the pot dry in four months. The H2 pot is €1,761,493, about 20% SMALLER, and opened 1 July — we are eight weeks in. There is no live counter, so the only way to know is to ask: 020 520 0520. That one call decides whether \"All the Museums of Amsterdam\" is a this-half-year application or a January one. Separately: the real long-lead item is the intentieverklaring from an Amsterdam venue — that letter, not the form, is what takes weeks.",
+      "url": "https://www.amsterdamsfondsvoordekunst.nl/aanvragen/projectsubsidies-2026-2028/projectsubsidies-categorie-3/",
+      "new": true
     }
   ],
   "waiting": [
@@ -154,7 +177,7 @@
       "id": "w_louter",
       "title": "Pepijn — Studio Louter",
       "submitted": "2026-08-24",
-      "note": "Your warmest door (met Nov ’25, office nearby). The live trigger is the Rubenshuis Antwerp consortium with Wondering + CREATE.eu — design development runs through 2027, so capacity is the natural ask. Dossier outreach #1. Note their vacatures page now 404s — no listings at all, which makes the direct name the only route. · Nudge window: 4 weeks → check ~21 Sep if silent. Send-date assumed as today — correct it inline if you sent earlier.",
+      "note": "Your warmest door (met Nov 25, office nearby). RUBENSHUIS UPDATE 28 Aug — the consortium is finally legible and two things we told you were wrong. The scenography team is Wondering (lead, Gent) in co-production with STUDIO LOUTER, Chris Pype Licht, Create.eu and StudioMDA; appointed 15 Jan 2026 (not March); definitive design expected 2027, so they are in CONCEPT PHASE NOW and the 2027 design resourcing is ahead of them, not behind. That is a much better ask than \"do you have capacity\": a dated project with a design phase not yet staffed. Also correcting ourselves: their vacatures page 404s, but there IS a live listing (Content Design internship) on the homepage — the inbox is monitored. Nudge window: 4 weeks, check ~21 Sep if silent. Send-date assumed — correct it inline if you sent earlier.",
       "url": "https://www.studiolouter.nl/",
       "new": true
     },

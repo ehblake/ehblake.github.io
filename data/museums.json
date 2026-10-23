@@ -223,7 +223,18 @@
         { "name": "Het Scheepvaartmuseum", "lat": 52.3716, "lng": 4.9153 },
         { "name": "Museum Villa", "lat": 52.3862, "lng": 4.8747 },
         { "name": "Mozarthaus Vienna", "lat": 48.2082, "lng": 16.3749 },
-        { "name": "Schönbrunn Palace", "lat": 48.1845, "lng": 16.3119 }
+        { "name": "Schönbrunn Palace", "lat": 48.1845, "lng": 16.3119 },
+        { "name": "H'ART Museum", "lat": 52.3657, "lng": 4.9021 },
+        { "name": "Groninger Museum", "lat": 53.2122, "lng": 6.5613 },
+        { "name": "Teylers Museum", "lat": 52.3800, "lng": 4.6407 },
+        { "name": "Allard Pierson", "lat": 52.3684, "lng": 4.8925 },
+        { "name": "City Archives Amsterdam", "lat": 52.3644, "lng": 4.8913 },
+        { "name": "Huis Marseille", "lat": 52.3675, "lng": 4.8846 },
+        { "name": "Embassy of the Free Mind", "lat": 52.3779, "lng": 4.8854 },
+        { "name": "Wereld Museum Amsterdam", "lat": 52.3622, "lng": 4.9229 },
+        { "name": "Naturalis", "lat": 52.1640, "lng": 4.4730 },
+        { "name": "Grachten Museum", "lat": 52.3677, "lng": 4.8856 },
+        { "name": "Huis Willet-Holthuysen", "lat": 52.3664, "lng": 4.8993 }
       ]
     },
     {

@@ -373,6 +373,13 @@ h1, h2, h3, h4 {
 }
 .sg-item--exp-2b img { aspect-ratio: 4 / 3; }
 
+.sg-item--exp-3b {
+    grid-column: 6 / 9;
+    grid-row: 3;
+    margin-top: 120px;
+}
+.sg-item--exp-3b img { aspect-ratio: 1 / 1; }
+
 /* View all projects link */
 .view-all {
     display: inline-block;

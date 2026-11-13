@@ -234,7 +234,13 @@
         { "name": "Wereld Museum Amsterdam", "lat": 52.3622, "lng": 4.9229 },
         { "name": "Naturalis", "lat": 52.1640, "lng": 4.4730 },
         { "name": "Grachten Museum", "lat": 52.3677, "lng": 4.8856 },
-        { "name": "Huis Willet-Holthuysen", "lat": 52.3664, "lng": 4.8993 }
+        { "name": "Huis Willet-Holthuysen", "lat": 52.3664, "lng": 4.8993 },
+        { "name": "Escher in Het Paleis", "lat": 52.0829, "lng": 4.3134 },
+        { "name": "Rijksmuseum Meermanno", "lat": 52.0818, "lng": 4.3193 },
+        { "name": "Mauritshuis", "lat": 52.0801, "lng": 4.3148 },
+        { "name": "Royal Museums of Fine Arts of Belgium", "lat": 50.8415, "lng": 4.3582 },
+        { "name": "Magritte Museum", "lat": 50.8422, "lng": 4.3576 },
+        { "name": "KBR Museum", "lat": 50.8448, "lng": 4.3566 }
       ]
     },
     {
